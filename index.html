@@ -32,8 +32,8 @@
       }
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-    body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; overflow-x: hidden; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; overflow-x: clip; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; overflow-x: hidden; overflow-x: clip; -webkit-tap-highlight-color: transparent; }
     a { color: inherit; }
     img, svg { display: block; }
     .wrap { width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 20px; }
@@ -54,11 +54,12 @@
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 16px; font: inherit; font-weight: 700; font-size: 16px; text-decoration: none; border: 0; cursor: pointer; transition: transform .2s cubic-bezier(.2,0,0,1), box-shadow .2s, background .2s; white-space: nowrap; }
     .btn svg { width: 18px; height: 18px; transition: transform .2s; }
     .btn:hover svg { transform: translateX(3px); }
-    .btn-primary { background: var(--green); color: #fff; box-shadow: 0 8px 24px -8px var(--green); }
-    @media (prefers-color-scheme: dark) { .btn-primary { color: #04130A; } }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -10px var(--green); }
+    .btn-primary { background: var(--green); color: #fff; box-shadow: 0 1px 2px rgba(11,31,20,.12), 0 6px 14px -8px rgba(11,31,20,.35); }
+    @media (prefers-color-scheme: dark) { .btn-primary { color: #04130A; box-shadow: none; } }
+    .btn-primary:hover { transform: translateY(-1px); filter: brightness(1.05); }
+    .btn:active { transform: translateY(0) scale(.98); }
     .btn-ghost { background: var(--card); color: var(--ink); border: 1px solid var(--line); }
-    .btn-ghost:hover { transform: translateY(-2px); }
+    .btn-ghost:hover { transform: translateY(-1px); border-color: color-mix(in srgb, var(--green) 40%, var(--line)); }
     .btn:focus-visible, a:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
 
     /* Nav */
@@ -71,12 +72,12 @@
     .nav-links { display: flex; gap: 28px; font-size: 15px; font-weight: 600; color: var(--sub); }
     .nav-links a { text-decoration: none; transition: color .2s; }
     .nav-links a:hover { color: var(--ink); }
-    .nav .btn { min-height: 42px; padding: 0 18px; font-size: 15px; border-radius: 13px; }
+    .nav .btn { min-height: 42px; padding: 0 18px; font-size: 15px; border-radius: 13px; box-shadow: none; }
     @media (max-width: 860px) { .nav-links { display: none; } }
 
     /* Hero */
-    .hero { padding: clamp(40px, 7vw, 88px) 0 clamp(60px, 8vw, 110px); overflow: hidden; }
-    .hero::before { content: ""; position: absolute; inset: -20% -10% auto; height: 900px; background: radial-gradient(50% 50% at 70% 35%, var(--glow), transparent 70%), radial-gradient(40% 40% at 10% 10%, color-mix(in srgb, var(--shop) 10%, transparent), transparent 70%); pointer-events: none; }
+    .hero { position: relative; padding: clamp(40px, 7vw, 88px) 0 clamp(60px, 8vw, 110px); overflow: hidden; }
+    .hero::before { content: ""; position: absolute; inset: -20% 0 auto; height: 900px; background: radial-gradient(50% 50% at 70% 35%, var(--glow), transparent 70%), radial-gradient(40% 40% at 10% 10%, color-mix(in srgb, var(--shop) 10%, transparent), transparent 70%); pointer-events: none; }
     .hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center; position: relative; }
     .badge { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px 6px 6px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); font-size: 14px; font-weight: 600; color: var(--sub); box-shadow: var(--shadow); text-decoration: none; }
     .badge b { padding: 3px 10px; border-radius: 999px; background: var(--green-soft); color: var(--green-ink); font-size: 12px; letter-spacing: .04em; }
@@ -127,7 +128,7 @@
     .tabbar span { width: 22px; height: 22px; border-radius: 7px; background: var(--line); }
     .tabbar span.on { background: var(--green); }
 
-    .float { position: absolute; display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 16px; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); font-size: 13px; font-weight: 700; white-space: nowrap; z-index: 4; animation: drift 7s ease-in-out infinite, floatIn .8s cubic-bezier(.2,0,0,1) both; }
+    .float { position: absolute; max-width: 62%; display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 16px; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); font-size: 13px; font-weight: 700; white-space: nowrap; z-index: 4; animation: drift 7s ease-in-out infinite, floatIn .8s cubic-bezier(.2,0,0,1) both; }
     .float small { display: block; font-size: 11px; color: var(--sub); font-weight: 600; }
     .float .dot { width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; flex: none; }
     .float .dot svg { width: 17px; height: 17px; }
@@ -142,9 +143,15 @@
     }
     @media (max-width: 480px) {
       .phone { width: 270px; height: 552px; }
-      .f1 { left: -4%; } .f2 { right: -4%; } .f3 { left: -2%; }
-      .float { font-size: 12px; padding: 8px 11px; }
-      .btn { width: 100%; }
+      .phone { transform: none; animation-name: phoneInFlat; }
+      .f1 { left: 0; top: 4%; } .f2 { display: none; } .f3 { left: auto; right: 0; bottom: 6%; }
+      .badge { font-size: 13px; padding-right: 12px; }
+      .float { font-size: 12px; padding: 8px 10px; gap: 8px; border-radius: 14px; }
+      .float .dot { width: 28px; height: 28px; border-radius: 9px; }
+      .float small { font-size: 10.5px; }
+      .cta-row .btn { width: 100%; }
+      .nav .btn { padding: 0 14px; font-size: 14px; min-height: 40px; }
+      .stage { min-height: 540px; }
     }
 
     /* Marquee */
@@ -341,7 +348,7 @@
     details p { color: var(--sub); padding: 0 0 20px; }
 
     /* Final CTA */
-    .final { position: relative; overflow: hidden; border-radius: 32px; padding: clamp(40px, 6vw, 72px); text-align: center; color: #fff; background: linear-gradient(135deg, #0B9D4F 0%, #087A3D 55%, #064D27 100%); box-shadow: 0 40px 80px -40px rgba(11,157,79,.6); }
+    .final { position: relative; overflow: hidden; border-radius: 32px; padding: clamp(40px, 6vw, 72px); text-align: center; color: #fff; background: linear-gradient(135deg, #0B9D4F 0%, #087A3D 55%, #064D27 100%); }
     .final::before, .final::after { content: ""; position: absolute; border-radius: 50%; background: rgba(255,255,255,.07); }
     .final::before { width: 420px; height: 420px; right: -120px; top: -160px; }
     .final::after { width: 280px; height: 280px; left: -100px; bottom: -140px; }
@@ -365,6 +372,7 @@
     /* Keyframes */
     @keyframes draw { to { stroke-dashoffset: 0; } }
     @keyframes phoneIn { from { opacity: 0; transform: translateY(60px) rotate(-8deg); } to { opacity: 1; transform: translateY(0) rotate(-4deg); } }
+    @keyframes phoneInFlat { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: none; } }
     @keyframes floatIn { from { opacity: 0; scale: .9; } to { opacity: 1; scale: 1; } }
     @keyframes drift { 0%, 100% { translate: 0 0; } 50% { translate: 0 -10px; } }
     @keyframes grow { to { transform: scaleY(var(--h)); } }
@@ -399,7 +407,7 @@
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation: none !important; transition: none !important; }
       .reveal { opacity: 1; transform: none; }
-      .phone { transform: rotate(-4deg); }
+
       .hero h1 .hl path { stroke-dashoffset: 0; }
       .bars i, .chart i { transform: scaleY(var(--h)); }
       .carton { opacity: 1; }
@@ -453,7 +461,7 @@
     <section class="hero">
       <div class="wrap">
         <div>
-          <a class="badge" href="#ecosystem"><b>NEW</b> Shopflow &amp; Dropflow are on the way →</a>
+          <a class="badge" href="#ecosystem"><b>NEW</b> Shopflow &amp; Dropflow are coming →</a>
           <h1>Your whole shop, <span class="hl">in your pocket.<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14 C 80 4, 180 4, 296 12"/></svg></span></h1>
           <p class="lead">StockFlow keeps your stock, sales and books right, even with no data. Built for shops, wholesalers, restaurants, pharmacies and service businesses that are done with notebooks.</p>
           <div class="cta-row">
@@ -843,25 +851,19 @@
         pen.style.opacity = '0';
       });
 
-      // Stock counter follows the cartons on the shelf (7s loop, 6 cartons, 24 pieces each).
+      // Stock counter follows the cartons: each one counts while it sits on the plank
+      // (15%–62% of its own animation), read straight from the running animation.
       var stockEl = document.querySelector('[data-stock]');
-      var shelfCell = document.querySelector('.c-stock');
-      var t0 = null;
-      (function stockTick(now) {
-        if (shelfCell.classList.contains('play') && !reduce) {
-          if (t0 === null) t0 = now;
-          var n = 0;
-          for (var i = 0; i < 6; i++) {
-            var t = ((now - t0) / 1000 - i * 0.35) % 7;
-            if (t >= 1.05 && t < 4.34) n++; // on the plank between 15% and 62% of the carton loop
-          }
-          stockEl.textContent = n * 24;
-        } else if (!shelfCell.classList.contains('play')) {
-          t0 = null;
-        }
-        if (reduce) stockEl.textContent = 144;
-        requestAnimationFrame(stockTick);
-      })(performance.now());
+      var cartons = document.querySelectorAll('.shelf .carton');
+      if (reduce || !document.getAnimations) stockEl.textContent = 144;
+      else setInterval(function () {
+        var n = 0;
+        cartons.forEach(function (c) {
+          var a = c.getAnimations()[0], p = a && a.effect.getComputedTiming().progress;
+          if (p != null && p >= 0.15 && p < 0.62) n++;
+        });
+        stockEl.textContent = n * 24;
+      }, 120);
 
       // Business kinds light up one after another.
       var kinds = document.querySelectorAll('#kinds span'), k = 0;

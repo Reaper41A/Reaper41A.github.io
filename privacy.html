@@ -14,7 +14,7 @@
     :root { --bg: #F4FAF6; --bg-2: #EAF5EE; --card: #FFFFFF; --ink: #0B1F14; --sub: #4D6155; --line: #DAEADF; --green: #0B9D4F; --green-ink: #087A3D; --green-soft: #DDF3E6; --glow: rgba(11,157,79,.16); }
     @media (prefers-color-scheme: dark) { :root { --bg: #040705; --bg-2: #08100B; --card: #0C1510; --ink: #EAF3EE; --sub: #A2B6AA; --line: #18261E; --green: #27D86F; --green-ink: #4BE28A; --green-soft: #0F2A1A; --glow: rgba(39,216,111,.14); } }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; overflow-x: clip; }
     body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.7 "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
     a { color: var(--green-ink); }
     .nav { position: sticky; top: 0; z-index: 10; backdrop-filter: saturate(1.6) blur(14px); -webkit-backdrop-filter: saturate(1.6) blur(14px); background: color-mix(in srgb, var(--bg) 80%, transparent); border-bottom: 1px solid var(--line); }
