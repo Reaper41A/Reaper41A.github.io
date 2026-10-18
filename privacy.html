@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy · StockFlow</title>
+  <meta name="description" content="How the StockFlow app collects, uses and protects your information.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='24 12 52 76'%3E%3Cg fill='none' stroke-width='11'%3E%3Cpath d='M64 38V34Q64 22 52 22H48Q36 22 36 34V38Q36 50 48 50' stroke='%230B1F14'/%3E%3Cpath d='M52 50Q64 50 64 62V66Q64 78 52 78H48Q36 78 36 66V62' stroke='%230B9D4F'/%3E%3C/g%3E%3C/svg%3E">
+  <meta name="theme-color" content="#0B9D4F">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg: #F4FAF6; --bg-2: #EAF5EE; --card: #FFFFFF; --ink: #0B1F14; --sub: #4D6155; --line: #DAEADF; --green: #0B9D4F; --green-ink: #087A3D; --green-soft: #DDF3E6; --glow: rgba(11,157,79,.16); }
+    @media (prefers-color-scheme: dark) { :root { --bg: #040705; --bg-2: #08100B; --card: #0C1510; --ink: #EAF3EE; --sub: #A2B6AA; --line: #18261E; --green: #27D86F; --green-ink: #4BE28A; --green-soft: #0F2A1A; --glow: rgba(39,216,111,.14); } }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.7 "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    a { color: var(--green-ink); }
+    .nav { position: sticky; top: 0; z-index: 10; backdrop-filter: saturate(1.6) blur(14px); -webkit-backdrop-filter: saturate(1.6) blur(14px); background: color-mix(in srgb, var(--bg) 80%, transparent); border-bottom: 1px solid var(--line); }
+    .nav div { max-width: 1160px; margin: 0 auto; padding: 0 20px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-weight: 800; font-size: 20px; letter-spacing: -0.03em; }
+    .logo .flow { color: var(--green); }
+    .logo svg { width: 19px; height: 28px; color: var(--ink); }
+    .home { font-weight: 700; font-size: 15px; text-decoration: none; color: var(--sub); }
+    .home:hover { color: var(--ink); }
+    .hero { position: relative; overflow: hidden; padding: 64px 20px 40px; text-align: center; }
+    .hero::before { content: ""; position: absolute; inset: -60% -20% auto; height: 600px; background: radial-gradient(45% 50% at 50% 50%, var(--glow), transparent 70%); pointer-events: none; }
+    .kicker { position: relative; font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--green-ink); }
+    h1 { position: relative; font-size: clamp(36px, 6vw, 56px); letter-spacing: -0.04em; line-height: 1.05; margin: 12px 0 10px; }
+    .hero p { position: relative; color: var(--sub); }
+    main { max-width: 760px; margin: 0 auto; padding: 0 20px 40px; }
+    .doc { background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: clamp(22px, 5vw, 44px); box-shadow: 0 1px 2px rgba(11,31,20,.04), 0 12px 32px -12px rgba(11,31,20,.14); animation: rise .7s cubic-bezier(.2,0,0,1) both; }
+    h2 { font-size: 21px; letter-spacing: -0.02em; margin: 36px 0 8px; padding-top: 4px; }
+    .doc > h2:first-of-type { margin-top: 28px; }
+    p, li { color: var(--ink); }
+    .muted { color: var(--sub); }
+    ul { padding-left: 0; list-style: none; }
+    li { margin: 10px 0; padding-left: 22px; position: relative; }
+    li::before { content: ""; position: absolute; left: 2px; top: .7em; width: 7px; height: 7px; border-radius: 2px; background: var(--green); transform: rotate(45deg); }
+    footer { max-width: 760px; margin: 0 auto; padding: 24px 20px 48px; color: var(--sub); font-size: 15px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+    @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .doc { animation: none; } html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <header class="nav"><div>
+    <a class="logo" href="./" aria-label="StockFlow home"><svg viewBox="24 12 52 76" aria-hidden="true"><g fill="none" stroke-width="11"><path d="M64 38V34Q64 22 52 22H48Q36 22 36 34V38Q36 50 48 50" stroke="currentColor"/><path d="M52 50Q64 50 64 62V66Q64 78 52 78H48Q36 78 36 66V62" stroke="var(--green)"/></g></svg><span>stock<span class="flow">flow</span></span></a>
+    <a class="home" href="./">← Back to home</a>
+  </div></header>
+  <section class="hero">
+    <div class="kicker">Legal</div>
+    <h1>Privacy Policy</h1>
+    <p>Last updated: 18 October 2026</p>
+  </section>
+  <main>
+    <article class="doc">
+
+    <p>This policy explains what the StockFlow mobile app ("StockFlow", "we") collects, why, and the choices you have. If you have a question, email <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a>.</p>
+
+    <h2>Using StockFlow without an account</h2>
+    <p>You can start selling without creating an account. In that case your shop's records (products, stock, sales, customers, expenses) are stored only on your phone and are not sent to us, except for anonymous crash and error reports described below.</p>
+
+    <h2>What we collect when you create an account</h2>
+    <ul>
+      <li><strong>Account details:</strong> your name and email address. If you choose "Continue with Google", Google shares your name, email address and profile picture with us. We never receive your Google password.</li>
+      <li><strong>Your business records:</strong> the shop information and records you enter (such as products, stock, prices, sales, customers, suppliers, debts and expenses), so they can be backed up and synced across your devices.</li>
+      <li><strong>Shop profile:</strong> if you publish your shop to the marketplace, the details you choose to show (name, category, description, address, location pin, logo, products and promotions) are visible to other users.</li>
+      <li><strong>Messages and orders:</strong> chats, images, voice messages and orders you exchange with other businesses in the app.</li>
+      <li><strong>Device and app information:</strong> a device identifier, app version, crash and error reports, and basic usage events, used to keep the app working and fix problems. These reports do not include the contents of your messages or passwords.</li>
+      <li><strong>Notification token:</strong> if you allow notifications, a push token so we can send you order, message and reminder alerts.</li>
+    </ul>
+
+    <h2>Phone permissions</h2>
+    <p>StockFlow only asks for these when you use the feature that needs them, and you can turn them off at any time in your phone's settings:</p>
+    <ul>
+      <li><strong>Camera:</strong> to scan product barcodes and take product photos.</li>
+      <li><strong>Photos:</strong> to attach product and chat images, and to save chat images when you tap Save.</li>
+      <li><strong>Location:</strong> to help fill in a delivery or shop address. We do not track your location in the background.</li>
+      <li><strong>Microphone:</strong> to record voice messages in chat.</li>
+      <li><strong>Face ID / fingerprint:</strong> as a faster way to unlock instead of your PIN. Your biometric data stays on your phone and is never sent to us.</li>
+    </ul>
+
+    <h2>How we use your information</h2>
+    <ul>
+      <li>To provide the app: back up and sync your records, run your shop profile, deliver messages and orders.</li>
+      <li>To send notifications you have switched on.</li>
+      <li>To keep the app secure, prevent misuse and fix errors.</li>
+    </ul>
+    <p>We do not sell your personal information, and we do not use it for advertising.</p>
+
+    <h2>Who we share it with</h2>
+    <p>We use a small number of service providers to run StockFlow. They process data only on our behalf:</p>
+    <ul>
+      <li><strong>Supabase:</strong> hosts our database, file storage and sign-in.</li>
+      <li><strong>Google:</strong> for "Continue with Google" sign-in, and Firebase Cloud Messaging for notifications on Android.</li>
+      <li><strong>Expo:</strong> to deliver push notifications.</li>
+      <li><strong>Paystack:</strong> to process card or bank payments for orders. We do not store your card details.</li>
+    </ul>
+    <p>Other StockFlow users only see what you choose to share with them (your public shop profile, and the messages and orders you send them). We may disclose information if required by law.</p>
+
+    <h2>How long we keep it</h2>
+    <p>We keep your account and business records while your account is active. You can delete your shop's cloud data from the app's settings, or ask us to delete your account by emailing <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a>. We will delete it within 30 days, unless the law requires us to keep something longer.</p>
+
+    <h2>Security</h2>
+    <p>Data is sent over encrypted connections, and access to each business's records is restricted to that business and the staff it invites. You can also protect the app on your phone with a PIN.</p>
+
+    <h2>Your rights</h2>
+    <p>You can ask to see, correct, export or delete your personal information, or withdraw consent, by emailing us. You may also contact the data protection authority in your country, such as the Nigeria Data Protection Commission.</p>
+
+    <h2>Children</h2>
+    <p>StockFlow is a business tool and is not meant for children under 13. We do not knowingly collect their information.</p>
+
+    <h2>Changes</h2>
+    <p>If we change this policy, we will update the date at the top. For important changes we will also tell you in the app.</p>
+
+    </article>
+  </main>
+  <footer><span>Contact: <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a></span><span>© 2026 StockFlow</span></footer>
+</body>
+</html>

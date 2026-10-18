@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StockFlow · Your whole shop, in your pocket</title>
+  <meta name="description" content="StockFlow keeps your stock, sales and books in order, even with no data. Built for shops, wholesalers, restaurants and service businesses. Shopflow and Dropflow are coming soon.">
+  <meta name="theme-color" content="#0B9D4F">
+  <meta property="og:title" content="StockFlow · Your whole shop, in your pocket">
+  <meta property="og:description" content="Stock, sales and books that keep themselves right, even offline. Shopflow for shoppers and Dropflow for riders are coming soon.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='24 12 52 76'%3E%3Cg fill='none' stroke-width='11'%3E%3Cpath d='M64 38V34Q64 22 52 22H48Q36 22 36 34V38Q36 50 48 50' stroke='%230B1F14'/%3E%3Cpath d='M52 50Q64 50 64 62V66Q64 78 52 78H48Q36 78 36 66V62' stroke='%230B9D4F'/%3E%3C/g%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F4FAF6; --bg-2: #EAF5EE; --card: #FFFFFF; --ink: #0B1F14; --sub: #4D6155; --faint: #8DA195;
+      --line: #DAEADF; --green: #0B9D4F; --green-ink: #087A3D; --green-soft: #DDF3E6; --glow: rgba(11,157,79,.18);
+      --kraft: #D9AA6E; --kraft-edge: #B4864C; --tape: #F0D4A4; --label: #FFF9EE;
+      --shop: #F08A00; --shop-soft: #FFF0DB; --drop: #2F6FEB; --drop-soft: #E3ECFF;
+      --amber: #F59E0B; --danger: #E5484D;
+      --shadow: 0 1px 2px rgba(11,31,20,.04), 0 12px 32px -12px rgba(11,31,20,.16);
+      --radius: 24px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #040705; --bg-2: #08100B; --card: #0C1510; --ink: #EAF3EE; --sub: #A2B6AA; --faint: #6E8377;
+        --line: #18261E; --green: #27D86F; --green-ink: #4BE28A; --green-soft: #0F2A1A; --glow: rgba(39,216,111,.16);
+        --kraft: #B98A52; --kraft-edge: #8A6232; --tape: #D9B784; --label: #F4E9D6;
+        --shop: #FFA733; --shop-soft: #2A1C08; --drop: #6E9BFF; --drop-soft: #101B33;
+        --shadow: 0 1px 2px rgba(0,0,0,.4), 0 16px 40px -16px rgba(0,0,0,.7);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; overflow-x: hidden; }
+    a { color: inherit; }
+    img, svg { display: block; }
+    .wrap { width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+    .kicker { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--green-ink); }
+    .kicker::before { content: ""; width: 18px; height: 2px; border-radius: 2px; background: currentColor; }
+    h1, h2, h3 { letter-spacing: -0.03em; line-height: 1.08; margin: 0; }
+    h2 { font-size: clamp(32px, 4.6vw, 52px); font-weight: 800; }
+    h3 { font-size: 21px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; }
+    p { margin: 0; }
+    .lead { color: var(--sub); font-size: clamp(17px, 1.6vw, 20px); line-height: 1.6; }
+    .section { padding: clamp(72px, 10vw, 128px) 0; position: relative; }
+    .section-head { max-width: 680px; margin-bottom: clamp(36px, 5vw, 56px); }
+    .section-head h2 { margin: 14px 0 16px; }
+    .center { text-align: center; margin-left: auto; margin-right: auto; }
+    .center .kicker::after { content: ""; width: 18px; height: 2px; border-radius: 2px; background: currentColor; }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 16px; font: inherit; font-weight: 700; font-size: 16px; text-decoration: none; border: 0; cursor: pointer; transition: transform .2s cubic-bezier(.2,0,0,1), box-shadow .2s, background .2s; white-space: nowrap; }
+    .btn svg { width: 18px; height: 18px; transition: transform .2s; }
+    .btn:hover svg { transform: translateX(3px); }
+    .btn-primary { background: var(--green); color: #fff; box-shadow: 0 8px 24px -8px var(--green); }
+    @media (prefers-color-scheme: dark) { .btn-primary { color: #04130A; } }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -10px var(--green); }
+    .btn-ghost { background: var(--card); color: var(--ink); border: 1px solid var(--line); }
+    .btn-ghost:hover { transform: translateY(-2px); }
+    .btn:focus-visible, a:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+
+    /* Nav */
+    .nav { position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(1.6) blur(14px); -webkit-backdrop-filter: saturate(1.6) blur(14px); background: color-mix(in srgb, var(--bg) 78%, transparent); border-bottom: 1px solid transparent; transition: border-color .3s; }
+    .nav.scrolled { border-bottom-color: var(--line); }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+    .logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 21px; letter-spacing: -0.03em; }
+    .logo .flow { color: var(--green); }
+    .mark { width: 20px; height: 29px; color: var(--ink); }
+    .nav-links { display: flex; gap: 28px; font-size: 15px; font-weight: 600; color: var(--sub); }
+    .nav-links a { text-decoration: none; transition: color .2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav .btn { min-height: 42px; padding: 0 18px; font-size: 15px; border-radius: 13px; }
+    @media (max-width: 860px) { .nav-links { display: none; } }
+
+    /* Hero */
+    .hero { padding: clamp(40px, 7vw, 88px) 0 clamp(60px, 8vw, 110px); overflow: hidden; }
+    .hero::before { content: ""; position: absolute; inset: -20% -10% auto; height: 900px; background: radial-gradient(50% 50% at 70% 35%, var(--glow), transparent 70%), radial-gradient(40% 40% at 10% 10%, color-mix(in srgb, var(--shop) 10%, transparent), transparent 70%); pointer-events: none; }
+    .hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center; position: relative; }
+    .badge { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px 6px 6px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); font-size: 14px; font-weight: 600; color: var(--sub); box-shadow: var(--shadow); text-decoration: none; }
+    .badge b { padding: 3px 10px; border-radius: 999px; background: var(--green-soft); color: var(--green-ink); font-size: 12px; letter-spacing: .04em; }
+    .hero h1 { font-size: clamp(42px, 6.6vw, 80px); font-weight: 800; letter-spacing: -0.045em; line-height: 1.02; margin: 22px 0 22px; }
+    .hero h1 .hl { color: var(--green); position: relative; white-space: nowrap; }
+    @media (max-width: 420px) { .hero h1 { font-size: 38px; } }
+    .hero h1 .hl svg { position: absolute; left: 0; right: 0; bottom: -0.12em; width: 100%; height: .32em; overflow: visible; }
+    .hero h1 .hl path { stroke: var(--green); stroke-width: 6; fill: none; stroke-linecap: round; stroke-dasharray: 420; stroke-dashoffset: 420; animation: draw 1.1s .9s cubic-bezier(.6,0,.2,1) forwards; opacity: .45; }
+    .hero .lead { max-width: 540px; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+    .proof { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 30px; color: var(--sub); font-size: 14.5px; font-weight: 600; }
+    .proof span { display: inline-flex; align-items: center; gap: 8px; }
+    .proof svg { width: 18px; height: 18px; color: var(--green); }
+
+    /* Phone */
+    .stage { position: relative; display: grid; place-items: center; min-height: 600px; }
+    .phone { position: relative; width: 300px; height: 612px; border-radius: 48px; background: #0A0F0C; padding: 11px; box-shadow: 0 50px 100px -30px rgba(11,31,20,.45), 0 0 0 1px rgba(255,255,255,.06) inset; transform: rotate(-4deg); animation: phoneIn 1.1s .2s cubic-bezier(.2,0,0,1) both; }
+    .screen { position: relative; height: 100%; border-radius: 38px; background: var(--bg); overflow: hidden; display: flex; flex-direction: column; }
+    .island { position: absolute; top: 10px; left: 50%; width: 92px; height: 26px; margin-left: -46px; border-radius: 20px; background: #000; z-index: 3; }
+    .sbar { display: flex; justify-content: space-between; padding: 14px 24px 0; font-size: 12px; font-weight: 700; height: 40px; }
+    .app { padding: 10px 16px 0; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .app-top { display: flex; justify-content: space-between; align-items: center; }
+    .app-top small { display: block; color: var(--sub); font-size: 11px; font-weight: 600; }
+    .app-top strong { font-size: 17px; letter-spacing: -0.02em; }
+    .avatar { width: 34px; height: 34px; border-radius: 12px; background: var(--green-soft); display: grid; place-items: center; color: var(--green-ink); font-weight: 800; font-size: 14px; }
+    .hero-card { border-radius: 20px; padding: 14px; color: #fff; background: linear-gradient(135deg, #0B9D4F, #087A3D 60%, #0A5C31); position: relative; overflow: hidden; }
+    .hero-card::after { content: ""; position: absolute; right: -30px; top: -40px; width: 140px; height: 140px; border-radius: 50%; background: rgba(255,255,255,.08); }
+    .hero-card small { font-size: 11px; opacity: .85; font-weight: 600; }
+    .hero-card .big { font-size: 28px; font-weight: 800; letter-spacing: -0.03em; margin: 2px 0 8px; font-variant-numeric: tabular-nums; }
+    .bars { display: flex; align-items: flex-end; gap: 6px; height: 46px; }
+    .bars i { flex: 1; height: 100%; border-radius: 4px 4px 2px 2px; background: rgba(255,255,255,.35); transform-origin: bottom; transform: scaleY(0); animation: grow .7s cubic-bezier(.2,0,0,1) forwards; }
+    .bars i:last-child { background: #fff; }
+    .tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .tile { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 10px; font-size: 11px; color: var(--sub); font-weight: 600; }
+    .tile b { display: block; color: var(--ink); font-size: 16px; letter-spacing: -0.02em; margin-top: 2px; }
+    .tile .warn { color: var(--amber); }
+    .feed-title { font-size: 11px; font-weight: 800; letter-spacing: .1em; color: var(--sub); margin-top: 2px; }
+    .feed { position: relative; height: 150px; overflow: hidden; mask-image: linear-gradient(#000 70%, transparent); -webkit-mask-image: linear-gradient(#000 70%, transparent); }
+    .feed-inner { display: flex; flex-direction: column; gap: 7px; animation: feed 9s cubic-bezier(.6,0,.2,1) infinite; }
+    .sale { display: flex; align-items: center; gap: 10px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 8px 10px; font-size: 12px; }
+    .sale .ic { width: 28px; height: 28px; border-radius: 9px; display: grid; place-items: center; background: var(--green-soft); color: var(--green-ink); flex: none; }
+    .sale .ic svg { width: 15px; height: 15px; }
+    .sale div { flex: 1; min-width: 0; }
+    .sale b { display: block; font-size: 12.5px; }
+    .sale small { color: var(--sub); font-size: 10.5px; }
+    .sale em { font-style: normal; font-weight: 800; font-variant-numeric: tabular-nums; }
+    .tabbar { display: flex; justify-content: space-around; padding: 10px 6px 18px; border-top: 1px solid var(--line); background: var(--card); margin-top: auto; }
+    .tabbar span { width: 22px; height: 22px; border-radius: 7px; background: var(--line); }
+    .tabbar span.on { background: var(--green); }
+
+    .float { position: absolute; display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 16px; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); font-size: 13px; font-weight: 700; white-space: nowrap; z-index: 4; animation: drift 7s ease-in-out infinite, floatIn .8s cubic-bezier(.2,0,0,1) both; }
+    .float small { display: block; font-size: 11px; color: var(--sub); font-weight: 600; }
+    .float .dot { width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; flex: none; }
+    .float .dot svg { width: 17px; height: 17px; }
+    .f1 { top: 3%; left: -8%; animation-delay: 0s, 1.2s; }
+    .f2 { top: 46%; right: -6%; animation-delay: -2.4s, 1.5s; }
+    .f3 { bottom: 9%; left: 2%; animation-delay: -4.6s, 1.8s; }
+    @media (max-width: 980px) {
+      .hero .wrap { grid-template-columns: 1fr; text-align: center; }
+      .hero .lead { margin: 0 auto; }
+      .cta-row, .proof { justify-content: center; }
+      .stage { min-height: 560px; margin-top: 12px; }
+    }
+    @media (max-width: 480px) {
+      .phone { width: 270px; height: 552px; }
+      .f1 { left: -4%; } .f2 { right: -4%; } .f3 { left: -2%; }
+      .float { font-size: 12px; padding: 8px 11px; }
+      .btn { width: 100%; }
+    }
+
+    /* Marquee */
+    .strip { border-block: 1px solid var(--line); background: var(--card); overflow: hidden; padding: 18px 0; }
+    .strip-track { display: flex; gap: 48px; width: max-content; animation: marquee 38s linear infinite; }
+    .strip span { display: inline-flex; align-items: center; gap: 12px; font-weight: 700; color: var(--sub); white-space: nowrap; font-size: 15.5px; }
+    .strip span::before { content: ""; width: 8px; height: 8px; border-radius: 3px; background: var(--green); transform: rotate(45deg); }
+
+    /* Story: notebook vs StockFlow */
+    .story { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .story ul { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 14px; }
+    .story li { display: flex; gap: 14px; align-items: flex-start; color: var(--sub); }
+    .story li b { color: var(--ink); }
+    .tick { width: 26px; height: 26px; border-radius: 9px; background: var(--green-soft); color: var(--green-ink); display: grid; place-items: center; flex: none; margin-top: 1px; }
+    .tick svg { width: 15px; height: 15px; }
+    @media (max-width: 900px) { .story { grid-template-columns: 1fr; gap: 40px; } }
+
+    /* Ledger */
+    .ledger { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; max-width: 520px; width: 100%; margin: 0 auto; }
+    .ledger-head { display: flex; justify-content: space-between; padding: 16px 22px; background: var(--bg-2); border-bottom: 1px solid var(--line); font-size: 12.5px; font-weight: 800; letter-spacing: .12em; color: var(--sub); }
+    .ledger-body { position: relative; padding: 10px 22px 22px 22px; }
+    .ledger-body::before { content: ""; position: absolute; top: 0; bottom: 0; left: 52px; width: 2px; background: var(--danger); opacity: .3; }
+    .lrow { display: grid; grid-template-columns: 30px 1fr 44px 100px; align-items: center; height: 46px; border-bottom: 1px solid var(--line); font-size: 15.5px; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .lrow .n { color: var(--faint); font-size: 13px; font-weight: 700; }
+    .lrow .q { color: var(--sub); }
+    .lrow .a { text-align: right; }
+    .lrow .w { display: inline-block; clip-path: inset(0 100% 0 0); }
+    .ledger.play .w { animation: write .55s steps(14, end) forwards; }
+    .ledger-total { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 14px; padding-top: 12px; border-top: 3px double color-mix(in srgb, var(--ink) 60%, transparent); }
+    .ledger-total > span:not(.stamp) { font-size: 13px; font-weight: 800; letter-spacing: .12em; color: var(--sub); }
+    .ledger-total strong { font-size: 30px; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+    .stamp { display: inline-block; padding: 4px 10px; font-size: 12.5px !important; border: 2.5px solid var(--green); border-radius: 10px; color: var(--green-ink); font-weight: 800; letter-spacing: .14em; transform: rotate(-10deg) scale(1.4); opacity: 0; }
+    @media (max-width: 420px) { .ledger-total strong { font-size: 24px; } .stamp { letter-spacing: .08em; } }
+    .ledger.play .stamp { animation: stamp .45s 3.4s cubic-bezier(.2,0,0,1) forwards; }
+    .pen { position: absolute; width: 26px; height: 26px; color: var(--green); top: 0; left: 0; opacity: 0; pointer-events: none; }
+
+    /* Bento features */
+    .bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+    .cell { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 10px; transition: transform .35s cubic-bezier(.2,0,0,1), border-color .35s; }
+    .cell:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--green) 40%, var(--line)); }
+    .cell p { color: var(--sub); font-size: 15.5px; }
+    .cell .art { margin-top: auto; padding-top: 18px; }
+    .c-stock { grid-column: span 4; min-height: 380px; }
+    .c-sync { grid-column: span 2; }
+    .c-insight { grid-column: span 2; }
+    .c-money { grid-column: span 2; }
+    .c-team { grid-column: span 2; }
+    .c-kinds { grid-column: span 3; }
+    .c-market { grid-column: span 3; }
+    @media (max-width: 980px) { .bento { grid-template-columns: repeat(2, 1fr); } .bento .cell { grid-column: span 1; } .c-stock, .c-kinds, .c-market { grid-column: span 2 !important; } }
+    @media (max-width: 620px) { .bento { grid-template-columns: 1fr; } .bento .cell { grid-column: span 1 !important; } }
+    .ico { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; background: var(--green-soft); color: var(--green-ink); }
+    .ico svg { width: 22px; height: 22px; }
+
+    /* Shelf scene */
+    .shelf { position: relative; height: 230px; max-width: 560px; overflow: hidden; }
+    .rack-post { position: absolute; top: 18px; bottom: 0; width: 8px; border-radius: 4px; background: color-mix(in srgb, var(--ink) 20%, transparent); }
+    .rack-post.l { left: 6%; } .rack-post.r { right: 6%; }
+    .plank { position: absolute; left: 5%; right: 5%; height: 8px; border-radius: 4px; background: color-mix(in srgb, var(--ink) 30%, transparent); z-index: 2; }
+    .plank.t { top: 112px; } .plank.b { bottom: 0; }
+    .slot { position: absolute; width: 24%; height: 64px; }
+    .carton { position: absolute; inset: 0; border-radius: 6px; background: var(--kraft); border: 2px solid var(--kraft-edge); overflow: hidden; opacity: 0; }
+    .carton::before { content: ""; position: absolute; left: 0; right: 0; top: 24%; height: 2px; background: var(--kraft-edge); opacity: .55; }
+    .carton::after { content: ""; position: absolute; top: 0; left: 41%; width: 18%; height: calc(24% + 2px); background: var(--tape); }
+    .carton i { position: absolute; left: 12%; bottom: 16%; width: 40%; height: 26%; border-radius: 3px; background: var(--label); }
+    .carton i::before, .carton i::after { content: ""; position: absolute; left: 10%; height: 3px; border-radius: 2px; background: var(--kraft-edge); }
+    .carton i::before { top: 26%; width: 80%; background: var(--c, var(--kraft-edge)); }
+    .carton i::after { top: 60%; width: 50%; opacity: .6; }
+    .shelf.play .carton { animation: carton 7s cubic-bezier(.2,0,0,1) infinite; animation-delay: var(--d); }
+    .stock-pill { position: absolute; right: 6%; top: 0; z-index: 3; display: flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); font-size: 12px; font-weight: 800; letter-spacing: .08em; color: var(--sub); }
+    .stock-pill i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+    .stock-pill b { color: var(--ink); letter-spacing: 0; font-size: 14px; font-variant-numeric: tabular-nums; min-width: 34px; }
+
+    /* Sync */
+    .sync { position: relative; height: 150px; }
+    .sync .ph { position: absolute; left: 4%; top: 18px; width: 70px; height: 118px; border-radius: 16px; border: 2.5px solid var(--ink); background: var(--card); padding: 18px 8px 0; display: grid; gap: 6px; align-content: start; }
+    .sync .ph i { height: 12px; border-radius: 4px; background: var(--bg-2); position: relative; }
+    .sync .ph i::before { content: ""; position: absolute; left: 5px; top: 4px; width: 4px; height: 4px; border-radius: 50%; background: var(--green); }
+    .sync .cloud { position: absolute; right: 4%; top: 30px; width: 96px; color: var(--green); }
+    .sync .chip { position: absolute; left: 22%; top: 50px; width: 32px; height: 20px; border-radius: 6px; border: 2px solid var(--green); background: var(--card); opacity: 0; }
+    .cell.play .chip { animation: fly 3.6s cubic-bezier(.4,0,.2,1) infinite; animation-delay: var(--d); }
+    .sync .ok { position: absolute; right: calc(4% + 33px); top: 64px; width: 30px; height: 30px; border-radius: 50%; background: var(--card); color: var(--green); display: grid; place-items: center; opacity: 0; }
+    .cell.play .ok { animation: ok 3.6s ease infinite; }
+    .sync .ok svg { width: 18px; height: 18px; }
+
+    /* Insight bars */
+    .chart { display: flex; align-items: flex-end; gap: 8px; height: 120px; }
+    .chart i { flex: 1; height: 100%; border-radius: 8px 8px 3px 3px; background: var(--green-soft); transform-origin: bottom; transform: scaleY(.08); transition: transform .9s cubic-bezier(.2,0,0,1); }
+    .chart i.top { background: var(--green); }
+    .cell.play .chart i { transform: scaleY(var(--h)); }
+    .cell.play .chart i:nth-child(2) { transition-delay: .06s } .cell.play .chart i:nth-child(3) { transition-delay: .12s } .cell.play .chart i:nth-child(4) { transition-delay: .18s } .cell.play .chart i:nth-child(5) { transition-delay: .24s } .cell.play .chart i:nth-child(6) { transition-delay: .3s } .cell.play .chart i:nth-child(7) { transition-delay: .36s }
+    .chart-legend { display: flex; justify-content: space-between; font-size: 12px; color: var(--faint); font-weight: 700; margin-top: 8px; }
+
+    /* Money owed */
+    .owed { display: grid; gap: 8px; }
+    .owed div { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; background: var(--bg-2); font-size: 14px; font-weight: 600; }
+    .owed div span { flex: 1; }
+    .owed div b { font-variant-numeric: tabular-nums; }
+    .owed .tag { font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 999px; }
+    .tag.due { background: color-mix(in srgb, var(--amber) 18%, transparent); color: #B45309; }
+    .tag.paid { background: var(--green-soft); color: var(--green-ink); }
+    @media (prefers-color-scheme: dark) { .tag.due { color: var(--amber); } }
+
+    /* Team */
+    .pin { display: flex; gap: 10px; justify-content: center; padding: 10px 0; }
+    .pin i { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--green); }
+    .cell.play .pin i { animation: pinfill 3.2s ease infinite; animation-delay: var(--d); }
+    .roles { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .roles span { font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 999px; background: var(--bg-2); color: var(--sub); }
+
+    /* Kinds */
+    .kinds { display: flex; flex-wrap: wrap; gap: 10px; }
+    .kinds span { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 14px; background: var(--bg-2); border: 1px solid var(--line); font-weight: 700; font-size: 14.5px; transition: background .25s, color .25s, border-color .25s; }
+    .kinds span.on { background: var(--green-soft); border-color: color-mix(in srgb, var(--green) 50%, var(--line)); color: var(--green-ink); }
+
+    /* Storefront */
+    .store { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .store div { border-radius: 16px; background: var(--bg-2); padding: 10px; display: grid; gap: 6px; }
+    .store div i { height: 54px; border-radius: 10px; background: linear-gradient(135deg, var(--green-soft), color-mix(in srgb, var(--green) 25%, var(--bg-2))); }
+    .store div:nth-child(2) i { background: linear-gradient(135deg, var(--shop-soft), color-mix(in srgb, var(--shop) 30%, var(--bg-2))); }
+    .store div:nth-child(3) i { background: linear-gradient(135deg, var(--drop-soft), color-mix(in srgb, var(--drop) 25%, var(--bg-2))); }
+    .store b { font-size: 13px; } .store small { font-size: 12px; color: var(--sub); font-weight: 700; }
+
+    /* Steps */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; counter-reset: step; position: relative; }
+    .steps::before { content: ""; position: absolute; top: 34px; left: 12%; right: 12%; height: 2px; background: linear-gradient(90deg, var(--line), var(--green), var(--line)); background-size: 200% 100%; animation: shimmer 4s linear infinite; }
+    .step { position: relative; text-align: center; padding: 0 10px; }
+    .step .num { width: 68px; height: 68px; border-radius: 22px; margin: 0 auto 22px; display: grid; place-items: center; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); font-weight: 800; font-size: 24px; color: var(--green-ink); position: relative; }
+    .step p { color: var(--sub); margin-top: 8px; }
+    @media (max-width: 820px) { .steps { grid-template-columns: 1fr; gap: 36px; } .steps::before { display: none; } }
+
+    /* Ecosystem */
+    .eco { background: linear-gradient(180deg, transparent, var(--bg-2) 18%, var(--bg-2) 82%, transparent); }
+    .apps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .appcard { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); overflow: hidden; display: flex; flex-direction: column; gap: 12px; transition: transform .35s cubic-bezier(.2,0,0,1); }
+    .appcard:hover { transform: translateY(-4px); }
+    .appcard::before { content: ""; position: absolute; inset: -40% -40% auto auto; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%); }
+    .appcard .appicon { width: 60px; height: 60px; border-radius: 18px; display: grid; place-items: center; background: var(--accent); color: #fff; box-shadow: 0 12px 24px -10px var(--accent); position: relative; }
+    .appcard .appicon svg { width: 30px; height: 30px; }
+    .appcard .who { font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-ink, var(--accent)); }
+    .appcard h3 { font-size: 26px; }
+    .appcard h3 span { color: var(--accent); }
+    .appcard p { color: var(--sub); font-size: 15.5px; }
+    .appcard ul { list-style: none; padding: 0; margin: 4px 0 0; display: grid; gap: 8px; font-size: 15px; font-weight: 600; }
+    .appcard li { display: flex; gap: 10px; align-items: center; }
+    .appcard li::before { content: ""; width: 7px; height: 7px; border-radius: 2px; background: var(--accent); transform: rotate(45deg); flex: none; }
+    .status { position: absolute; top: 28px; right: 24px; font-size: 12px; font-weight: 800; padding: 5px 11px; border-radius: 999px; letter-spacing: .04em; }
+    .status.live { background: var(--green-soft); color: var(--green-ink); }
+    .status.soon { background: var(--bg-2); color: var(--sub); border: 1px dashed var(--faint); }
+    .a-stock { --accent: var(--green); --accent-ink: var(--green-ink); }
+    .a-shop { --accent: var(--shop); }
+    .a-drop { --accent: var(--drop); }
+    @media (max-width: 920px) { .apps { grid-template-columns: 1fr; } }
+
+    /* Flow journey */
+    .journey { margin-top: 56px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px 28px; box-shadow: var(--shadow); }
+    .journey h3 { text-align: center; margin-bottom: 30px; }
+    .track { display: grid; grid-template-columns: auto 1fr auto 1fr auto 1fr auto; align-items: center; }
+    .node { display: grid; justify-items: center; gap: 10px; text-align: center; width: 120px; }
+    .node .bubble { width: 64px; height: 64px; border-radius: 20px; display: grid; place-items: center; background: var(--bg-2); color: var(--c); border: 1px solid var(--line); position: relative; }
+    .node .bubble svg { width: 28px; height: 28px; }
+    .node b { font-size: 14.5px; } .node small { display: block; color: var(--sub); font-size: 12.5px; font-weight: 600; line-height: 1.35; }
+    .journey.play .node .bubble { animation: nodePulse 8s ease infinite; animation-delay: var(--d); }
+    .link { position: relative; height: 3px; margin: 0 6px 46px; border-radius: 2px; background: repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 14px); }
+    .link .pkg { position: absolute; top: 50%; left: 0; width: 22px; height: 18px; margin: -9px 0 0 -11px; border-radius: 4px; background: var(--kraft); border: 2px solid var(--kraft-edge); opacity: 0; }
+    .link .pkg::after { content: ""; position: absolute; top: 0; left: 38%; width: 24%; height: 40%; background: var(--tape); }
+    .journey.play .link .pkg { animation: travel 8s cubic-bezier(.5,0,.3,1) infinite; animation-delay: var(--d); }
+    @media (max-width: 820px) {
+      .track { grid-template-columns: 1fr; justify-items: center; }
+      .link { width: 3px; height: 46px; margin: 8px 0; background: repeating-linear-gradient(180deg, var(--line) 0 8px, transparent 8px 14px); }
+      .link .pkg { left: 50%; top: 0; margin: -9px 0 0 -11px; }
+      .journey.play .link .pkg { animation-name: travelY; }
+      .node { width: auto; }
+    }
+
+    /* Roadmap */
+    .road { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+    .phase { padding: 22px; border-radius: 20px; border: 1px solid var(--line); background: var(--card); }
+    .phase .when { font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--sub); display: flex; align-items: center; gap: 8px; }
+    .phase .when i { width: 10px; height: 10px; border-radius: 50%; background: var(--faint); }
+    .phase.now .when i { background: var(--green); box-shadow: 0 0 0 0 var(--green); animation: ping 2s infinite; }
+    .phase b { display: block; font-size: 18px; margin: 10px 0 6px; letter-spacing: -0.02em; }
+    .phase p { color: var(--sub); font-size: 15px; }
+    @media (max-width: 820px) { .road { grid-template-columns: 1fr; } }
+
+    /* FAQ */
+    .faq { max-width: 820px; margin: 0 auto; display: grid; gap: 12px; }
+    details { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 0 22px; transition: border-color .25s; }
+    details[open] { border-color: color-mix(in srgb, var(--green) 40%, var(--line)); }
+    summary { list-style: none; cursor: pointer; padding: 20px 0; font-weight: 700; font-size: 17px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: ""; width: 12px; height: 12px; border-right: 2.5px solid var(--sub); border-bottom: 2.5px solid var(--sub); transform: rotate(45deg) translate(-3px, -3px); transition: transform .3s; flex: none; }
+    details[open] summary::after { transform: rotate(-135deg) translate(-3px, -3px); }
+    details p { color: var(--sub); padding: 0 0 20px; }
+
+    /* Final CTA */
+    .final { position: relative; overflow: hidden; border-radius: 32px; padding: clamp(40px, 6vw, 72px); text-align: center; color: #fff; background: linear-gradient(135deg, #0B9D4F 0%, #087A3D 55%, #064D27 100%); box-shadow: 0 40px 80px -40px rgba(11,157,79,.6); }
+    .final::before, .final::after { content: ""; position: absolute; border-radius: 50%; background: rgba(255,255,255,.07); }
+    .final::before { width: 420px; height: 420px; right: -120px; top: -160px; }
+    .final::after { width: 280px; height: 280px; left: -100px; bottom: -140px; }
+    .final h2 { position: relative; color: #fff; }
+    .final p { position: relative; color: rgba(255,255,255,.85); max-width: 560px; margin: 16px auto 32px; font-size: 18px; }
+    .final .btn { position: relative; background: #fff; color: #064D27; }
+    .final .btn-ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.4); }
+    .final .cta-row { justify-content: center; margin-top: 0; }
+
+    /* Footer */
+    footer { padding: 56px 0 40px; color: var(--sub); font-size: 15px; }
+    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; align-items: flex-start; }
+    footer nav { display: flex; flex-wrap: wrap; gap: 12px 24px; font-weight: 600; }
+    footer nav a { text-decoration: none; } footer nav a:hover { color: var(--ink); }
+    footer .copy { width: 100%; padding-top: 24px; border-top: 1px solid var(--line); font-size: 14px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.2,0,0,1), transform .7s cubic-bezier(.2,0,0,1); transition-delay: var(--rd, 0s); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* Keyframes */
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    @keyframes phoneIn { from { opacity: 0; transform: translateY(60px) rotate(-8deg); } to { opacity: 1; transform: translateY(0) rotate(-4deg); } }
+    @keyframes floatIn { from { opacity: 0; scale: .9; } to { opacity: 1; scale: 1; } }
+    @keyframes drift { 0%, 100% { translate: 0 0; } 50% { translate: 0 -10px; } }
+    @keyframes grow { to { transform: scaleY(var(--h)); } }
+    @keyframes feed { 0%, 22% { transform: translateY(-138px); } 30%, 55% { transform: translateY(-92px); } 63%, 88% { transform: translateY(-46px); } 96%, 100% { transform: translateY(0); } }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+    @keyframes write { to { clip-path: inset(0 0 0 0); } }
+    @keyframes stamp { to { opacity: 1; transform: rotate(-10deg) scale(1); } }
+    @keyframes carton {
+      0% { opacity: 0; transform: translate(420px, -26px); }
+      3% { opacity: 1; }
+      11% { transform: translate(0, -26px); }
+      15%, 62% { opacity: 1; transform: translate(0, 0); }
+      72% { opacity: 1; transform: translate(-420px, -8px); }
+      73%, 100% { opacity: 0; transform: translate(-420px, -8px); }
+    }
+    @keyframes fly {
+      0% { opacity: 0; transform: translate(0, 0) scale(1); }
+      8% { opacity: 1; }
+      40% { opacity: 1; transform: translate(calc(var(--w, 140px) * .5), -40px) scale(.85); }
+      70% { opacity: 0; transform: translate(var(--w, 140px), 0) scale(.6); }
+      100% { opacity: 0; }
+    }
+    @keyframes ok { 0%, 60% { opacity: 0; transform: scale(.7); } 72%, 92% { opacity: 1; transform: scale(1); } 100% { opacity: 0; } }
+    @keyframes pinfill { 0%, 10% { background: transparent; } 20%, 80% { background: var(--green); } 100% { background: transparent; } }
+    @keyframes shimmer { to { background-position: -200% 0; } }
+    @keyframes nodePulse { 0%, 6% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--c) 0%, transparent); border-color: var(--line); } 10% { box-shadow: 0 0 0 8px color-mix(in srgb, var(--c) 18%, transparent); border-color: var(--c); } 22%, 100% { box-shadow: 0 0 0 0 transparent; border-color: var(--line); } }
+    @keyframes travel { 0% { left: 0; opacity: 0; } 2% { opacity: 1; } 20% { left: 100%; opacity: 1; } 22%, 100% { left: 100%; opacity: 0; } }
+    @keyframes travelY { 0% { top: 0; opacity: 0; } 2% { opacity: 1; } 20% { top: 100%; opacity: 1; } 22%, 100% { top: 100%; opacity: 0; } }
+    @keyframes ping { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--green) 60%, transparent); } 80%, 100% { box-shadow: 0 0 0 10px transparent; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+      .phone { transform: rotate(-4deg); }
+      .hero h1 .hl path { stroke-dashoffset: 0; }
+      .bars i, .chart i { transform: scaleY(var(--h)); }
+      .carton { opacity: 1; }
+      .lrow .w { clip-path: none; }
+      .stamp { opacity: 1; transform: rotate(-10deg); }
+      .feed-inner { transform: none; }
+      .strip-track { flex-wrap: wrap; width: auto; justify-content: center; gap: 14px 32px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Reusable icons -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-box" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 7.5L12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5L12 12l9-4.5M12 12v9"/></g></symbol>
+      <symbol id="i-cart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2.5l2.2 11h10.6l2-8H6.6"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></g></symbol>
+      <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18.5h10.5a4 4 0 0 0 .6-7.95A6 6 0 0 0 6.6 9.3 4.6 4.6 0 0 0 7 18.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+      <symbol id="i-wallet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M16 12.5h2M3 9.5h18"/></g></symbol>
+      <symbol id="i-team" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9.5" r="2.4"/><path d="M15.5 14.3A4.5 4.5 0 0 1 21 18.5"/></g></symbol>
+      <symbol id="i-store" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 9.5V20h16V9.5"/><path d="M3 9.5l1.6-5h14.8l1.6 5a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0z"/><path d="M10 20v-5h4v5"/></g></symbol>
+      <symbol id="i-bag" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 10V7a3 3 0 0 1 6 0v3"/></g></symbol>
+      <symbol id="i-scooter" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="17" r="2.6"/><circle cx="18" cy="17" r="2.6"/><path d="M8.6 17h6.8l2-7h2.6M14 6h3l.4 4M3 12h6l2 5"/></g></symbol>
+      <symbol id="i-home" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 11l8-6.5 8 6.5V20H4z"/><path d="M10 20v-5h4v5"/></g></symbol>
+      <symbol id="i-signal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l18 18"/><path d="M8.5 16.5a5 5 0 0 1 7 0M5 13a10 10 0 0 1 6-2.9M19 13a10 10 0 0 0-2.4-1.7"/><circle cx="12" cy="20" r=".8" fill="currentColor"/></g></symbol>
+      <symbol id="i-naira" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 20V4l10 16V4M4 10h16M4 14h16"/></g></symbol>
+      <symbol id="i-scan" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 9v6M11 9v6M14 9v6M17 9v6"/></g></symbol>
+      <symbol id="i-receipt" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></g></symbol>
+      <symbol id="i-pen" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 20l1-4L16 5l3 3L8 19z"/><path d="M14 7l3 3"/></g></symbol>
+      <symbol id="mark" viewBox="24 12 52 76"><g fill="none" stroke-width="11"><path d="M64 38V34Q64 22 52 22H48Q36 22 36 34V38Q36 50 48 50" stroke="currentColor"/><path d="M52 50Q64 50 64 62V66Q64 78 52 78H48Q36 78 36 66V62" stroke="var(--green)"/></g></symbol>
+    </defs>
+  </svg>
+
+  <header class="nav" id="nav">
+    <div class="wrap">
+      <a class="logo" href="#top" aria-label="StockFlow home"><svg class="mark"><use href="#mark"/></svg><span>stock<span class="flow">flow</span></span></a>
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#ecosystem">Shopflow &amp; Dropflow</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="btn btn-primary" href="mailto:stockflowapp.help@gmail.com?subject=StockFlow%20early%20access">Get early access</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <a class="badge" href="#ecosystem"><b>NEW</b> Shopflow &amp; Dropflow are on the way →</a>
+          <h1>Your whole shop, <span class="hl">in your pocket.<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14 C 80 4, 180 4, 296 12"/></svg></span></h1>
+          <p class="lead">StockFlow keeps your stock, sales and books right, even with no data. Built for shops, wholesalers, restaurants, pharmacies and service businesses that are done with notebooks.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="mailto:stockflowapp.help@gmail.com?subject=StockFlow%20early%20access">Get early access <svg><use href="#i-arrow"/></svg></a>
+            <a class="btn btn-ghost" href="#how">See how it works</a>
+          </div>
+          <div class="proof">
+            <span><svg><use href="#i-signal"/></svg>Works offline</span>
+            <span><svg><use href="#i-naira"/></svg>Naira-first</span>
+            <span><svg><use href="#i-check"/></svg>No account needed to start</span>
+          </div>
+        </div>
+
+        <div class="stage" aria-hidden="true">
+          <div class="phone">
+            <div class="screen">
+              <div class="island"></div>
+              <div class="sbar"><span>9:41</span><span>●●●</span></div>
+              <div class="app">
+                <div class="app-top"><div><small>Good morning</small><strong>Mama Ada Stores</strong></div><div class="avatar">A</div></div>
+                <div class="hero-card">
+                  <small>Today’s sales</small>
+                  <div class="big">₦<span data-count="184500">0</span></div>
+                  <div class="bars">
+                    <i style="--h:.35;animation-delay:1.2s"></i><i style="--h:.55;animation-delay:1.28s"></i><i style="--h:.42;animation-delay:1.36s"></i><i style="--h:.7;animation-delay:1.44s"></i><i style="--h:.5;animation-delay:1.52s"></i><i style="--h:.82;animation-delay:1.6s"></i><i style="--h:1;animation-delay:1.68s"></i>
+                  </div>
+                </div>
+                <div class="tiles">
+                  <div class="tile">Profit today<b>₦<span data-count="41200">0</span></b></div>
+                  <div class="tile">Low stock<b class="warn">3 items</b></div>
+                </div>
+                <div class="feed-title">RECENT SALES</div>
+                <div class="feed">
+                  <div class="feed-inner">
+                    <div class="sale"><span class="ic"><svg><use href="#i-receipt"/></svg></span><div><b>Peak milk ×12</b><small>Cash · just now</small></div><em>₦9,600</em></div>
+                    <div class="sale"><span class="ic"><svg><use href="#i-receipt"/></svg></span><div><b>Rice 50kg ×1</b><small>Transfer · 2 min ago</small></div><em>₦68,000</em></div>
+                    <div class="sale"><span class="ic"><svg><use href="#i-receipt"/></svg></span><div><b>Noodles ctn ×2</b><small>POS · 6 min ago</small></div><em>₦17,400</em></div>
+                    <div class="sale"><span class="ic"><svg><use href="#i-receipt"/></svg></span><div><b>Soft drinks ×24</b><small>Cash · 11 min ago</small></div><em>₦7,200</em></div>
+                    <div class="sale"><span class="ic"><svg><use href="#i-receipt"/></svg></span><div><b>Sugar 1kg ×5</b><small>Credit · 15 min ago</small></div><em>₦6,500</em></div>
+                  </div>
+                </div>
+              </div>
+              <div class="tabbar"><span class="on"></span><span></span><span></span><span></span><span></span></div>
+            </div>
+          </div>
+          <div class="float f1"><span class="dot" style="background:var(--green-soft);color:var(--green-ink)"><svg><use href="#i-check"/></svg></span><div>Sale recorded<small>₦9,600 · receipt sent</small></div></div>
+          <div class="float f2"><span class="dot" style="background:color-mix(in srgb,var(--amber) 18%,transparent);color:var(--amber)"><svg><use href="#i-box"/></svg></span><div>Peak milk is low<small>6 tins left · reorder</small></div></div>
+          <div class="float f3"><span class="dot" style="background:var(--drop-soft);color:var(--drop)"><svg><use href="#i-cloud"/></svg></span><div>All backed up<small>Synced 2 seconds ago</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="strip" aria-label="Highlights">
+      <div class="strip-track">
+        <span>Works with no data</span><span>Cartons, packs &amp; pieces</span><span>Barcode scanning</span><span>Receipts on WhatsApp</span><span>Debts &amp; credit</span><span>Staff with PINs</span><span>Profit you can trust</span><span>Daily briefing</span><span>Expiry alerts</span><span>Your own online shop</span>
+        <span aria-hidden="true">Works with no data</span><span aria-hidden="true">Cartons, packs &amp; pieces</span><span aria-hidden="true">Barcode scanning</span><span aria-hidden="true">Receipts on WhatsApp</span><span aria-hidden="true">Debts &amp; credit</span><span aria-hidden="true">Staff with PINs</span><span aria-hidden="true">Profit you can trust</span><span aria-hidden="true">Daily briefing</span><span aria-hidden="true">Expiry alerts</span><span aria-hidden="true">Your own online shop</span>
+      </div>
+    </div>
+
+    <!-- Story -->
+    <section class="section">
+      <div class="wrap story">
+        <div class="reveal">
+          <span class="kicker">The sales book, reinvented</span>
+          <h2 style="margin:14px 0 16px">Close the day in seconds, not hours.</h2>
+          <p class="lead">Every sale you ring up is written into your book with the price, the quantity and the total. At closing time it has already added itself up, and it always balances.</p>
+          <ul>
+            <li><span class="tick"><svg><use href="#i-check"/></svg></span><span><b>No more adding up at night.</b> Totals, profit and cash-in-hand are ready when you are.</span></li>
+            <li><span class="tick"><svg><use href="#i-check"/></svg></span><span><b>Nothing goes missing.</b> Every sale, refund and expense is kept, with who made it and when.</span></li>
+            <li><span class="tick"><svg><use href="#i-check"/></svg></span><span><b>Receipts in one tap.</b> Print them, or send them to your customer on WhatsApp.</span></li>
+          </ul>
+        </div>
+        <div class="reveal" style="--rd:.1s">
+          <div class="ledger" id="ledger" role="img" aria-label="A sales book filling in line by line and totalling 108,700 naira">
+            <div class="ledger-head"><span>SALES BOOK</span><span>TODAY</span></div>
+            <div class="ledger-body">
+              <div class="lrow"><span class="n">1</span><span><span class="w" style="animation-delay:.2s">Rice 50kg</span></span><span class="q"><span class="w" style="animation-delay:.55s">×1</span></span><span class="a"><span class="w" style="animation-delay:.65s">₦68,000</span></span></div>
+              <div class="lrow"><span class="n">2</span><span><span class="w" style="animation-delay:.85s">Milk tins</span></span><span class="q"><span class="w" style="animation-delay:1.2s">×12</span></span><span class="a"><span class="w" style="animation-delay:1.3s">₦9,600</span></span></div>
+              <div class="lrow"><span class="n">3</span><span><span class="w" style="animation-delay:1.5s">Noodles ctn</span></span><span class="q"><span class="w" style="animation-delay:1.85s">×2</span></span><span class="a"><span class="w" style="animation-delay:1.95s">₦17,400</span></span></div>
+              <div class="lrow"><span class="n">4</span><span><span class="w" style="animation-delay:2.15s">Soft drinks</span></span><span class="q"><span class="w" style="animation-delay:2.5s">×24</span></span><span class="a"><span class="w" style="animation-delay:2.6s">₦7,200</span></span></div>
+              <div class="lrow"><span class="n">5</span><span><span class="w" style="animation-delay:2.8s">Sugar 1kg</span></span><span class="q"><span class="w" style="animation-delay:3.15s">×5</span></span><span class="a"><span class="w" style="animation-delay:3.25s">₦6,500</span></span></div>
+              <div class="ledger-total"><span>TOTAL</span><span class="stamp">BALANCED</span><strong>₦<span data-count="108700" data-wait="ledger">0</span></strong></div>
+            </div>
+            <svg class="pen"><use href="#i-pen"/></svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section" id="features" style="padding-top:0">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="kicker">Everything in one place</span>
+          <h2>Built for how you really sell.</h2>
+          <p class="lead">From the carton in the store room to the naira in your hand, StockFlow follows every item through your business.</p>
+        </div>
+
+        <div class="bento">
+          <article class="cell c-stock reveal" data-play>
+            <span class="ico"><svg><use href="#i-box"/></svg></span>
+            <h3>Know what’s on every shelf</h3>
+            <p>Count by carton, pack or piece. Stock goes down as you sell, and you’re warned before anything runs out or expires.</p>
+            <div class="art">
+              <div class="shelf" aria-hidden="true">
+                <div class="stock-pill"><i></i>IN STOCK <b data-stock>0</b></div>
+                <div class="rack-post l"></div><div class="rack-post r"></div>
+                <div class="plank t"></div><div class="plank b"></div>
+                <div class="slot" style="left:9%;bottom:8px"><div class="carton" style="--d:0s;--c:var(--green)"><i></i></div></div>
+                <div class="slot" style="left:38%;bottom:8px"><div class="carton" style="--d:.35s"><i></i></div></div>
+                <div class="slot" style="left:67%;bottom:8px"><div class="carton" style="--d:.7s;--c:var(--amber)"><i></i></div></div>
+                <div class="slot" style="left:9%;top:48px"><div class="carton" style="--d:1.05s"><i></i></div></div>
+                <div class="slot" style="left:38%;top:48px"><div class="carton" style="--d:1.4s;--c:var(--drop)"><i></i></div></div>
+                <div class="slot" style="left:67%;top:48px"><div class="carton" style="--d:1.75s;--c:var(--green)"><i></i></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="cell c-sync reveal" style="--rd:.08s" data-play>
+            <span class="ico"><svg><use href="#i-signal"/></svg></span>
+            <h3>Sell with no data</h3>
+            <p>Everything works offline. Your records back up to the cloud the moment you’re connected.</p>
+            <div class="art">
+              <div class="sync" aria-hidden="true">
+                <div class="ph"><i></i><i></i><i></i></div>
+                <span class="chip" style="--d:0s"></span><span class="chip" style="--d:1.2s"></span><span class="chip" style="--d:2.4s"></span>
+                <svg class="cloud" viewBox="0 0 24 24"><path d="M7 18.5h10.5a4 4 0 0 0 .6-7.95A6 6 0 0 0 6.6 9.3 4.6 4.6 0 0 0 7 18.5z" fill="currentColor" opacity=".9"/></svg>
+                <span class="ok"><svg><use href="#i-check"/></svg></span>
+              </div>
+            </div>
+          </article>
+
+          <article class="cell c-insight reveal" data-play>
+            <span class="ico"><svg><use href="#i-chart"/></svg></span>
+            <h3>See your real profit</h3>
+            <p>Best sellers, slow movers, busiest hours and a daily briefing every morning.</p>
+            <div class="art">
+              <div class="chart" aria-hidden="true"><i style="--h:.4"></i><i style="--h:.62"></i><i style="--h:.5"></i><i style="--h:.78"></i><i style="--h:.58"></i><i style="--h:.9"></i><i class="top" style="--h:1"></i></div>
+              <div class="chart-legend" aria-hidden="true"><span>Mon</span><span>Today</span></div>
+            </div>
+          </article>
+
+          <article class="cell c-money reveal" style="--rd:.08s">
+            <span class="ico"><svg><use href="#i-wallet"/></svg></span>
+            <h3>Debts &amp; credit, sorted</h3>
+            <p>Know who owes you, how long it’s been, and send a polite reminder in one tap.</p>
+            <div class="art owed" aria-hidden="true">
+              <div><span>Mr. Bello</span><b>₦24,000</b><em class="tag due">12 days</em></div>
+              <div><span>Chioma’s Kitchen</span><b>₦8,500</b><em class="tag paid">Paid</em></div>
+            </div>
+          </article>
+
+          <article class="cell c-team reveal" style="--rd:.16s" data-play>
+            <span class="ico"><svg><use href="#i-team"/></svg></span>
+            <h3>Your staff, your rules</h3>
+            <p>Each person signs in with a PIN and only sees what you allow.</p>
+            <div class="art" aria-hidden="true">
+              <div class="pin"><i style="--d:0s"></i><i style="--d:.25s"></i><i style="--d:.5s"></i><i style="--d:.75s"></i></div>
+              <div class="roles"><span>Owner</span><span>Manager</span><span>Cashier</span></div>
+            </div>
+          </article>
+
+          <article class="cell c-kinds reveal">
+            <span class="ico"><svg><use href="#i-store"/></svg></span>
+            <h3>Made for your kind of business</h3>
+            <p>StockFlow changes its words and screens to fit what you do: tables for restaurants, bookings for salons, quotes for custom work.</p>
+            <div class="art kinds" id="kinds" aria-label="Business types">
+              <span>Shop</span><span>Food</span><span>Health</span><span>Fashion</span><span>Services</span><span>Online seller</span><span>Custom work</span><span>Wholesale</span>
+            </div>
+          </article>
+
+          <article class="cell c-market reveal" style="--rd:.08s">
+            <span class="ico"><svg><use href="#i-cart"/></svg></span>
+            <h3>Your own online shop</h3>
+            <p>Publish your products, take orders from other businesses, and get paid by card or transfer through Paystack.</p>
+            <div class="art store" aria-hidden="true">
+              <div><i></i><b>Rice 50kg</b><small>₦68,000</small></div>
+              <div><i></i><b>Palm oil 25L</b><small>₦42,500</small></div>
+              <div><i></i><b>Detergent ctn</b><small>₦15,800</small></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section" id="how" style="padding-top:0">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <span class="kicker">How it works</span>
+          <h2>Selling in under five minutes.</h2>
+          <p class="lead">No account needed, no training. If you can send a WhatsApp message, you can run StockFlow.</p>
+        </div>
+        <div class="steps">
+          <div class="step reveal"><div class="num">1</div><h3>Tell us your business</h3><p>Pick what you do and give your shop a name. Skip anything you’re not ready for.</p></div>
+          <div class="step reveal" style="--rd:.1s"><div class="num">2</div><h3>Add your items</h3><p>Scan a barcode or type a name and price. Add how many cartons you have.</p></div>
+          <div class="step reveal" style="--rd:.2s"><div class="num">3</div><h3>Start selling</h3><p>Ring up sales, send receipts and watch your stock and profit update live.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ecosystem -->
+    <section class="section eco" id="ecosystem">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <span class="kicker">What’s coming</span>
+          <h2>One flow. Three apps.</h2>
+          <p class="lead">StockFlow is the start. Next, we’re connecting shops to the people who buy from them and the riders who deliver, so everything moves in one flow.</p>
+        </div>
+
+        <div class="apps">
+          <article class="appcard a-stock reveal">
+            <span class="status live">Available now</span>
+            <span class="appicon"><svg viewBox="24 12 52 76"><g fill="none" stroke-width="11"><path d="M64 38V34Q64 22 52 22H48Q36 22 36 34V38Q36 50 48 50" stroke="#fff"/><path d="M52 50Q64 50 64 62V66Q64 78 52 78H48Q36 78 36 66V62" stroke="rgba(255,255,255,.65)"/></g></svg></span>
+            <span class="who">For businesses</span>
+            <h3>Stock<span>Flow</span></h3>
+            <p>The app that runs your shop: stock, sales, books, staff and your online storefront.</p>
+            <ul><li>Stock by carton, pack or piece</li><li>Sales book that adds itself up</li><li>Works offline, backed up online</li></ul>
+          </article>
+          <article class="appcard a-shop reveal" style="--rd:.1s">
+            <span class="status soon">Coming soon</span>
+            <span class="appicon"><svg><use href="#i-bag"/></svg></span>
+            <span class="who">For shoppers</span>
+            <h3>Shop<span>flow</span></h3>
+            <p>Find shops near you, see what they really have in stock, and order and pay from your phone.</p>
+            <ul><li>Live stock from real StockFlow shops</li><li>Order and pay securely</li><li>Track your order to your door</li></ul>
+          </article>
+          <article class="appcard a-drop reveal" style="--rd:.2s">
+            <span class="status soon">Coming soon</span>
+            <span class="appicon"><svg><use href="#i-scooter"/></svg></span>
+            <span class="who">For riders</span>
+            <h3>Drop<span>flow</span></h3>
+            <p>Pick up orders from shops nearby and deliver them. Earn on your own schedule.</p>
+            <ul><li>Delivery jobs from nearby shops</li><li>Clear pickup and drop-off routes</li><li>See what you earn on every trip</li></ul>
+          </article>
+        </div>
+
+        <div class="journey reveal" id="journey">
+          <h3>How an order will flow</h3>
+          <div class="track">
+            <div class="node"><span class="bubble" style="--c:var(--shop);--d:0s"><svg><use href="#i-bag"/></svg></span><div><b>Shopper orders</b><small>in Shopflow</small></div></div>
+            <div class="link"><span class="pkg" style="--d:0s"></span></div>
+            <div class="node"><span class="bubble" style="--c:var(--green);--d:1.6s"><svg><use href="#i-store"/></svg></span><div><b>Shop packs it</b><small>stock updates in StockFlow</small></div></div>
+            <div class="link"><span class="pkg" style="--d:1.6s"></span></div>
+            <div class="node"><span class="bubble" style="--c:var(--drop);--d:3.2s"><svg><use href="#i-scooter"/></svg></span><div><b>Rider picks up</b><small>in Dropflow</small></div></div>
+            <div class="link"><span class="pkg" style="--d:3.2s"></span></div>
+            <div class="node"><span class="bubble" style="--c:var(--green);--d:4.8s"><svg><use href="#i-home"/></svg></span><div><b>Delivered</b><small>and paid</small></div></div>
+          </div>
+        </div>
+
+        <div class="road">
+          <div class="phase now reveal"><span class="when"><i></i>Now</span><b>StockFlow</b><p>Run your shop on your phone, take orders from other businesses, and build your online storefront.</p></div>
+          <div class="phase reveal" style="--rd:.1s"><span class="when"><i></i>Coming soon</span><b>Shopflow</b><p>Shoppers discover StockFlow shops, browse live stock and order for pickup or delivery.</p></div>
+          <div class="phase reveal" style="--rd:.2s"><span class="when"><i></i>Coming soon</span><b>Dropflow</b><p>Riders take deliveries from StockFlow shops to Shopflow customers, end to end.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <span class="kicker">Questions</span>
+          <h2>Good to know.</h2>
+        </div>
+        <div class="faq reveal">
+          <details><summary>Do I need internet to use StockFlow?</summary><p>No. You can sell, add stock and check your books with no data at all. When you’re connected, StockFlow backs everything up quietly in the background.</p></details>
+          <details><summary>Do I need to create an account?</summary><p>No. You can start selling straight away and everything stays on your phone. Create an account when you want backup, sync across phones or staff logins.</p></details>
+          <details><summary>What if I lose my phone?</summary><p>If you have an account, sign in on a new phone and your shop comes back: products, sales, customers and debts.</p></details>
+          <details><summary>Can my staff use it without seeing everything?</summary><p>Yes. Each staff member gets their own PIN and you choose what they can see and do, for example selling without seeing your profit.</p></details>
+          <details><summary>What kinds of businesses is it for?</summary><p>Shops and supermarkets, wholesalers, restaurants and food vendors, pharmacies, fashion stores, salons and other services, people selling on WhatsApp or Instagram, and custom-made work.</p></details>
+          <details><summary>When are Shopflow and Dropflow launching?</summary><p>We’re building them now. Email us to join the early list and you’ll be the first to know, and the first to try them.</p></details>
+          <details><summary>Is my data safe?</summary><p>Your records are sent over encrypted connections and only your business and the staff you invite can see them. Read our <a href="privacy.html">Privacy Policy</a> for the details.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section" style="padding-top:0">
+      <div class="wrap">
+        <div class="final reveal">
+          <h2>Put your shop in flow.</h2>
+          <p>Be one of the first businesses on StockFlow, and the first to hear when Shopflow and Dropflow open.</p>
+          <div class="cta-row">
+            <a class="btn" href="mailto:stockflowapp.help@gmail.com?subject=StockFlow%20early%20access">Get early access <svg><use href="#i-arrow"/></svg></a>
+            <a class="btn btn-ghost" href="mailto:stockflowapp.help@gmail.com">Talk to us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div>
+        <a class="logo" href="#top"><svg class="mark"><use href="#mark"/></svg><span>stock<span class="flow">flow</span></span></a>
+        <p style="margin-top:12px;max-width:340px">Stock, sales and books for businesses that move fast.</p>
+      </div>
+      <nav aria-label="Footer">
+        <a href="#features">Features</a>
+        <a href="#ecosystem">Shopflow &amp; Dropflow</a>
+        <a href="#faq">FAQ</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a>
+      </nav>
+      <div class="copy"><span>© <span id="year">2026</span> StockFlow</span><span>Made for businesses in Nigeria</span></div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Sticky nav gets a hairline once you scroll.
+      var nav = document.getElementById('nav');
+      var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 8); };
+      window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+      var fmt = function (n) { return Math.round(n).toLocaleString('en-NG'); };
+      function countUp(el, delay) {
+        var target = +el.getAttribute('data-count');
+        if (reduce) { el.textContent = fmt(target); return; }
+        setTimeout(function () {
+          var start = performance.now(), dur = 1400;
+          (function tick(now) {
+            // A frame timestamp can be a hair earlier than `start`, so clamp at 0 as well.
+            var k = Math.max(0, Math.min(1, (now - start) / dur)), e = 1 - Math.pow(1 - k, 3);
+            el.textContent = fmt(target * e);
+            if (k < 1) requestAnimationFrame(tick);
+          })(start);
+        }, delay || 0);
+      }
+
+      // Hero numbers count up as the phone lands.
+      document.querySelectorAll('.hero [data-count]').forEach(function (el) { countUp(el, 900); });
+
+      // Reveal on scroll, and only run looping scenes while they are on screen.
+      if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+        return;
+      }
+      var reveal = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); reveal.unobserve(e.target); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal').forEach(function (el) { reveal.observe(el); });
+
+      var play = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          e.target.classList.toggle('play', e.isIntersecting);
+          e.target.querySelectorAll('.shelf').forEach(function (s) { s.classList.toggle('play', e.isIntersecting); });
+        });
+      }, { threshold: 0.25 });
+      document.querySelectorAll('[data-play], #journey').forEach(function (el) { play.observe(el); });
+
+      // The sales book writes itself once, the first time it is seen.
+      var ledger = document.getElementById('ledger');
+      var ledgerSeen = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        ledger.classList.add('play');
+        countUp(ledger.querySelector('[data-count]'), 3300);
+        ledgerSeen.disconnect();
+      }, { threshold: 0.4 });
+      ledgerSeen.observe(ledger);
+
+      // The pen rides along each word as it is written.
+      var pen = ledger.querySelector('.pen');
+      var words = ledger.querySelectorAll('.w');
+      ledger.addEventListener('animationstart', function (e) {
+        if (!e.target.classList.contains('w')) return;
+        var box = ledger.getBoundingClientRect(), r = e.target.getBoundingClientRect();
+        var y = r.top - box.top - 14;
+        pen.style.transition = 'none';
+        pen.style.opacity = '1';
+        pen.style.transform = 'translate(' + (r.left - box.left) + 'px,' + y + 'px)';
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            pen.style.transition = 'transform .55s cubic-bezier(.4,0,.6,1)';
+            pen.style.transform = 'translate(' + (r.right - box.left) + 'px,' + y + 'px)';
+          });
+        });
+      });
+      words[words.length - 1].addEventListener('animationend', function () {
+        pen.style.transition = 'opacity .4s';
+        pen.style.opacity = '0';
+      });
+
+      // Stock counter follows the cartons on the shelf (7s loop, 6 cartons, 24 pieces each).
+      var stockEl = document.querySelector('[data-stock]');
+      var shelfCell = document.querySelector('.c-stock');
+      var t0 = null;
+      (function stockTick(now) {
+        if (shelfCell.classList.contains('play') && !reduce) {
+          if (t0 === null) t0 = now;
+          var n = 0;
+          for (var i = 0; i < 6; i++) {
+            var t = ((now - t0) / 1000 - i * 0.35) % 7;
+            if (t >= 1.05 && t < 4.34) n++; // on the plank between 15% and 62% of the carton loop
+          }
+          stockEl.textContent = n * 24;
+        } else if (!shelfCell.classList.contains('play')) {
+          t0 = null;
+        }
+        if (reduce) stockEl.textContent = 144;
+        requestAnimationFrame(stockTick);
+      })(performance.now());
+
+      // Business kinds light up one after another.
+      var kinds = document.querySelectorAll('#kinds span'), k = 0;
+      if (!reduce) setInterval(function () {
+        kinds.forEach(function (s, i) { s.classList.toggle('on', i === k); });
+        k = (k + 1) % kinds.length;
+      }, 1300);
+      else kinds[0].classList.add('on');
+    })();
+  </script>
+</body>
+</html>
