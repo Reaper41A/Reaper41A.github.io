@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Terms of Service · StockFlow</title>
+  <meta name="description" content="The terms for using the StockFlow app and website.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='24 12 52 76'%3E%3Cg fill='none' stroke-width='11'%3E%3Cpath d='M64 38V34Q64 22 52 22H48Q36 22 36 34V38Q36 50 48 50' stroke='%230B1F14'/%3E%3Cpath d='M52 50Q64 50 64 62V66Q64 78 52 78H48Q36 78 36 66V62' stroke='%230B9D4F'/%3E%3C/g%3E%3C/svg%3E">
+  <meta name="theme-color" content="#0B9D4F">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg: #F4FAF6; --bg-2: #EAF5EE; --card: #FFFFFF; --ink: #0B1F14; --sub: #4D6155; --line: #DAEADF; --green: #0B9D4F; --green-ink: #087A3D; --green-soft: #DDF3E6; --glow: rgba(11,157,79,.16); }
+    @media (prefers-color-scheme: dark) { :root { --bg: #040705; --bg-2: #08100B; --card: #0C1510; --ink: #EAF3EE; --sub: #A2B6AA; --line: #18261E; --green: #27D86F; --green-ink: #4BE28A; --green-soft: #0F2A1A; --glow: rgba(39,216,111,.14); } }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.7 "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    a { color: var(--green-ink); }
+    .nav { position: sticky; top: 0; z-index: 10; backdrop-filter: saturate(1.6) blur(14px); -webkit-backdrop-filter: saturate(1.6) blur(14px); background: color-mix(in srgb, var(--bg) 80%, transparent); border-bottom: 1px solid var(--line); }
+    .nav div { max-width: 1160px; margin: 0 auto; padding: 0 20px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-weight: 800; font-size: 20px; letter-spacing: -0.03em; }
+    .logo .flow { color: var(--green); }
+    .logo svg { width: 19px; height: 28px; color: var(--ink); }
+    .home { font-weight: 700; font-size: 15px; text-decoration: none; color: var(--sub); }
+    .home:hover { color: var(--ink); }
+    .hero { position: relative; overflow: hidden; padding: 64px 20px 40px; text-align: center; }
+    .hero::before { content: ""; position: absolute; inset: -60% -20% auto; height: 600px; background: radial-gradient(45% 50% at 50% 50%, var(--glow), transparent 70%); pointer-events: none; }
+    .kicker { position: relative; font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--green-ink); }
+    h1 { position: relative; font-size: clamp(36px, 6vw, 56px); letter-spacing: -0.04em; line-height: 1.05; margin: 12px 0 10px; }
+    .hero p { position: relative; color: var(--sub); }
+    main { max-width: 760px; margin: 0 auto; padding: 0 20px 40px; }
+    .doc { background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: clamp(22px, 5vw, 44px); box-shadow: 0 1px 2px rgba(11,31,20,.04), 0 12px 32px -12px rgba(11,31,20,.14); animation: rise .7s cubic-bezier(.2,0,0,1) both; }
+    h2 { font-size: 21px; letter-spacing: -0.02em; margin: 36px 0 8px; padding-top: 4px; }
+    .doc > h2:first-of-type { margin-top: 28px; }
+    p, li { color: var(--ink); }
+    .muted { color: var(--sub); }
+    ul { padding-left: 0; list-style: none; }
+    li { margin: 10px 0; padding-left: 22px; position: relative; }
+    li::before { content: ""; position: absolute; left: 2px; top: .7em; width: 7px; height: 7px; border-radius: 2px; background: var(--green); transform: rotate(45deg); }
+    footer { max-width: 760px; margin: 0 auto; padding: 24px 20px 48px; color: var(--sub); font-size: 15px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+    @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .doc { animation: none; } html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <header class="nav"><div>
+    <a class="logo" href="./" aria-label="StockFlow home"><svg viewBox="24 12 52 76" aria-hidden="true"><g fill="none" stroke-width="11"><path d="M64 38V34Q64 22 52 22H48Q36 22 36 34V38Q36 50 48 50" stroke="currentColor"/><path d="M52 50Q64 50 64 62V66Q64 78 52 78H48Q36 78 36 66V62" stroke="var(--green)"/></g></svg><span>stock<span class="flow">flow</span></span></a>
+    <a class="home" href="./">← Back to home</a>
+  </div></header>
+  <section class="hero">
+    <div class="kicker">Legal</div>
+    <h1>Terms of Service</h1>
+    <p>Last updated: 18 October 2026</p>
+  </section>
+  <main>
+    <article class="doc">
+    <p>These terms are an agreement between you and StockFlow ("StockFlow", "we", "us") for using the StockFlow mobile app and website (together, the "Service"). By using the Service you agree to them. If you do not agree, please do not use the Service. Questions? Email <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a>.</p>
+
+    <h2>1. Who can use StockFlow</h2>
+    <p>You must be at least 18 years old, or the age of majority where you live, and able to enter into a binding agreement. If you use StockFlow for a business, you confirm you are allowed to accept these terms on that business’s behalf.</p>
+
+    <h2>2. Your account</h2>
+    <ul>
+      <li>You can use StockFlow without an account. Creating one (with email or Google) adds backup, sync across phones and staff logins.</li>
+      <li>Keep your login details and app PIN private. You are responsible for what happens under your account, including what the staff you invite do.</li>
+      <li>Give us accurate information, and tell us quickly at <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a> if you think someone has accessed your account without permission.</li>
+    </ul>
+
+    <h2>3. Your data stays yours</h2>
+    <p>Your products, sales, customers and other records belong to you. You give us permission to store, process and display them only so we can run the Service for you: for example to back them up, sync them, and show your public shop profile if you choose to publish one. How we handle personal information is explained in our <a href="privacy.html">Privacy Policy</a>.</p>
+    <p>If you use StockFlow only on your phone without an account, your records exist only on that phone. If the phone is lost, reset or the app is deleted, they cannot be recovered. We recommend creating an account so your records are backed up.</p>
+
+    <h2>4. Using the Service fairly</h2>
+    <p>You agree not to:</p>
+    <ul>
+      <li>sell, list or promote anything illegal, counterfeit, stolen or dangerous, or anything you are not allowed to sell;</li>
+      <li>mislead or defraud customers or other businesses, or post false prices, stock or reviews;</li>
+      <li>send spam, harass anyone, or share content that is abusive, hateful or infringes someone else’s rights;</li>
+      <li>try to break, overload, reverse-engineer or get unauthorised access to the Service or other users’ data;</li>
+      <li>use the Service to break any law, including tax, consumer-protection and data-protection laws.</li>
+    </ul>
+
+    <h2>5. Orders and payments between businesses</h2>
+    <p>StockFlow lets businesses publish products and take orders from each other. When you buy from or sell to another business, the sale is between you and that business. StockFlow is not the seller or buyer and is not responsible for the quality, safety, legality or delivery of goods, or for disputes between users, though we may help where we can.</p>
+    <p>Card and bank payments are processed by Paystack under its own terms. We do not store your card details.</p>
+
+    <h2>6. Fees</h2>
+    <p>Some features may require a paid plan. Any price will be shown in the app before you pay, and you will not be charged without agreeing first. If we change prices or introduce new fees, we will tell you in advance.</p>
+
+    <h2>7. Our app and brand</h2>
+    <p>The StockFlow, Shopflow and Dropflow names, logos, app and website belong to us. We give you a personal, non-exclusive, non-transferable licence to use the app for its intended purpose. You may not copy, resell or redistribute it.</p>
+
+    <h2>8. Changes and availability</h2>
+    <p>We are always improving StockFlow, so features may change, be added or be removed. We work hard to keep the Service available, but we cannot promise it will never be interrupted, for example during maintenance or network outages. The app keeps working offline, and your records sync again once you reconnect.</p>
+
+    <h2>9. Ending your use</h2>
+    <p>You can stop using StockFlow at any time and ask us to delete your account by emailing us. We may suspend or close accounts that break these terms or put other users at risk. Where reasonable, we will warn you first and give you a chance to download your records.</p>
+
+    <h2>10. No guarantees</h2>
+    <p>StockFlow is a tool to help you run your business. Totals, profit figures, stock counts and insights depend on the information you enter, so please check important figures yourself. They are not financial, tax or legal advice. The Service is provided “as is” and “as available”, to the extent the law allows.</p>
+
+    <h2>11. Limits on our liability</h2>
+    <p>To the extent the law allows, StockFlow is not liable for indirect or consequential losses, such as lost profits, lost sales or lost data, arising from your use of the Service. Our total liability for any claim is limited to the amount you paid us for the Service in the 12 months before the claim, or ₦10,000 if you paid nothing. Nothing in these terms limits liability that cannot be limited by law.</p>
+
+    <h2>12. Governing law</h2>
+    <p>These terms are governed by the laws of the Federal Republic of Nigeria. If a dispute comes up, please contact us first so we can try to resolve it informally. If that does not work, it will be handled by the courts of Nigeria.</p>
+
+    <h2>13. Changes to these terms</h2>
+    <p>We may update these terms from time to time. When we do, we will change the date at the top, and for important changes we will tell you in the app before they take effect. Continuing to use StockFlow after that means you accept the updated terms.</p>
+
+    <h2>14. Contact</h2>
+    <p>StockFlow · <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a></p>
+    </article>
+  </main>
+  <footer><span>Contact: <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a></span><span><a href="privacy.html">Privacy Policy</a> · © 2026 StockFlow</span></footer>
+</body>
+</html>
