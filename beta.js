@@ -193,7 +193,7 @@
     var form = e.currentTarget;
     var button = form.querySelector('button');
     button.disabled = true;
-    var res = await sb.rpc('beta_request_access', { p_name: form.elements.namedItem('name').value.trim() || null });
+    var res = await sb.rpc('beta_request_access');
     button.disabled = false;
     if (res.error) {
       message($('[data-beta="status-msg"]'), 'We couldn’t send your request. Please try again.', true);
