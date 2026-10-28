@@ -48,6 +48,71 @@
     auth: { flowType: 'pkce', detectSessionInUrl: true, persistSession: true },
   });
 
+  // What's new: release notes the team writes in the StockFlow Console. Anyone can read them (whats_new()).
+  var NEWS_GROUPS = [['new', 'New', 'var(--green)'], ['improved', 'Improved', 'var(--drop)'], ['fixed', 'Fixed', 'var(--shop)']];
+  var NEWS_SHOWN = 3;
+
+  function el(tag, cls, text) {
+    var node = document.createElement(tag);
+    if (cls) node.className = cls;
+    if (text) node.textContent = text;
+    return node;
+  }
+
+  function newsItem(r, open) {
+    var notes = r.notes || {};
+    var details = el('details');
+    details.open = open;
+    var summary = el('summary');
+    var head = el('span');
+    var title = el('strong', '', r.title || 'Test version update');
+    if (r.kind === 'build') title.appendChild(el('span', 'news-tag', 'New install'));
+    head.appendChild(title);
+    head.appendChild(el('small', '', friendlyDate(r.created_at) + (r.app_version ? ' · version ' + r.app_version : '')));
+    summary.appendChild(head);
+    details.appendChild(summary);
+    var any = false;
+    NEWS_GROUPS.forEach(function (g) {
+      var items = Array.isArray(notes[g[0]]) ? notes[g[0]] : [];
+      if (!items.length) return;
+      any = true;
+      var group = el('div', 'news-group');
+      var label = el('b', '', g[1]);
+      label.style.setProperty('--c', g[2]);
+      group.appendChild(label);
+      var list = el('ul');
+      items.forEach(function (s) { list.appendChild(el('li', '', s)); });
+      group.appendChild(list);
+      details.appendChild(group);
+    });
+    if (!any) details.appendChild(el('p', '', 'Small fixes and improvements.'));
+    return details;
+  }
+
+  async function loadNews() {
+    var box = document.getElementById('whats-new');
+    if (!box) return;
+    var res = await sb.rpc('whats_new', { p_limit: 12 });
+    var items = (!res.error && Array.isArray(res.data)) ? res.data : [];
+    if (!items.length) return;
+    var list = box.querySelector('[data-news="list"]');
+    var more = box.querySelector('[data-news="more"]');
+    list.textContent = '';
+    items.forEach(function (r, i) {
+      var item = newsItem(r, i === 0);
+      item.hidden = i >= NEWS_SHOWN;
+      list.appendChild(item);
+    });
+    more.hidden = items.length <= NEWS_SHOWN;
+    more.onclick = function () {
+      list.querySelectorAll('details[hidden]').forEach(function (d) { d.hidden = false; });
+      more.hidden = true;
+    };
+    box.hidden = false;
+  }
+
+  loadNews().catch(function () { /* no news is fine: the panel stays hidden */ });
+
   function returnUrl() {
     return location.origin + location.pathname;
   }
