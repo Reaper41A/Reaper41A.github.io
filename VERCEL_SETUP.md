@@ -28,11 +28,16 @@ The same redirect allowlist is used for Google OAuth and email sign-in links. Th
 
 ## Google OAuth callback: keep it pointed at Supabase
 
-In **Google Cloud Console → APIs & Services → Credentials → your Web OAuth client**, the authorized redirect URI should remain the Supabase callback:
+In **Google Cloud Console → APIs & Services → Credentials → your Web OAuth client**:
 
-`https://fpshdyotujchfdwasqxn.supabase.co/auth/v1/callback`
+- Add the Vercel production origin (for example, `https://your-project.vercel.app`) under **Authorized JavaScript origins**. Add each preview origin separately only when you need Google sign-in to work on that preview; Google origins are exact origins, not wildcard patterns.
+- Keep the authorized redirect URI pointed at the Supabase callback:
+
+  `https://fpshdyotujchfdwasqxn.supabase.co/auth/v1/callback`
 
 Do **not** replace that Google callback with the Vercel domain. Google returns to Supabase first; Supabase then redirects the user to the Vercel URL supplied by the site. Confirm that the matching Google Client ID and Client Secret are enabled under **Supabase Dashboard → Authentication → Sign In / Providers → Google**.
+
+The two allowlists serve different purposes: Google authorizes which site origins may start sign-in and the Supabase callback; Supabase authorizes where it may return the signed-in browser session.
 
 ## Verify before switching off GitHub Pages
 
