@@ -124,7 +124,7 @@
 
   function authErrorText(error) {
     var detail = error && (error.message || error.error_description || error.code);
-    return detail ? String(detail).replace(/\\s+/g, ' ').slice(0, 260) : 'The authentication request could not be completed.';
+    return detail ? String(detail).replace(/\s+/g, ' ').slice(0, 260) : 'The authentication request could not be completed.';
   }
 
   function showAuthRedirectError() {
@@ -135,7 +135,7 @@
       || search.get('error') || hash.get('error');
     if (!detail) return;
 
-    detail = String(detail).replace(/\\s+/g, ' ').slice(0, 260);
+    detail = String(detail).replace(/\s+/g, ' ').slice(0, 260);
     var hint = /redirect|not allowed|allow.?list/i.test(detail)
       ? ' Add this Vercel domain to Supabase Authentication → URL Configuration → Redirect URLs.'
       : '';
