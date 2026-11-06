@@ -114,8 +114,35 @@
   loadNews().catch(function () { /* no news is fine: the panel stays hidden */ });
 
   function returnUrl() {
-    return location.origin + location.pathname;
+    // Use the hostname that is actually serving this page. This works on GitHub Pages,
+    // the Vercel production domain, Vercel preview deployments, and a custom domain.
+    var url = new URL(window.location.href);
+    url.search = '';
+    url.hash = '';
+    return url.origin + url.pathname;
   }
+
+  function authErrorText(error) {
+    var detail = error && (error.message || error.error_description || error.code);
+    return detail ? String(detail).replace(/\\s+/g, ' ').slice(0, 260) : 'The authentication request could not be completed.';
+  }
+
+  function showAuthRedirectError() {
+    var search = new URLSearchParams(window.location.search);
+    var hash = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+    var detail = search.get('error_description') || hash.get('error_description')
+      || search.get('error_code') || hash.get('error_code')
+      || search.get('error') || hash.get('error');
+    if (!detail) return;
+
+    detail = String(detail).replace(/\\s+/g, ' ').slice(0, 260);
+    var hint = /redirect|not allowed|allow.?list/i.test(detail)
+      ? ' Add this Vercel domain to Supabase Authentication → URL Configuration → Redirect URLs.'
+      : '';
+    message($('[data-beta="msg"]'), 'Sign-in did not complete: ' + detail + '.' + hint, true);
+  }
+
+  showAuthRedirectError();
 
   async function refresh() {
     var statusMsg = $('[data-beta="status-msg"]');
@@ -161,12 +188,28 @@
   }
 
   $('[data-beta="google"]').addEventListener('click', async function () {
+    var button = this;
+    var label = button.textContent;
+    button.disabled = true;
+    button.textContent = 'Opening Google…';
+    message($('[data-beta="msg"]'), '');
     markReturn();
-    var res = await sb.auth.signInWithOAuth({
-      provider: 'google',
-      options: { redirectTo: returnUrl(), queryParams: { prompt: 'select_account' } },
-    });
-    if (res.error) message($('[data-beta="msg"]'), 'Google sign-in isn’t available right now. Use the email link instead.', true);
+
+    try {
+      var res = await sb.auth.signInWithOAuth({
+        provider: 'google',
+        options: { redirectTo: returnUrl(), queryParams: { prompt: 'select_account' } },
+      });
+      if (res.error) throw res.error;
+    } catch (error) {
+      button.disabled = false;
+      button.textContent = label;
+      var detail = authErrorText(error);
+      var hint = /redirect|not allowed|allow.?list/i.test(detail)
+        ? ' Add this Vercel domain to Supabase Authentication → URL Configuration → Redirect URLs.'
+        : '';
+      message($('[data-beta="msg"]'), 'Google sign-in could not start: ' + detail + '.' + hint, true);
+    }
   });
 
   $('[data-beta="email-form"]').addEventListener('submit', async function (e) {
