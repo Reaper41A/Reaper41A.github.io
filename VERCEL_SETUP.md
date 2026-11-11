@@ -8,7 +8,7 @@ This repository is a static website: the homepage, legal pages, styles and brows
 2. Set the **Root Directory** to `./`.
 3. Set **Framework Preset** to **Other**.
 4. Leave **Build Command** and **Install Command** empty. Set **Output Directory** to `.` (the repository root).
-5. Deploy. The site entry point is `index.html`; `privacy.html`, `terms.html`, and `beta.js` remain at the root and are served as static files.
+5. Deploy. The site entry point is `index.html`; `privacy.html`, `terms.html`, and `beta.js` remain at the root and are served as static files. The homepage's fonts are in `fonts/` and load from the same domain.
 
 The checked-in `vercel.json` keeps the root output directory and explicit `.html` page paths, and adds basic response-security headers. There is no GitHub Pages base-path assumption in the site: assets and legal-page links are relative, and beta sign-in constructs its return URL from the domain currently serving the page.
 
