@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Shopflow · Shop the stores around you</title>
+  <meta name="description" content="Shopflow shows you what shops near you have in stock, at their real prices. Order for pickup or delivery and pay from your wallet. Join the Android beta.">
+  <meta property="og:title" content="Shopflow · Shop the stores around you">
+  <meta property="og:description" content="Live stock from shops near you. Order for pickup or delivery. Join the Android beta.">
+  <meta name="theme-color" content="#FFF6EA">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M30 42a20 20 0 0 1 40 0' fill='none' stroke='%230C1F17' stroke-width='8'/%3E%3Crect x='12' y='38' width='76' height='11' rx='5.5' fill='%230C1F17'/%3E%3Cpath d='M22 50H78L73 82Q72 88 66 88H34Q28 88 27 82Z' fill='%23FF7A1A'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FFF6EA; --card: #FFFFFF; --ink: #0C1F17; --sub: #3C4A43; --faint: #66736C; --line: #F0DFC8;
+      --mango: #FF7A1A; --mango-ink: #B34A00; --mango-soft: #FFE6D1; --teal: #0E9F94;
+      --amber: #A86A00; --danger: #C9302C;
+      --shadow: 0 1px 2px rgba(12,31,23,.05), 0 14px 32px -14px rgba(12,31,23,.22);
+      --radius: 24px;
+      /* Names beta.js uses for the What's new groups (New, Improved, Fixed). */
+      --green: var(--teal); --drop: var(--mango-ink); --shop: var(--amber);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0C1410; --card: #131D18; --ink: #FFF6EA; --sub: #D3CBBF; --faint: #A69E93; --line: #24312A;
+        --mango: #FF8A33; --mango-ink: #FFA45C; --mango-soft: #2E1C0C; --amber: #F2B441; --danger: #FF7B73;
+        --shadow: 0 1px 2px rgba(0,0,0,.4), 0 16px 40px -16px rgba(0,0,0,.7);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    a { color: inherit; }
+    svg { display: block; }
+    .wrap { width: 100%; max-width: 980px; margin: 0 auto; padding: 0 20px; }
+    .skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: var(--bg); padding: 10px 14px; border-radius: 10px; z-index: 50; }
+    .skip:focus { left: 8px; }
+
+    .nav { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 68px; }
+    .logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 22px; letter-spacing: -.02em; }
+    .logo svg { width: 38px; height: 38px; }
+    .logo .flow { color: var(--mango-ink); }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 16px; font: inherit; font-weight: 700; font-size: 16px; text-decoration: none; border: 0; cursor: pointer; }
+    .btn:disabled { opacity: .6; cursor: default; }
+    /* Ink text on mango keeps the button readable (white on mango is too faint). */
+    .btn-primary { background: var(--mango); color: #0C1F17; box-shadow: 0 6px 14px -8px rgba(12,31,23,.4); }
+    .btn-ghost { background: var(--card); color: var(--ink); border: 1px solid var(--line); }
+    .btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+
+    .hero { padding: clamp(40px, 8vw, 88px) 0 32px; }
+    .kicker { display: inline-block; font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--mango-ink); }
+    h1 { font-size: clamp(36px, 6.4vw, 60px); line-height: 1.05; letter-spacing: -.035em; margin: 12px 0 16px; max-width: 14ch; }
+    .lead { font-size: clamp(18px, 2.2vw, 20px); color: var(--sub); max-width: 34rem; margin: 0 0 28px; }
+    .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* What you can do: one list, each row a clear point. */
+    .does { list-style: none; margin: 8px 0 0; padding: 0; border-top: 1px solid var(--line); }
+    .does li { display: flex; gap: 16px; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid var(--line); }
+    .does .dot { flex: none; width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; background: var(--mango-soft); color: var(--mango-ink); }
+    .does .dot svg { width: 22px; height: 22px; }
+    .does b { display: block; font-size: 18px; }
+    .does span { color: var(--sub); }
+
+    .section { padding: clamp(48px, 7vw, 80px) 0 0; }
+    .section h2 { font-size: clamp(28px, 4vw, 38px); letter-spacing: -.025em; line-height: 1.15; margin: 8px 0 10px; }
+    .section-head { margin-bottom: 24px; }
+    .section-head p { color: var(--sub); margin: 0; max-width: 36rem; }
+
+    .beta-card, .news { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: clamp(24px, 4vw, 40px); }
+    .beta-card h3, .news h3 { font-size: 22px; font-weight: 800; margin: 0 0 8px; }
+    .beta-card p { color: var(--sub); margin: 0 0 16px; }
+    .beta-card .muted { color: var(--faint); font-size: 15px; }
+    .beta-state[hidden], .beta-who[hidden], .news[hidden], [hidden] { display: none !important; }
+    .beta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .beta-or { display: flex; align-items: center; gap: 12px; color: var(--faint); font-size: 15px; margin: 20px 0; }
+    .beta-or::before, .beta-or::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+    .beta-form { display: flex; flex-wrap: wrap; gap: 12px; }
+    .beta-form label { flex: 1 1 100%; font-weight: 700; font-size: 15px; }
+    .beta-form input { flex: 1 1 240px; min-height: 52px; padding: 0 16px; border-radius: 16px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); font: inherit; font-size: 17px; }
+    .beta-pill { display: inline-flex; padding: 6px 12px; border-radius: 999px; font-size: 14px; font-weight: 700; background: var(--mango-soft); color: var(--mango-ink); margin-bottom: 14px; }
+    .beta-pill.wait { background: color-mix(in srgb, var(--amber) 16%, transparent); color: var(--amber); }
+    .beta-pill.off { background: color-mix(in srgb, var(--danger) 14%, transparent); color: var(--danger); }
+    .beta-msg { margin-top: 14px; font-size: 16px; color: var(--sub); }
+    .beta-msg.err { color: var(--danger); font-weight: 600; }
+    .beta-steps { margin: 20px 0 0; padding-left: 22px; color: var(--sub); }
+    .beta-steps li { margin: 6px 0; }
+    .beta-who { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 15px; color: var(--faint); }
+    .beta-who button { min-height: 44px; background: none; border: 0; padding: 0 4px; font: inherit; font-weight: 700; color: var(--mango-ink); cursor: pointer; }
+
+    .news { margin-top: 20px; }
+    .news > p { color: var(--sub); margin: 0 0 12px; }
+    .news details { border-top: 1px solid var(--line); padding: 14px 0; }
+    .news summary { cursor: pointer; list-style: none; min-height: 44px; display: flex; align-items: center; }
+    .news summary::-webkit-details-marker { display: none; }
+    .news summary span { display: flex; flex-direction: column; }
+    .news summary small { color: var(--faint); font-size: 14px; }
+    .news-tag { margin-left: 8px; font-size: 12px; font-weight: 800; padding: 2px 8px; border-radius: 999px; background: var(--mango-soft); color: var(--mango-ink); vertical-align: middle; }
+    .news-group { margin-top: 10px; }
+    .news-group b { color: var(--c); font-size: 14px; text-transform: uppercase; letter-spacing: .08em; }
+    .news-group ul { margin: 4px 0 0; padding-left: 20px; color: var(--sub); }
+    .news-more { min-height: 44px; margin-top: 8px; background: none; border: 0; padding: 0; font: inherit; font-weight: 700; color: var(--mango-ink); cursor: pointer; }
+
+    .more-info { margin-top: 16px; }
+    .more-info summary { cursor: pointer; min-height: 44px; display: inline-flex; align-items: center; font-weight: 700; color: var(--mango-ink); }
+    .more-info p { color: var(--sub); margin: 6px 0 0; }
+
+    footer { margin-top: clamp(56px, 8vw, 96px); border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--faint); font-size: 15px; }
+    footer nav { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-bottom: 10px; }
+    footer a { min-height: 44px; display: inline-flex; align-items: center; color: var(--sub); }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#beta">Skip to the beta</a>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="sf-mark" viewBox="0 0 100 100">
+        <clipPath id="sfBasket"><path d="M22 44H78Q84 44 83 50L78 80Q77 88 69 88H31Q23 88 22 80L17 50Q16 44 22 44Z"/></clipPath>
+        <path d="M30 42a20 20 0 0 1 40 0" fill="none" stroke="currentColor" stroke-width="8"/>
+        <rect x="12" y="38" width="76" height="11" rx="5.5" fill="currentColor"/>
+        <g clip-path="url(#sfBasket)">
+          <rect x="10" y="40" width="80" height="50" fill="#FF7A1A"/>
+          <path d="M10 40H90V60H84C70 50 58 56 50 66C42 76 30 82 16 70H10Z" fill="#0C1F17"/>
+          <path d="M16 70C30 82 42 76 50 66S70 50 84 60" stroke-linecap="square" fill="none" stroke="#FFF6EA" stroke-width="6"/>
+        </g>
+      </symbol>
+      <symbol id="i-map" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21z"/><circle cx="12" cy="10" r="2.4"/></g></symbol>
+      <symbol id="i-basket" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18l-1.8 9H4.8z"/><path d="M8 10a4 4 0 0 1 8 0"/></g></symbol>
+      <symbol id="i-wallet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M16 12.5h2M3 9.5h18"/></g></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></g></symbol>
+    </defs>
+  </svg>
+
+  <header class="nav">
+    <div class="wrap">
+      <a class="logo" href="#top" aria-label="Shopflow home"><svg aria-hidden="true"><use href="#sf-mark"/></svg><span>shop<span class="flow">flow</span></span></a>
+      <a class="btn btn-ghost" href="#beta">Join the beta</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <span class="kicker">Now in beta · Android</span>
+        <h1>Shop the stores around you.</h1>
+        <p class="lead">See what nearby shops really have, at their real prices. Order for pickup or delivery, and pay from your wallet.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#beta">Join the beta</a>
+          <a class="btn btn-ghost" href="/">For shops: StockFlow</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0" aria-labelledby="does-title">
+      <div class="wrap">
+        <h2 id="does-title" class="kicker" style="font-size:13px;margin:0">What you can do</h2>
+        <ul class="does">
+          <li><span class="dot"><svg aria-hidden="true"><use href="#i-map"/></svg></span><div><b>Find shops on the map</b><span>See what’s busy, open and on offer near you.</span></div></li>
+          <li><span class="dot"><svg aria-hidden="true"><use href="#i-basket"/></svg></span><div><b>Order from live stock</b><span>Prices and stock come straight from the shop.</span></div></li>
+          <li><span class="dot"><svg aria-hidden="true"><use href="#i-wallet"/></svg></span><div><b>Pay from your wallet</b><span>Top up once, pay in a tap.</span></div></li>
+          <li><span class="dot"><svg aria-hidden="true"><use href="#i-play"/></svg></span><div><b>Watch shop videos</b><span>New arrivals and offers from shops you follow.</span></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Beta: approved testers download the preview app. beta.js runs it for Shopflow via data-app. -->
+    <section class="section" id="beta" data-app="shopflow" aria-labelledby="beta-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Beta</span>
+          <h2 id="beta-title">Try Shopflow first.</h2>
+          <p>Ask to join. Once you’re approved, download the test app here. It updates itself after that.</p>
+        </div>
+        <div class="beta-card" aria-live="polite">
+          <div class="beta-state" data-state="loading"><p class="muted">Checking your access…</p></div>
+
+          <div class="beta-state" data-state="signed-out" hidden>
+            <h3>Sign in to join</h3>
+            <p>Use the account you’ll use in Shopflow.</p>
+            <div class="beta-row">
+              <button class="btn btn-primary" type="button" data-beta="google">Continue with Google</button>
+            </div>
+            <div class="beta-or">or get a sign-in link by email</div>
+            <form class="beta-form" data-beta="email-form">
+              <label for="sf-email">Email</label>
+              <input id="sf-email" type="email" name="email" autocomplete="email" placeholder="you@example.com" required>
+              <button class="btn btn-ghost" type="submit">Email me a link</button>
+            </form>
+            <p class="beta-msg" data-beta="msg" role="status" hidden></p>
+            <details class="more-info">
+              <summary>More info</summary>
+              <p>Shopflow and StockFlow use separate accounts. An email already used for StockFlow can’t join Shopflow; use a different one.</p>
+            </details>
+          </div>
+
+          <div class="beta-state" data-state="none" hidden>
+            <h3>Ask to join</h3>
+            <p>We’ll use the email you signed in with.</p>
+            <form class="beta-row" data-beta="request-form">
+              <button class="btn btn-primary" type="submit">Ask for access</button>
+            </form>
+          </div>
+
+          <div class="beta-state" data-state="pending" hidden>
+            <span class="beta-pill wait">Waiting for approval</span>
+            <h3>Thanks, you’re on the list.</h3>
+            <p>Come back once you’re approved. The download will be right here.</p>
+          </div>
+
+          <div class="beta-state" data-state="revoked" hidden>
+            <span class="beta-pill off">Not active</span>
+            <h3>Your beta access is off.</h3>
+            <p>Think that’s a mistake? Email <a href="mailto:stockflowapp.help@gmail.com?subject=Shopflow%20beta">stockflowapp.help@gmail.com</a>.</p>
+          </div>
+
+          <div class="beta-state" data-state="approved" hidden>
+            <span class="beta-pill">You’re a tester</span>
+            <h3>Download Shopflow</h3>
+            <p data-beta="build-line">Android only for now.</p>
+            <div class="beta-row">
+              <button class="btn btn-primary" type="button" data-beta="download">Download for Android</button>
+            </div>
+            <ol class="beta-steps">
+              <li>Open the file. If Android asks, allow installs from your browser.</li>
+              <li>Open Shopflow and sign in with this same account.</li>
+              <li>New versions arrive in the app after that.</li>
+            </ol>
+          </div>
+
+          <p class="beta-msg" data-beta="status-msg" role="status" hidden></p>
+          <div class="beta-who" data-beta="who" hidden><span data-beta="who-email"></span><button type="button" data-beta="signout">Sign out</button></div>
+        </div>
+
+        <div class="news" id="whats-new" aria-labelledby="whats-new-title" hidden>
+          <h3 id="whats-new-title">What’s new</h3>
+          <p>What each test version added and fixed.</p>
+          <div data-news="list"></div>
+          <button class="news-more" type="button" data-news="more" hidden>Show older updates</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <nav aria-label="Footer">
+        <a href="/">StockFlow for shops</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="mailto:stockflowapp.help@gmail.com?subject=Shopflow">stockflowapp.help@gmail.com</a>
+      </nav>
+      <div>© 2026 Shopflow, part of StockFlow</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js" defer></script>
+  <script defer src="/beta.js"></script>
+</body>
+</html>
