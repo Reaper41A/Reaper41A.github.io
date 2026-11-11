@@ -1,12 +1,21 @@
 // Beta testers: sign in, ask for access, and (once approved) download the preview APK.
-// Talks to StockFlow's Supabase project with its public key only. What a person may see is decided
+// Talks to the shared StockFlow/Shopflow Supabase project with its public key only. What a person may see is decided
 // on the server: beta_status() / beta_request_access() and the beta-download Edge Function.
 (function () {
   'use strict';
 
   var SUPABASE_URL = 'https://fpshdyotujchfdwasqxn.supabase.co';
   var SUPABASE_KEY = 'sb_publishable__hAxNx0fuuoCQOAmRkkR3A_7nmyksie';
-  var RETURN_FLAG = 'stockflow.beta.return';
+  // The same script runs the StockFlow beta (index.html) and the Shopflow beta (shopflow/).
+  // <section id="beta" data-app="shopflow"> switches it to Shopflow's testers, builds and notes.
+  var section = document.getElementById('beta');
+  var APP = section && section.getAttribute('data-app') === 'shopflow' ? 'shopflow' : 'stockflow';
+  var SHOPFLOW = APP === 'shopflow';
+  var RPC = SHOPFLOW
+    ? { status: 'shopflow_beta_status', request: 'shopflow_beta_request_access', news: 'shopflow_whats_new' }
+    : { status: 'beta_status', request: 'beta_request_access', news: 'whats_new' };
+  var RETURN_FLAG = APP + '.beta.return';
+  var OTHER_APP_TEXT = 'This email is used for StockFlow. Shopflow needs its own account: sign out and use a different email.';
 
   var card = document.querySelector('#beta .beta-card');
   if (!card) return;
@@ -92,7 +101,7 @@
   async function loadNews() {
     var box = document.getElementById('whats-new');
     if (!box) return;
-    var res = await sb.rpc('whats_new', { p_limit: 12 });
+    var res = await sb.rpc(RPC.news, { p_limit: 12 });
     var items = (!res.error && Array.isArray(res.data)) ? res.data : [];
     if (!items.length) return;
     var list = box.querySelector('[data-news="list"]');
@@ -158,7 +167,20 @@
     who.hidden = false;
     $('[data-beta="who-email"]').textContent = 'Signed in as ' + (session.user.email || 'you');
 
-    var res = await sb.rpc('beta_status');
+    // Shopflow accounts are separate from StockFlow ones: claim this sign-in for Shopflow,
+    // or say plainly that this email already belongs to StockFlow.
+    if (SHOPFLOW) {
+      var claim = await sb.rpc('claim_app_account', { p_app: 'shopflow' });
+      if (!claim.error && claim.data === 'other_app') {
+        show('none');
+        $('[data-beta="request-form"]').hidden = true;
+        message(statusMsg, OTHER_APP_TEXT, true);
+        return;
+      }
+      $('[data-beta="request-form"]').hidden = false;
+    }
+
+    var res = await sb.rpc(RPC.status);
     if (res.error) {
       show('none');
       message(statusMsg, 'We couldn’t check your access right now. Please refresh in a moment.', true);
@@ -220,7 +242,10 @@
     if (!email) return;
     button.disabled = true;
     markReturn();
-    var res = await sb.auth.signInWithOtp({ email: email, options: { emailRedirectTo: returnUrl() } });
+    var otpOptions = { emailRedirectTo: returnUrl() };
+    // A new account made here belongs to Shopflow from the start.
+    if (SHOPFLOW) otpOptions.data = { signup_app: 'shopflow' };
+    var res = await sb.auth.signInWithOtp({ email: email, options: otpOptions });
     button.disabled = false;
     message(
       $('[data-beta="msg"]'),
@@ -236,10 +261,11 @@
     var form = e.currentTarget;
     var button = form.querySelector('button');
     button.disabled = true;
-    var res = await sb.rpc('beta_request_access');
+    var res = await sb.rpc(RPC.request);
     button.disabled = false;
     if (res.error) {
-      message($('[data-beta="status-msg"]'), 'We couldn’t send your request. Please try again.', true);
+      var usedForStockflow = SHOPFLOW && /stockflow/i.test(res.error.message || '');
+      message($('[data-beta="status-msg"]'), usedForStockflow ? OTHER_APP_TEXT : 'We couldn’t send your request. Please try again.', true);
       return;
     }
     await refresh();
@@ -250,7 +276,7 @@
     var label = button.textContent;
     button.disabled = true;
     button.textContent = 'Getting your download…';
-    var res = await sb.functions.invoke('beta-download', { body: {} });
+    var res = await sb.functions.invoke('beta-download', { body: { app: APP } });
     button.disabled = false;
     button.textContent = label;
     var data = res.data;
