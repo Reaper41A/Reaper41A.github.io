@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="color-scheme" content="light">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What changed · StockFlow legal pages</title>
+  <meta name="description" content="Every change to the StockFlow, Shopflow and Dropflow Privacy Policy and Terms of Use, in plain words.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='24 12 52 76'%3E%3Cg fill='none' stroke-width='11'%3E%3Cpath d='M64 38V34Q64 22 52 22H48Q36 22 36 34V38Q36 50 48 50' stroke='%230B1F14'/%3E%3Cpath d='M52 50Q64 50 64 62V66Q64 78 52 78H48Q36 78 36 66V62' stroke='%230B9D4F'/%3E%3C/g%3E%3C/svg%3E">
+  <meta name="theme-color" content="#0B9D4F">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="legal.css">
+</head>
+<body>
+  <a class="skip" href="#content">Skip to the changes</a>
+  <header class="nav"><div>
+    <a class="logo" href="./" aria-label="StockFlow home"><svg viewBox="24 12 52 76" aria-hidden="true"><g fill="none" stroke-width="11"><path d="M64 38V34Q64 22 52 22H48Q36 22 36 34V38Q36 50 48 50" stroke="currentColor"/><path d="M52 50Q64 50 64 62V66Q64 78 52 78H48Q36 78 36 66V62" stroke="var(--green)"/></g></svg><span>stock<span class="flow">flow</span></span></a>
+    <nav class="navlinks" aria-label="Legal pages"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="changes.html" aria-current="page">What changed</a></nav>
+  </div></header>
+  <section class="hero">
+    <div class="kicker">Legal</div>
+    <h1>What changed</h1>
+    <p>Every change to our Privacy Policy and Terms of Use, newest first.</p>
+  </section>
+  <main id="content">
+    <article class="doc">
+    <p>We list every change here, however small. For an important change, we also tell you in the app at least 14 days before it takes effect. The apps show the version number of the page you agreed to.</p>
+
+    <!--
+      HOW TO ADD A CHANGE (for the team)
+      1. Edit privacy.html and/or terms.html. Bump "Version N" and "Last updated" at the top of the page you changed.
+      2. Copy the newest <section class="entry"> below, paste it ABOVE it, and fill it in:
+         - id="vN-YYYY-MM-DD", the dates, the tags for the page(s) changed.
+         - One bullet per change, in plain words: what it said before, what it says now, and why it matters to the reader.
+      3. In each app, bump LEGAL.version in src/constants/legal.ts so people are shown "We've updated our terms".
+      Never edit or delete an old entry. If an entry was wrong, add a new entry that corrects it.
+    -->
+
+    <section class="entry" id="v2-2026-11-12" aria-labelledby="v2">
+      <h2 id="v2">Version 2</h2>
+      <p class="when">Published 12 November 2026 · Takes effect at once for new accounts, and on 26 November 2026 for existing accounts</p>
+      <p><span class="tag">Privacy</span><span class="tag">Terms</span></p>
+
+      <h3>Both pages</h3>
+      <ul>
+        <li><strong>Now cover all three apps.</strong> Before, they only described StockFlow. Now they also cover Shopflow (shoppers) and Dropflow (delivery businesses and riders), with a section for each.</li>
+        <li><strong>Everyone must be 18 or older.</strong> The old Privacy Policy said 13. The old Terms said 18. Now both say 18.</li>
+        <li><strong>14 days' notice.</strong> Important changes are now announced in the app at least 14 days before they take effect. Before, there was no set notice period.</li>
+        <li>Added "The short version" at the top of each page, and this What changed page.</li>
+      </ul>
+
+      <h3>Privacy Policy</h3>
+      <ul>
+        <li><strong>Location, explained app by app.</strong> A new table says exactly when each app uses your location, why, and who sees it. This includes riders' locations while on duty and while carrying a job.</li>
+        <li><strong>Who sees what on an order.</strong> A new table lists what shop staff, owners, shoppers, riders, delivery managers and our team can and can't see.</li>
+        <li><strong>New things we now describe:</strong> the wallet and identity checks, delivery photos, delivery contact attempts, the "Leave it at the door" choice, searches and viewed products used to suggest shops, pantry, auto-buy and pre-buys, Shopflow Pro, the shop chat assistant, and the clipboard permission.</li>
+        <li><strong>More service providers named:</strong> Google's road-distance service, OpenStreetMap and CARTO for maps, Have I Been Pwned for password checks, and Vercel and GitHub for the website and test apps.</li>
+        <li><strong>How long we keep things.</strong> A new table gives the time limit for each kind of data. Before, the policy only said "while your account is active".</li>
+        <li><strong>Deleting your account in the app.</strong> You can now start this from Settings › Data &amp; privacy. Before, you could only email us.</li>
+        <li><strong>Dropflow location with the app closed.</strong> While a rider is on duty, and only if they allow "all the time", location keeps going with the app closed or the screen off. A notification shows it on Android. It stops when they go off duty.</li>
+        <li><strong>At the door:</strong> we now record when a rider arrives (checked against the customer's pin) and each call or text they try.</li>
+        <li>Added how we handle data breaches, and a section on this website.</li>
+      </ul>
+
+      <h3>Terms of Use</h3>
+      <ul>
+        <li><strong>How held money works</strong>, step by step: paid, held, delivered, return window, paid out.</li>
+        <li><strong>New: what happens when you can't be reached at delivery.</strong> The rider must arrive at your pin, try to contact you twice and wait 10 minutes. Then the order is left at the door (only if you chose that at checkout) or goes back to the shop. If it goes back, you get the price of the goods back, but not the delivery and service fees. You can report it within 48 hours if you think the rider didn't really come. If the rider was at fault, you get everything back. The delivery business is paid once the shop confirms the goods are back.</li>
+        <li><strong>New: no partial refunds.</strong> A refund always covers all the goods in an order, never just some items.</li>
+        <li><strong>New: return claims</strong>, written out in full: the time limit, the reasons, photos, one claim per order, and how our team decides.</li>
+        <li><strong>New: a "Refunds at a glance" table</strong> showing what you get back in every situation.</li>
+        <li><strong>New: delivery rules</strong>: we set delivery prices, they're fixed when you pay, and hand-over uses QR codes and photos.</li>
+        <li><strong>New: rules for shops and for delivery businesses and riders</strong>, including our 10% share of delivery fees (not taken on Pro customers' trips).</li>
+        <li><strong>New: Shopflow Pro.</strong> It never renews by itself.</li>
+        <li><strong>Auto-buy and pre-buys.</strong> Setting them up allows us to pay those orders from your wallet. You can always skip, pause or cancel first.</li>
+        <li><strong>Liability limit changed in your favour.</strong> Before: what you paid us in the last 12 months, or ₦10,000 if you paid nothing. Now: whichever of those two is larger. It also never limits what we owe you for money in your wallet or for an order.</li>
+        <li><strong>Closing an account.</strong> Money that belongs to you is never kept because your account was closed.</li>
+      </ul>
+    </section>
+
+    <section class="entry" id="v1-2026-10-18" aria-labelledby="v1">
+      <h2 id="v1">Version 1</h2>
+      <p class="when">Published 18 October 2026</p>
+      <p><span class="tag">Privacy</span><span class="tag">Terms</span></p>
+      <ul>
+        <li>First Privacy Policy and Terms of Service, written for the StockFlow app.</li>
+      </ul>
+    </section>
+
+    <p class="muted">Questions about a change? Email <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a>.</p>
+    </article>
+  </main>
+  <footer><span>Contact: <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a></span><span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · © 2026 StockFlow</span></footer>
+</body>
+</html>
