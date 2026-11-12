@@ -4,115 +4,265 @@
   <meta charset="utf-8">
   <meta name="color-scheme" content="light">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Terms of Service · StockFlow</title>
-  <meta name="description" content="The terms for using the StockFlow app and website.">
+  <title>Terms of Use · StockFlow, Shopflow and Dropflow</title>
+  <meta name="description" content="The rules for using StockFlow, Shopflow and Dropflow: orders, the wallet, delivery, returns, refunds and what happens when a customer can't be reached.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='24 12 52 76'%3E%3Cg fill='none' stroke-width='11'%3E%3Cpath d='M64 38V34Q64 22 52 22H48Q36 22 36 34V38Q36 50 48 50' stroke='%230B1F14'/%3E%3Cpath d='M52 50Q64 50 64 62V66Q64 78 52 78H48Q36 78 36 66V62' stroke='%230B9D4F'/%3E%3C/g%3E%3C/svg%3E">
   <meta name="theme-color" content="#0B9D4F">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root { --bg: #F4FAF6; --bg-2: #EAF5EE; --card: #FFFFFF; --ink: #0B1F14; --sub: #4D6155; --line: #DAEADF; --green: #0B9D4F; --green-ink: #087A3D; --green-soft: #DDF3E6; --glow: rgba(11,157,79,.16); }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; overflow-x: clip; }
-    body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.7 "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-    a { color: var(--green-ink); }
-    .nav { position: sticky; top: 0; z-index: 10; backdrop-filter: saturate(1.6) blur(14px); -webkit-backdrop-filter: saturate(1.6) blur(14px); background: color-mix(in srgb, var(--bg) 80%, transparent); border-bottom: 1px solid var(--line); }
-    .nav div { max-width: 1160px; margin: 0 auto; padding: 0 20px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
-    .logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-weight: 800; font-size: 20px; letter-spacing: -0.03em; }
-    .logo .flow { color: var(--green); }
-    .logo svg { width: 19px; height: 28px; color: var(--ink); }
-    .home { font-weight: 700; font-size: 15px; text-decoration: none; color: var(--sub); }
-    .home:hover { color: var(--ink); }
-    .hero { position: relative; overflow: hidden; padding: 64px 20px 40px; text-align: center; }
-    .hero::before { content: ""; position: absolute; inset: -60% -20% auto; height: 600px; background: radial-gradient(45% 50% at 50% 50%, var(--glow), transparent 70%); pointer-events: none; }
-    .kicker { position: relative; font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--green-ink); }
-    h1 { position: relative; font-size: clamp(36px, 6vw, 56px); letter-spacing: -0.04em; line-height: 1.05; margin: 12px 0 10px; }
-    .hero p { position: relative; color: var(--sub); }
-    main { max-width: 760px; margin: 0 auto; padding: 0 20px 40px; }
-    .doc { background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: clamp(22px, 5vw, 44px); box-shadow: 0 1px 2px rgba(11,31,20,.04), 0 12px 32px -12px rgba(11,31,20,.14); animation: rise .7s cubic-bezier(.2,0,0,1) both; }
-    h2 { font-size: 21px; letter-spacing: -0.02em; margin: 36px 0 8px; padding-top: 4px; }
-    .doc > h2:first-of-type { margin-top: 28px; }
-    p, li { color: var(--ink); }
-    .muted { color: var(--sub); }
-    ul { padding-left: 0; list-style: none; }
-    li { margin: 10px 0; padding-left: 22px; position: relative; }
-    li::before { content: ""; position: absolute; left: 2px; top: .7em; width: 7px; height: 7px; border-radius: 2px; background: var(--green); transform: rotate(45deg); }
-    footer { max-width: 760px; margin: 0 auto; padding: 24px 20px 48px; color: var(--sub); font-size: 15px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
-    @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
-    @media (prefers-reduced-motion: reduce) { .doc { animation: none; } html { scroll-behavior: auto; } }
-  </style>
+  <link rel="stylesheet" href="legal.css">
 </head>
 <body>
+  <a class="skip" href="#content">Skip to the terms</a>
   <header class="nav"><div>
     <a class="logo" href="./" aria-label="StockFlow home"><svg viewBox="24 12 52 76" aria-hidden="true"><g fill="none" stroke-width="11"><path d="M64 38V34Q64 22 52 22H48Q36 22 36 34V38Q36 50 48 50" stroke="currentColor"/><path d="M52 50Q64 50 64 62V66Q64 78 52 78H48Q36 78 36 66V62" stroke="var(--green)"/></g></svg><span>stock<span class="flow">flow</span></span></a>
-    <a class="home" href="./">← Back to home</a>
+    <nav class="navlinks" aria-label="Legal pages"><a href="privacy.html">Privacy</a><a href="terms.html" aria-current="page">Terms</a><a href="changes.html">What changed</a></nav>
   </div></header>
   <section class="hero">
     <div class="kicker">Legal</div>
-    <h1>Terms of Service</h1>
-    <p>Last updated: 18 October 2026</p>
+    <h1>Terms of Use</h1>
+    <p><strong>Version 2</strong> · Last updated 12 November 2026</p>
+    <p>Takes effect at once for new accounts, and on 26 November 2026 for existing accounts.</p>
+    <p><a href="changes.html">See exactly what changed</a></p>
   </section>
-  <main>
+  <main id="content">
     <article class="doc">
-    <p>These terms are an agreement between you and StockFlow ("StockFlow", "we", "us") for using the StockFlow mobile app and website (together, the "Service"). By using the Service you agree to them. If you do not agree, please do not use the Service. Questions? Email <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a>.</p>
+    <p>These terms are an agreement between you and StockFlow ("we", "us"). They cover the <strong>StockFlow</strong>, <strong>Shopflow</strong> and <strong>Dropflow</strong> apps and this website (together, "the Service"). By using the Service you agree to them. If you don't agree, please don't use it. Our <a href="privacy.html">Privacy Policy</a> explains how we handle your information.</p>
 
-    <h2>1. Who can use StockFlow</h2>
-    <p>You must be at least 18 years old, or the age of majority where you live, and able to enter into a binding agreement. If you use StockFlow for a business, you confirm you are allowed to accept these terms on that business’s behalf.</p>
+    <section class="box summary" aria-labelledby="short">
+      <h2 id="short">The short version</h2>
+      <ul>
+        <li>When you pay in the app, <strong>your money is held safely</strong> until your order arrives and the return window ends. Only then does the shop get paid.</li>
+        <li><strong>Cancelled before delivery? You get everything back</strong>, fees included.</li>
+        <li>Something wrong with your order? <strong>Report it inside the return window</strong>, with photos. The money stays frozen until it's settled.</li>
+        <li><strong>We don't do partial refunds.</strong> A refund always covers the goods of the whole order.</li>
+        <li><strong>Can't be reached at delivery?</strong> The rider waits 10 minutes and tries to contact you twice. Then your order goes back to the shop. You get the price of the goods back, but not the delivery and service fees. <a href="#unreachable">Full rules</a>.</li>
+        <li>Delivery prices are set by us, shown before you pay, and never change after you pay.</li>
+      </ul>
+    </section>
 
-    <h2>2. Your account</h2>
+    <nav class="box toc" aria-labelledby="toc">
+      <h3 id="toc">On this page</h3>
+      <ol>
+        <li><a href="#who">Who can use the apps</a></li>
+        <li><a href="#account">Your account</a></li>
+        <li><a href="#data">Your data</a></li>
+        <li><a href="#fair">Using the Service fairly</a></li>
+        <li><a href="#orders">How an order works</a></li>
+        <li><a href="#money">Paying and the wallet</a></li>
+        <li><a href="#delivery">Delivery</a></li>
+        <li><a href="#unreachable">When the customer can't be reached</a></li>
+        <li><a href="#returns">Problems with an order: return claims</a></li>
+        <li><a href="#refunds">Refunds at a glance</a></li>
+        <li><a href="#pro">Shopflow Pro</a></li>
+        <li><a href="#shops">Extra rules for shops (StockFlow)</a></li>
+        <li><a href="#riders">Extra rules for delivery businesses and riders (Dropflow)</a></li>
+        <li><a href="#fees">Fees</a></li>
+        <li><a href="#brand">Our apps and brand</a></li>
+        <li><a href="#availability">Changes and availability</a></li>
+        <li><a href="#ending">Ending your use</a></li>
+        <li><a href="#guarantees">No guarantees</a></li>
+        <li><a href="#liability">Limits on our liability</a></li>
+        <li><a href="#law">Governing law and disputes</a></li>
+        <li><a href="#changes">Changes to these terms</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="who">1. Who can use the apps</h2>
+    <p>You must be <strong>18 or older</strong> (or the age of majority where you live) and able to enter into a binding agreement. If you use the Service for a business, you confirm you're allowed to accept these terms for that business.</p>
+
+    <h2 id="account">2. Your account</h2>
     <ul>
-      <li>You can use StockFlow without an account. Creating one (with email or Google) adds backup, sync across phones and staff logins.</li>
-      <li>Keep your login details and app PIN private. You are responsible for what happens under your account, including what the staff you invite do.</li>
-      <li>Give us accurate information, and tell us quickly at <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a> if you think someone has accessed your account without permission.</li>
+      <li><strong>One email, one app.</strong> An email used for StockFlow can't be used for Shopflow or Dropflow, and the other way round. Money, chats and orders never move between the apps.</li>
+      <li>StockFlow can be used without an account. Shopflow and Dropflow need one.</li>
+      <li>Keep your password and PIN private. You're responsible for what happens under your account, including what the staff or riders you invite do.</li>
+      <li>Give us true information. Tell us at <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a> straight away if you think someone else got into your account.</li>
     </ul>
 
-    <h2>3. Your data stays yours</h2>
-    <p>Your products, sales, customers and other records belong to you. You give us permission to store, process and display them only so we can run the Service for you: for example to back them up, sync them, and show your public shop profile if you choose to publish one. How we handle personal information is explained in our <a href="privacy.html">Privacy Policy</a>.</p>
-    <p>If you use StockFlow only on your phone without an account, your records exist only on that phone. If the phone is lost, reset or the app is deleted, they cannot be recovered. We recommend creating an account so your records are backed up.</p>
+    <h2 id="data">3. Your data</h2>
+    <p>Your records, products and messages belong to you. You allow us to store, process and show them only to run the Service. Example: showing your public shop profile if you publish one.</p>
+    <p>If you use StockFlow without an account, your records exist <strong>only on that phone</strong>. If the phone is lost or reset, or the app is deleted, they can't be recovered.</p>
 
-    <h2>4. Using the Service fairly</h2>
+    <h2 id="fair">4. Using the Service fairly</h2>
     <p>You agree not to:</p>
     <ul>
-      <li>sell, list or promote anything illegal, counterfeit, stolen or dangerous, or anything you are not allowed to sell;</li>
-      <li>mislead or defraud customers or other businesses, or post false prices, stock or reviews;</li>
-      <li>send spam, harass anyone, or share content that is abusive, hateful or infringes someone else’s rights;</li>
-      <li>try to break, overload, reverse-engineer or get unauthorised access to the Service or other users’ data;</li>
+      <li>sell, list, carry or promote anything illegal, counterfeit, stolen or dangerous, or anything you aren't allowed to sell;</li>
+      <li>mislead or cheat anyone, or post false prices, stock, photos, claims or reviews;</li>
+      <li>use someone else's account, code or photos to mark an order delivered or to claim money;</li>
+      <li>spam or harass anyone, or share abusive or hateful content, or content that infringes someone's rights;</li>
+      <li>try to break, overload, copy or get into the Service or other people's data;</li>
       <li>use the Service to break any law, including tax, consumer-protection and data-protection laws.</li>
     </ul>
+    <p>If you break these rules we may hold money tied to the problem while we look into it, and suspend or close your account (see <a href="#ending">section 17</a>).</p>
 
-    <h2>5. Orders and payments between businesses</h2>
-    <p>StockFlow lets businesses publish products and take orders from each other. When you buy from or sell to another business, the sale is between you and that business. StockFlow is not the seller or buyer and is not responsible for the quality, safety, legality or delivery of goods, or for disputes between users, though we may help where we can.</p>
-    <p>Card and bank payments are processed by Paystack under its own terms. We do not store your card details.</p>
+    <h2 id="orders">5. How an order works</h2>
+    <ul>
+      <li>The <strong>shop</strong> sells the goods. The sale is between you and the shop. We are not the seller.</li>
+      <li>If you choose partner delivery, a <strong>delivery business</strong> using Dropflow carries the order. It is not our employee.</li>
+      <li><strong>We</strong> run the apps, hold the money safely while the order is open, and settle problems fairly using the order's records and photos.</li>
+    </ul>
+    <p>We're not responsible for the quality, safety or legality of goods. We do make sure that money held in the app is either paid out or refunded according to these rules.</p>
 
-    <h2>6. Fees</h2>
-    <p>Some features may require a paid plan. Any price will be shown in the app before you pay, and you will not be charged without agreeing first. If we change prices or introduce new fees, we will tell you in advance.</p>
+    <h2 id="money">6. Paying and the wallet</h2>
+    <ol class="step">
+      <li><strong>You pay</strong> from your wallet or by card. Card payments are processed by Paystack under its own terms, and land in our system the same way as wallet payments.</li>
+      <li><strong>The money is held.</strong> Neither the shop nor the rider can touch it yet.</li>
+      <li><strong>The order is delivered.</strong> This is confirmed by scanning the rider's code or entering your six-digit delivery code. Then the <strong>return window</strong> starts. It is shown on your order, usually 24 hours (72 hours for electronics).</li>
+      <li><strong>The window ends with no claim.</strong> The money is paid out to the shop (for the goods), the delivery business (for the delivery fee) and us (our fees). You can release it sooner by tapping "All good".</li>
+    </ol>
+    <ul>
+      <li>A <strong>service fee</strong> is added to in-app payments. You see it before you pay. Cash and pay-later orders don't go through the app, so there's no service fee and no held money.</li>
+      <li><strong>Never share your delivery code</strong> until you have your order in your hands. Sharing it confirms delivery.</li>
+      <li><strong>Withdrawals</strong> go to a bank account in your own name, after you've passed an identity check.</li>
+      <li><strong>Auto-buy and pre-buys</strong> (Shopflow): by setting them up, you allow us to pay those orders from your wallet at the time you chose. You get a reminder first. You can skip, pause or cancel at any time before the payment. Cancelling a pre-buy returns the money set aside.</li>
+      <li>If we make a mistake in your wallet, we'll fix it. If money reaches your wallet by mistake, you agree it can be taken back.</li>
+    </ul>
 
-    <h2>7. Our app and brand</h2>
-    <p>The StockFlow, Shopflow and Dropflow names, logos, app and website belong to us. We give you a personal, non-exclusive, non-transferable licence to use the app for its intended purpose. You may not copy, resell or redistribute it.</p>
+    <h2 id="delivery">7. Delivery</h2>
+    <h3>Choosing delivery</h3>
+    <p>At checkout you pick: <strong>pickup</strong> from the shop, the <strong>shop's own rider</strong>, or a <strong>partner rider</strong> (with a vehicle type). For partner delivery:</p>
+    <ul>
+      <li>We set the price, from the road distance between the shop and your map pin. You see it before you pay.</li>
+      <li>The price is <strong>fixed when you pay</strong>. Detours and traffic never change it.</li>
+      <li>Your order is offered to the nearest available riders first. The first to accept gets it.</li>
+      <li>If no rider takes it, you'll see "No rider has taken it yet". You can message the shop, and the shop can cancel. If it's cancelled, you get a <strong>full refund</strong>.</li>
+    </ul>
+    <h3>Pickup and hand-over</h3>
+    <ol class="step">
+      <li>The shop scans the rider's pickup code. From then on, the order is with the rider.</li>
+      <li>The rider takes a photo of the goods when leaving the shop.</li>
+      <li>At your door, the rider takes a photo. Then you scan the rider's code. That confirms delivery.</li>
+    </ol>
+    <p>If the shop uses its own rider, you give the rider your six-digit delivery code instead.</p>
+    <p><strong>While money is held, nobody can mark an order delivered by hand.</strong> Only the scan or your code can.</p>
+    <h3>Cancelling</h3>
+    <p>If an order is cancelled <strong>before it's delivered</strong>, you get everything you paid back in your wallet, fees included. This includes a cancellation by the shop. The only exception is when you can't be reached at the door (next section).</p>
 
-    <h2>8. Changes and availability</h2>
-    <p>We are always improving StockFlow, so features may change, be added or be removed. We work hard to keep the Service available, but we cannot promise it will never be interrupted, for example during maintenance or network outages. The app keeps working offline, and your records sync again once you reconnect.</p>
+    <h2 id="unreachable">8. When the customer can't be reached</h2>
+    <p>This applies to partner deliveries, when the rider reaches your address and you aren't there or don't answer.</p>
+    <ol class="step">
+      <li><strong>The rider arrives.</strong> The app checks the rider's phone is at your map pin before the rider can say "I've arrived". You get a notification.</li>
+      <li><strong>The rider tries to reach you at least twice</strong>, by calling or messaging through the app.</li>
+      <li><strong>The rider waits 10 minutes</strong> from arriving. The app shows you a countdown.</li>
+      <li><strong>After 10 minutes</strong>, one of two things happens:
+        <ul>
+          <li><strong>If you turned on "Leave it at the door" at checkout:</strong> the rider leaves the order at your address and takes a photo. That counts as delivered, and your return window starts. You accept the risk of leaving it there.</li>
+          <li><strong>If you didn't:</strong> the rider takes the order back to the shop.</li>
+        </ul>
+      </li>
+    </ol>
+    <div class="table-wrap"><table>
+      <caption>Who gets what when an order goes back to the shop</caption>
+      <thead><tr><th scope="col">Person</th><th scope="col">What happens</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Person">Customer</td><td data-label="What happens">The full <strong>price of the goods</strong> goes back to your wallet. The <strong>delivery fee and service fee are not refunded</strong>, because the trip was made. To get the goods, place a new order.</td></tr>
+        <tr><td data-label="Person">Shop</td><td data-label="What happens">Gets the goods back, unopened. Isn't paid for them, because the customer is refunded.</td></tr>
+        <tr><td data-label="Person">Delivery business</td><td data-label="What happens">Is paid the delivery fee. That fee covers the trip back to the shop. There is no extra charge to anyone.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box note">
+      <p><strong>If the rider skipped a step</strong> (left before 10 minutes, didn't try to contact you twice, or wasn't at your pin), the failed delivery counts as the rider's fault. You get <strong>everything</strong> back, fees included, and the delivery business isn't paid for that job.</p>
+      <p><strong>Think the rider didn't really come?</strong> Report it from the order. We check the rider's location, arrival time and contact attempts.</p>
+    </div>
+    <p>To avoid this, keep your phone with you and make sure your map pin and delivery note are right.</p>
 
-    <h2>9. Ending your use</h2>
-    <p>You can stop using StockFlow at any time and ask us to delete your account by emailing us. We may suspend or close accounts that break these terms or put other users at risk. Where reasonable, we will warn you first and give you a chance to download your records.</p>
+    <h2 id="returns">9. Problems with an order: return claims</h2>
+    <ul>
+      <li>You can report a problem <strong>only inside the return window</strong>, while the money is still held. This is what makes sure a refund is always possible.</li>
+      <li>Choose a reason: damaged, wrong item, something missing, not as described, spoiled or expired, or never received.</li>
+      <li>Describe what happened in at least 20 characters. Add photos (required for every reason except "never received").</li>
+      <li>"Never received" can't be chosen if you scanned the rider's code, or if a "Leave it at the door" photo shows the order at your address.</li>
+      <li><strong>One claim per order.</strong> Filing it freezes the money until it's settled.</li>
+      <li>The shop answers first: it can refund you, or send the claim to our team.</li>
+      <li>Our team decides using the pickup, door and claim photos. The decision is one of:
+        <ul>
+          <li><strong>Refund all</strong> (goods and fees), or</li>
+          <li><strong>refund the goods but pay the rider</strong> (the delivery was done properly), or</li>
+          <li><strong>not upheld</strong> (the money is paid out as usual).</li>
+        </ul>
+      </li>
+      <li>You can withdraw your claim. The money is then held again, with at least one day left in the window.</li>
+    </ul>
+    <h3>No partial refunds</h3>
+    <p>We don't refund part of an order, such as one item out of three. A refund always covers <strong>all the goods in the order</strong>. If only part of an order is wrong, report it, and the shop or our team decides on the whole order.</p>
 
-    <h2>10. No guarantees</h2>
-    <p>StockFlow is a tool to help you run your business. Totals, profit figures, stock counts and insights depend on the information you enter, so please check important figures yourself. They are not financial, tax or legal advice. The Service is provided “as is” and “as available”, to the extent the law allows.</p>
+    <h2 id="refunds">10. Refunds at a glance</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th scope="col">What happened</th><th scope="col">Goods</th><th scope="col">Delivery and service fees</th></tr></thead>
+      <tbody>
+        <tr><td data-label="What happened">Order cancelled before delivery</td><td data-label="Goods">Refunded</td><td data-label="Delivery and service fees">Refunded</td></tr>
+        <tr><td data-label="What happened">No rider took the job, shop cancelled</td><td data-label="Goods">Refunded</td><td data-label="Delivery and service fees">Refunded</td></tr>
+        <tr><td data-label="What happened">You couldn't be reached and the rider followed every step</td><td data-label="Goods">Refunded</td><td data-label="Delivery and service fees"><strong>Not refunded</strong></td></tr>
+        <tr><td data-label="What happened">You couldn't be reached but the rider skipped a step</td><td data-label="Goods">Refunded</td><td data-label="Delivery and service fees">Refunded</td></tr>
+        <tr><td data-label="What happened">Claim decided "refund all"</td><td data-label="Goods">Refunded</td><td data-label="Delivery and service fees">Refunded</td></tr>
+        <tr><td data-label="What happened">Claim decided "refund the goods, pay the rider"</td><td data-label="Goods">Refunded</td><td data-label="Delivery and service fees">Not refunded</td></tr>
+        <tr><td data-label="What happened">Claim not upheld, or no claim in the window</td><td data-label="Goods">Not refunded</td><td data-label="Delivery and service fees">Not refunded</td></tr>
+      </tbody>
+    </table></div>
+    <p>Refunds go to your wallet straight away. From there you can spend or withdraw them.</p>
 
-    <h2>11. Limits on our liability</h2>
-    <p>To the extent the law allows, StockFlow is not liable for indirect or consequential losses, such as lost profits, lost sales or lost data, arising from your use of the Service. Our total liability for any claim is limited to the amount you paid us for the Service in the 12 months before the claim, or ₦10,000 if you paid nothing. Nothing in these terms limits liability that cannot be limited by law.</p>
+    <h2 id="pro">11. Shopflow Pro</h2>
+    <ul>
+      <li>A paid plan for shoppers, paid from your Shopflow wallet, monthly or yearly.</li>
+      <li><strong>It never renews by itself.</strong> When it ends, you choose whether to pay again.</li>
+      <li>Benefits and prices are shown before you pay. Benefits marked "soon" are not included yet.</li>
+      <li>The current benefits include a discount on partner delivery.</li>
+    </ul>
 
-    <h2>12. Governing law</h2>
-    <p>These terms are governed by the laws of the Federal Republic of Nigeria. If a dispute comes up, please contact us first so we can try to resolve it informally. If that does not work, it will be handled by the courts of Nigeria.</p>
+    <h2 id="shops"><span class="tag">StockFlow</span>12. Extra rules for shops</h2>
+    <ul>
+      <li>Describe goods truthfully, keep prices and stock correct, and only sell what you're allowed to.</li>
+      <li>Have the order packed when you mark it ready. Hand it only to the rider whose pickup code you scanned.</li>
+      <li>A paid app order shows as <strong>"Held until delivered"</strong>. It's not your money until it's released.</li>
+      <li>You must answer return claims. If you don't answer in time, the claim goes to our team.</li>
+      <li>If an order comes back because the customer couldn't be reached, check it and put it back in stock. You're not paid for it.</li>
+      <li>You're responsible for your staff, and for the customer details you save (see the <a href="privacy.html#stockflow">Privacy Policy</a>).</li>
+    </ul>
 
-    <h2>13. Changes to these terms</h2>
-    <p>We may update these terms from time to time. When we do, we will change the date at the top, and for important changes we will tell you in the app before they take effect. Continuing to use StockFlow after that means you accept the updated terms.</p>
+    <h2 id="riders"><span class="tag">Dropflow</span>13. Extra rules for delivery businesses and riders</h2>
+    <ul>
+      <li><strong>Verification:</strong> your business must be verified by our team before it gets jobs. Give true details for every rider and vehicle.</li>
+      <li><strong>Prices are ours.</strong> We set the rate card per vehicle. You don't set or change prices, and you never ask a customer for more.</li>
+      <li><strong>Our cut:</strong> we keep a share of each delivery fee (currently 10%). We don't take a share on Shopflow Pro customers' trips. Your business gets the rest when the order's money is released. We'll tell you at least 14 days before this changes.</li>
+      <li><strong>Riders in a company don't have a wallet.</strong> We pay the business. The business pays its riders.</li>
+      <li><strong>Cash on delivery:</strong> if the job says "Collect ₦X from the customer", collect exactly that amount.</li>
+      <li><strong>Every job:</strong> take the pickup photo and the door photo. Never open, swap or keep goods. Never ask for the customer's code before handing over.</li>
+      <li><strong>Customer not reachable:</strong> follow every step in <a href="#unreachable">section 8</a>: arrive at the pin, try twice, wait 10 minutes. Then leave it (only if the customer chose "Leave it at the door") or take it back to the shop the same day. If you skip a step, your business isn't paid for that job.</li>
+      <li>Ride safely and follow traffic laws. You're responsible for your vehicle, licence and insurance.</li>
+    </ul>
 
-    <h2>14. Contact</h2>
-    <p>StockFlow · <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a></p>
+    <h2 id="fees">14. Fees</h2>
+    <p>Every fee is shown in the app before you pay. You're never charged without agreeing first. If we add a fee or change one, we'll tell you in the app at least 14 days before. The change won't apply to orders you've already paid for.</p>
+
+    <h2 id="brand">15. Our apps and brand</h2>
+    <p>The StockFlow, Shopflow and Dropflow names, logos, apps and website belong to us. You get a personal, non-exclusive, non-transferable licence to use the apps for what they're meant for. You may not copy, resell or redistribute them.</p>
+
+    <h2 id="availability">16. Changes and availability</h2>
+    <p>We keep improving the apps, so features may be added, changed or removed. We work to keep the Service running, but it may sometimes be interrupted, for example during maintenance or network outages. StockFlow keeps working offline and syncs when you reconnect. Money held for an order stays safe during an interruption.</p>
+
+    <h2 id="ending">17. Ending your use</h2>
+    <ul>
+      <li>You can stop at any time. To delete your account, go to <strong>Settings › Data &amp; privacy › Delete my account</strong>, or email us. Empty your wallet first. Open orders must finish before your account can be deleted.</li>
+      <li>We may suspend or close accounts that break these terms or put others at risk. Where reasonable, we'll warn you first and give you a chance to download your records and withdraw your money.</li>
+      <li>Money that belongs to you is never kept because your account was closed, unless a law or an open claim requires it.</li>
+    </ul>
+
+    <h2 id="guarantees">18. No guarantees</h2>
+    <p>Totals, profit figures, stock counts and insights depend on what you enter, so check important figures yourself. They're not financial, tax or legal advice. Delivery times are estimates. As far as the law allows, the Service is provided "as is" and "as available".</p>
+
+    <h2 id="liability">19. Limits on our liability</h2>
+    <p>As far as the law allows, we're not liable for indirect losses such as lost profits, lost sales or lost data. Our total liability for any claim is limited to the larger of: what you paid us in fees in the 12 months before the claim, or ₦10,000. This does not limit what we owe you for money held in your wallet or for an order. Nothing in these terms limits liability that the law doesn't allow us to limit, or your rights as a consumer.</p>
+
+    <h2 id="law">20. Governing law and disputes</h2>
+    <p>These terms are governed by the laws of the Federal Republic of Nigeria. If there's a problem, contact us first so we can try to fix it. If that doesn't work, the courts of Nigeria will decide.</p>
+
+    <h2 id="changes">21. Changes to these terms</h2>
+    <p>Every change is listed on the <a href="changes.html">What changed</a> page. For an important change, we tell you in the app <strong>at least 14 days before</strong> it takes effect. Using the Service after that date means you accept the new terms. If you don't accept them, you can delete your account before then.</p>
+
+    <p class="muted">Contact: StockFlow · <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a></p>
     </article>
   </main>
-  <footer><span>Contact: <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a></span><span><a href="privacy.html">Privacy Policy</a> · © 2026 StockFlow</span></footer>
+  <footer><span>Contact: <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a></span><span><a href="privacy.html">Privacy</a> · <a href="changes.html">What changed</a> · © 2026 StockFlow</span></footer>
 </body>
 </html>

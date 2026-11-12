@@ -4,118 +4,234 @@
   <meta charset="utf-8">
   <meta name="color-scheme" content="light">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Privacy Policy · StockFlow</title>
-  <meta name="description" content="How the StockFlow app collects, uses and protects your information.">
+  <title>Privacy Policy · StockFlow, Shopflow and Dropflow</title>
+  <meta name="description" content="What StockFlow, Shopflow and Dropflow collect, why, who sees it, how long we keep it, and your choices.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='24 12 52 76'%3E%3Cg fill='none' stroke-width='11'%3E%3Cpath d='M64 38V34Q64 22 52 22H48Q36 22 36 34V38Q36 50 48 50' stroke='%230B1F14'/%3E%3Cpath d='M52 50Q64 50 64 62V66Q64 78 52 78H48Q36 78 36 66V62' stroke='%230B9D4F'/%3E%3C/g%3E%3C/svg%3E">
   <meta name="theme-color" content="#0B9D4F">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root { --bg: #F4FAF6; --bg-2: #EAF5EE; --card: #FFFFFF; --ink: #0B1F14; --sub: #4D6155; --line: #DAEADF; --green: #0B9D4F; --green-ink: #087A3D; --green-soft: #DDF3E6; --glow: rgba(11,157,79,.16); }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; overflow-x: clip; }
-    body { margin: 0; background: var(--bg); color: var(--ink); font: 16.5px/1.7 "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-    a { color: var(--green-ink); }
-    .nav { position: sticky; top: 0; z-index: 10; backdrop-filter: saturate(1.6) blur(14px); -webkit-backdrop-filter: saturate(1.6) blur(14px); background: color-mix(in srgb, var(--bg) 80%, transparent); border-bottom: 1px solid var(--line); }
-    .nav div { max-width: 1160px; margin: 0 auto; padding: 0 20px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
-    .logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-weight: 800; font-size: 20px; letter-spacing: -0.03em; }
-    .logo .flow { color: var(--green); }
-    .logo svg { width: 19px; height: 28px; color: var(--ink); }
-    .home { font-weight: 700; font-size: 15px; text-decoration: none; color: var(--sub); }
-    .home:hover { color: var(--ink); }
-    .hero { position: relative; overflow: hidden; padding: 64px 20px 40px; text-align: center; }
-    .hero::before { content: ""; position: absolute; inset: -60% -20% auto; height: 600px; background: radial-gradient(45% 50% at 50% 50%, var(--glow), transparent 70%); pointer-events: none; }
-    .kicker { position: relative; font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--green-ink); }
-    h1 { position: relative; font-size: clamp(36px, 6vw, 56px); letter-spacing: -0.04em; line-height: 1.05; margin: 12px 0 10px; }
-    .hero p { position: relative; color: var(--sub); }
-    main { max-width: 760px; margin: 0 auto; padding: 0 20px 40px; }
-    .doc { background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: clamp(22px, 5vw, 44px); box-shadow: 0 1px 2px rgba(11,31,20,.04), 0 12px 32px -12px rgba(11,31,20,.14); animation: rise .7s cubic-bezier(.2,0,0,1) both; }
-    h2 { font-size: 21px; letter-spacing: -0.02em; margin: 36px 0 8px; padding-top: 4px; }
-    .doc > h2:first-of-type { margin-top: 28px; }
-    p, li { color: var(--ink); }
-    .muted { color: var(--sub); }
-    ul { padding-left: 0; list-style: none; }
-    li { margin: 10px 0; padding-left: 22px; position: relative; }
-    li::before { content: ""; position: absolute; left: 2px; top: .7em; width: 7px; height: 7px; border-radius: 2px; background: var(--green); transform: rotate(45deg); }
-    footer { max-width: 760px; margin: 0 auto; padding: 24px 20px 48px; color: var(--sub); font-size: 15px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
-    @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
-    @media (prefers-reduced-motion: reduce) { .doc { animation: none; } html { scroll-behavior: auto; } }
-  </style>
+  <link rel="stylesheet" href="legal.css">
 </head>
 <body>
+  <a class="skip" href="#content">Skip to the policy</a>
   <header class="nav"><div>
     <a class="logo" href="./" aria-label="StockFlow home"><svg viewBox="24 12 52 76" aria-hidden="true"><g fill="none" stroke-width="11"><path d="M64 38V34Q64 22 52 22H48Q36 22 36 34V38Q36 50 48 50" stroke="currentColor"/><path d="M52 50Q64 50 64 62V66Q64 78 52 78H48Q36 78 36 66V62" stroke="var(--green)"/></g></svg><span>stock<span class="flow">flow</span></span></a>
-    <a class="home" href="./">← Back to home</a>
+    <nav class="navlinks" aria-label="Legal pages"><a href="privacy.html" aria-current="page">Privacy</a><a href="terms.html">Terms</a><a href="changes.html">What changed</a></nav>
   </div></header>
   <section class="hero">
     <div class="kicker">Legal</div>
     <h1>Privacy Policy</h1>
-    <p>Last updated: 18 October 2026</p>
+    <p><strong>Version 2</strong> · Last updated 12 November 2026</p>
+    <p>Takes effect at once for new accounts, and on 26 November 2026 for existing accounts.</p>
+    <p><a href="changes.html">See exactly what changed</a></p>
   </section>
-  <main>
+  <main id="content">
     <article class="doc">
 
-    <p>This policy explains what the StockFlow mobile app ("StockFlow", "we") collects, why, and the choices you have. If you have a question, email <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a>.</p>
-
-    <h2>Using StockFlow without an account</h2>
-    <p>You can start selling without creating an account. In that case your shop's records (products, stock, sales, customers, expenses) are stored only on your phone and are not sent to us, except for anonymous crash and error reports described below.</p>
-
-    <h2>What we collect when you create an account</h2>
+    <p>This policy covers three apps and this website:</p>
     <ul>
-      <li><strong>Account details:</strong> your name and email address. If you choose "Continue with Google", Google shares your name, email address and profile picture with us. We never receive your Google password.</li>
-      <li><strong>Your business records:</strong> the shop information and records you enter (such as products, stock, prices, sales, customers, suppliers, debts and expenses), so they can be backed up and synced across your devices.</li>
-      <li><strong>Shop profile:</strong> if you publish your shop to the marketplace, the details you choose to show (name, category, description, address, location pin, logo, products and promotions) are visible to other users.</li>
-      <li><strong>Messages and orders:</strong> chats, images, voice messages and orders you exchange with other businesses in the app.</li>
-      <li><strong>Device and app information:</strong> a device identifier, app version, crash and error reports, and basic usage events, used to keep the app working and fix problems. These reports do not include the contents of your messages or passwords.</li>
-      <li><strong>Notification token:</strong> if you allow notifications, a push token so we can send you order, message and reminder alerts.</li>
+      <li><strong>StockFlow</strong>: for shops (owners, managers and staff).</li>
+      <li><strong>Shopflow</strong>: for shoppers who buy from those shops.</li>
+      <li><strong>Dropflow</strong>: for delivery businesses and their riders.</li>
+      <li><strong>This website</strong>, including the beta sign-up pages.</li>
+    </ul>
+    <p>"We" and "us" means StockFlow, the team that runs all three apps. Questions? Email <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a>.</p>
+
+    <section class="box summary" aria-labelledby="short">
+      <h2 id="short">The short version</h2>
+      <ul>
+        <li>We collect only what each app needs to work. We <strong>never sell</strong> your information and <strong>never use it for adverts</strong>.</li>
+        <li>Each email belongs to <strong>one app only</strong>. Your StockFlow, Shopflow and Dropflow data never mix.</li>
+        <li>People only see what they need for an order. For example, a rider gets your phone number and exact address <strong>only after taking your job</strong>.</li>
+        <li>Riders' locations are shared <strong>only while they are on duty</strong> in Dropflow, and only with the shop and the customer of the job they are carrying.</li>
+        <li>Delivery photos are <strong>evidence</strong>. You can't delete them from the app, and only the people on that order and our team can see them.</li>
+        <li>You can ask to see, fix, download or delete your data at any time. Some money records must be kept by law.</li>
+      </ul>
+    </section>
+
+    <nav class="box toc" aria-labelledby="toc">
+      <h3 id="toc">On this page</h3>
+      <ol>
+        <li><a href="#everyone">What we collect from everyone</a></li>
+        <li><a href="#stockflow">If you use StockFlow (shops)</a></li>
+        <li><a href="#shopflow">If you use Shopflow (shoppers)</a></li>
+        <li><a href="#dropflow">If you use Dropflow (delivery)</a></li>
+        <li><a href="#location">Location: exactly when and why</a></li>
+        <li><a href="#who-sees">Who sees what on an order</a></li>
+        <li><a href="#permissions">Phone permissions</a></li>
+        <li><a href="#use">How we use your information</a></li>
+        <li><a href="#providers">Companies that help us run the apps</a></li>
+        <li><a href="#keep">How long we keep things</a></li>
+        <li><a href="#security">Security</a></li>
+        <li><a href="#rights">Your rights and how to use them</a></li>
+        <li><a href="#website">This website</a></li>
+        <li><a href="#age">Age</a></li>
+        <li><a href="#changes">Changes to this policy</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="everyone">1. What we collect from everyone</h2>
+    <ul>
+      <li><strong>Account details:</strong> your name and email address. If you choose "Continue with Google", Google gives us your name, email address and profile picture. We never see your Google password.</li>
+      <li><strong>Which app your account belongs to.</strong> We use this to stop one email being used in two apps.</li>
+      <li><strong>Chats:</strong> messages, photos, videos and voice notes you send in the app, and whether they have been read.</li>
+      <li><strong>Wallet:</strong> your balance, payments, money held for orders, withdrawals, and the bank details you give for withdrawals. To verify your identity we talk to you in Support chat. Your wallet records only whether you are verified, not your BVN or NIN number.</li>
+      <li><strong>Support and reports:</strong> what you write to Support and any problem reports you send.</li>
+      <li><strong>Device and app information:</strong> a random ID for your phone, the phone model, its system version, the app version, crash and error reports, and the screens and buttons used just before an error. We remove phone numbers, emails and passwords from these reports before they leave your phone.</li>
+      <li><strong>Notification token:</strong> if you allow notifications, a code that lets us send them to your phone.</li>
     </ul>
 
-    <h2>Phone permissions</h2>
-    <p>StockFlow only asks for these when you use the feature that needs them, and you can turn them off at any time in your phone's settings:</p>
+    <h2 id="stockflow"><span class="tag">StockFlow</span>2. If you use StockFlow (shops)</h2>
+    <h3>Without an account</h3>
+    <p>You can sell without an account. Your records (products, stock, sales, customers, debts, expenses) then stay <strong>only on your phone</strong>. We only receive the crash and error reports described above.</p>
+    <h3>With an account</h3>
     <ul>
-      <li><strong>Camera:</strong> to scan product barcodes and take product photos.</li>
-      <li><strong>Photos:</strong> to attach product and chat images, and to save chat images when you tap Save.</li>
-      <li><strong>Location:</strong> to help fill in a delivery or shop address. We do not track your location in the background.</li>
-      <li><strong>Microphone:</strong> to record voice messages in chat.</li>
-      <li><strong>Face ID / fingerprint:</strong> as a faster way to unlock instead of your PIN. Your biometric data stays on your phone and is never sent to us.</li>
+      <li><strong>Business records</strong> you enter (products, stock, prices, sales, receipts, customers, suppliers, debts, expenses, staff), so they are backed up and synced.</li>
+      <li><strong>Staff:</strong> the names and emails of people you invite, and their roles.</li>
+      <li><strong>Public shop profile:</strong> if you publish your shop, what you choose to show (name, category, description, address, map pin, logo, opening hours, products, prices, promos and promo videos). Anyone using the apps can see this.</li>
+      <li><strong>Orders</strong> you receive and place, and their delivery records.</li>
+      <li><strong>Automatic replies:</strong> if you turn on the chat assistant, it answers customers only from your shop's own catalogue, hours and delivery settings. It does not use any outside AI service.</li>
+    </ul>
+    <h3>Your customers' details</h3>
+    <p>If you save a customer's name or phone number in StockFlow, <strong>you</strong> are responsible for having a good reason to keep it and for telling them. We only store it for you. Sending a receipt by SMS or WhatsApp opens your phone's own app; we don't send the message ourselves.</p>
+    <h3>What shoppers' activity tells you</h3>
+    <p>StockFlow shows you <strong>counts</strong> of how many people saw or opened each product. It never shows you who they were.</p>
+
+    <h2 id="shopflow"><span class="tag">Shopflow</span>3. If you use Shopflow (shoppers)</h2>
+    <ul>
+      <li><strong>Delivery address and map pin</strong>, saved on your phone and attached to each order you place.</li>
+      <li><strong>Orders, basket, saved items, shops you follow, pre-buys and auto-buy lists.</strong> Auto-buy and pre-buys pay from your wallet at the time you chose. You can pause or cancel them at any time.</li>
+      <li><strong>My pantry:</strong> what you've bought and how fast you use it, to remind you before you run out. The reminder is created on your phone.</li>
+      <li><strong>What you look at:</strong> searches, products you view, and promo videos you watch. We use these only to show you shops and products you're likely to want. Shops see counts, never your name.</li>
+      <li><strong>Return claims:</strong> your reason, what you write and the photos you add.</li>
+      <li><strong>Shopflow Pro:</strong> whether you are a member and until when.</li>
+      <li><strong>Safe drop choice:</strong> whether you said a rider may leave your order at the door if you can't be reached.</li>
+    </ul>
+    <p><strong>We do not track your location</strong> in Shopflow. The map uses where your phone is only while it's open, to show shops near you. "Hot now" on the map is drawn from shops' locations, never from shoppers'.</p>
+
+    <h2 id="dropflow"><span class="tag">Dropflow</span>4. If you use Dropflow (delivery businesses and riders)</h2>
+    <ul>
+      <li><strong>Business details:</strong> your company or trading name, whether you are a solo rider, your area, and what we need to verify you.</li>
+      <li><strong>Riders:</strong> each rider's name, phone number, vehicle type and plate number, and whether they are on duty.</li>
+      <li><strong>Location while on duty</strong> (see <a href="#location">section 5</a>).</li>
+      <li><strong>Jobs:</strong> which jobs were offered, taken, passed on, collected and delivered, with times.</li>
+      <li><strong>Proof photos:</strong> a photo of the goods at pickup and a photo at the door. Both are required.</li>
+      <li><strong>Contact attempts:</strong> when a customer can't be reached, the time you arrived and each call or message you tried. This protects you if there's a dispute.</li>
+      <li><strong>Earnings:</strong> fees paid to your business's wallet.</li>
     </ul>
 
-    <h2>How we use your information</h2>
+    <h2 id="location">5. Location: exactly when and why</h2>
+    <div class="table-wrap"><table>
+      <caption>When each app uses your location</caption>
+      <thead><tr><th scope="col">App</th><th scope="col">When</th><th scope="col">Why</th><th scope="col">Who sees it</th></tr></thead>
+      <tbody>
+        <tr><td data-label="App">StockFlow</td><td data-label="When">Only when you tap to fill in an address</td><td data-label="Why">To fill in a shop or delivery address</td><td data-label="Who sees it">Only you, unless you save it to your public shop profile</td></tr>
+        <tr><td data-label="App">Shopflow</td><td data-label="When">Only while the app is open</td><td data-label="Why">To show shops near you and fill in your delivery address</td><td data-label="Who sees it">Your address goes with your orders. Where your phone is otherwise stays on your phone.</td></tr>
+        <tr><td data-label="App">Dropflow</td><td data-label="When">While you are <strong>on duty</strong>, about once a minute</td><td data-label="Why">To offer jobs to the nearest riders</td><td data-label="Who sees it">Our system, your company's managers and dispatchers, and our team. Not shops or customers.</td></tr>
+        <tr><td data-label="App">Dropflow</td><td data-label="When">From <strong>taking a job</strong> until it's delivered. About every 15 seconds while carrying it.</td><td data-label="Why">So the shop and customer can see the rider coming, and to confirm the rider reached the door</td><td data-label="Who sees it">The shop and customer of that job only, plus the people above</td></tr>
+      </tbody>
+    </table></div>
+    <p>Dropflow only uses location while the app is open and you are on duty. Go off duty and it stops, and your last position is cleared. If this ever changes (for example, to keep working with the app in the background), we will tell you in the app and ask for your permission first.</p>
+
+    <h2 id="who-sees">6. Who sees what on an order</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th scope="col">Person</th><th scope="col">Can see</th><th scope="col">Can never see</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Person">Shop staff</td><td data-label="Can see">The shop's orders. Once a rider has the job: the rider's name, phone, vehicle and plate. Order photos and claims.</td><td data-label="Can never see">Any wallet. The shopper's delivery code.</td></tr>
+        <tr><td data-label="Person">Shop owner or manager</td><td data-label="Can see">All of the above, plus the shop's wallet and return claims</td><td data-label="Can never see">The shopper's delivery code</td></tr>
+        <tr><td data-label="Person">Shopper</td><td data-label="Can see">Their own orders, their rider (name, phone, vehicle, plate, location while carrying), their own delivery code and claims</td><td data-label="Can never see">Other riders. The delivery company's staff list.</td></tr>
+        <tr><td data-label="Person">Rider being offered a job</td><td data-label="Can see">Shop name and address, the area of the drop-off, the distance, what they'd earn</td><td data-label="Can never see">The customer's name, phone, exact address and note</td></tr>
+        <tr><td data-label="Person">Rider holding a job</td><td data-label="Can see">Customer name, phone, address and note, the items, the pickup code</td><td data-label="Can never see">The shopper's delivery code. Any wallet.</td></tr>
+        <tr><td data-label="Person">Delivery company manager</td><td data-label="Can see">The company's jobs and riders, the business wallet</td><td data-label="Can never see">Other companies</td></tr>
+        <tr><td data-label="Person">Our team</td><td data-label="Can see">What's needed to run the service, handle support, check identities, verify delivery businesses and decide claims</td><td data-label="Can never see">Your password or full card number</td></tr>
+      </tbody>
+    </table></div>
+    <p>Delivery photos are stored privately. Only the shopper, the shop, the rider and their company, and our team can see them.</p>
+
+    <h2 id="permissions">7. Phone permissions</h2>
+    <p>Each app asks only when you use the feature. You can turn any of these off at any time in your phone's settings. The feature that needs it will stop working.</p>
     <ul>
-      <li>To provide the app: back up and sync your records, run your shop profile, deliver messages and orders.</li>
-      <li>To send notifications you have switched on.</li>
-      <li>To keep the app secure, prevent misuse and fix errors.</li>
+      <li><strong>Camera:</strong> StockFlow, to scan barcodes and riders' pickup codes and take photos. Shopflow, to scan the rider's code at your door and take photos. Dropflow, for the pickup and door photos and chat photos.</li>
+      <li><strong>Photos:</strong> to attach photos and save chat images when you tap Save.</li>
+      <li><strong>Location:</strong> see <a href="#location">section 5</a>.</li>
+      <li><strong>Microphone:</strong> to record voice notes and videos in chat.</li>
+      <li><strong>Notifications:</strong> for orders, jobs, messages and reminders.</li>
+      <li><strong>Face ID or fingerprint</strong> (StockFlow): a faster way to unlock than your PIN. This never leaves your phone.</li>
+      <li><strong>Clipboard</strong> (StockFlow): Paste order asks once before reading what you copied. Change this in Settings › Data &amp; privacy.</li>
     </ul>
-    <p>We do not sell your personal information, and we do not use it for advertising.</p>
 
-    <h2>Who we share it with</h2>
-    <p>We use a small number of service providers to run StockFlow. They process data only on our behalf:</p>
+    <h2 id="use">8. How we use your information</h2>
     <ul>
-      <li><strong>Supabase:</strong> hosts our database, file storage and sign-in.</li>
-      <li><strong>Google:</strong> for "Continue with Google" sign-in, and Firebase Cloud Messaging for notifications on Android.</li>
-      <li><strong>Expo:</strong> to deliver push notifications.</li>
-      <li><strong>Paystack:</strong> to process card or bank payments for orders. We do not store your card details.</li>
+      <li>To run the apps: sync records, run shop profiles, deliver chats, place and track orders, move money, and get deliveries to the door.</li>
+      <li>To offer delivery jobs to the nearest riders and fix the delivery price from the road distance.</li>
+      <li>To show shoppers shops and products they're likely to want.</li>
+      <li>To send the notifications you've allowed.</li>
+      <li>To decide return claims and failed deliveries fairly, using the photos and records of that order.</li>
+      <li>To keep the apps secure, prevent fraud and fix errors.</li>
+      <li>To follow the law.</li>
     </ul>
-    <p>Other StockFlow users only see what you choose to share with them (your public shop profile, and the messages and orders you send them). We may disclose information if required by law.</p>
+    <p>We do <strong>not</strong> sell your information. We do <strong>not</strong> use it for adverts. We do <strong>not</strong> make decisions about you using AI.</p>
 
-    <h2>How long we keep it</h2>
-    <p>We keep your account and business records while your account is active. You can delete your shop's cloud data from the app's settings, or ask us to delete your account by emailing <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a>. We will delete it within 30 days, unless the law requires us to keep something longer.</p>
+    <h2 id="providers">9. Companies that help us run the apps</h2>
+    <p>These companies process data only for us, to do the job listed:</p>
+    <ul>
+      <li><strong>Supabase:</strong> our database, file storage and sign-in.</li>
+      <li><strong>Google:</strong> "Continue with Google" sign-in. Firebase Cloud Messaging for notifications on Android. Google's road-distance service, which receives the shop's and the drop-off's map pins (not names) to price a delivery. Google Fonts for this website's text.</li>
+      <li><strong>Expo:</strong> delivers notifications and app updates.</li>
+      <li><strong>Paystack:</strong> processes card and bank payments. We never see or store your full card number.</li>
+      <li><strong>OpenStreetMap and CARTO:</strong> draw the map pictures. Your phone asks them for the part of the map on screen.</li>
+      <li><strong>Have I Been Pwned:</strong> when you set a new password, we check whether it has appeared in a known data leak. Only the first 5 characters of a scrambled version of it are sent, never the password.</li>
+      <li><strong>Vercel and GitHub:</strong> host this website and test versions of the apps.</li>
+    </ul>
+    <p>Some of these companies store data outside Nigeria. We only use providers that protect it properly. Tapping "Directions" opens Google Maps, where Google's own privacy policy applies.</p>
+    <p>We may share information if the law requires it, or to protect someone's safety.</p>
 
-    <h2>Security</h2>
-    <p>Data is sent over encrypted connections, and access to each business's records is restricted to that business and the staff it invites. You can also protect the app on your phone with a PIN.</p>
+    <h2 id="keep">10. How long we keep things</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th scope="col">What</th><th scope="col">How long</th></tr></thead>
+      <tbody>
+        <tr><td data-label="What">Account, chats and business records</td><td data-label="How long">While your account is open. Deleted within 30 days of your request to delete it.</td></tr>
+        <tr><td data-label="What">Wallet, payment and order records</td><td data-label="How long">As long as the law requires us to keep financial records, even after you close your account</td></tr>
+        <tr><td data-label="What">Delivery photos</td><td data-label="How long">Until the order's return window and any claim are closed, then deleted within 30 days</td></tr>
+        <tr><td data-label="What">Rider location while carrying a job</td><td data-label="How long">Kept with that delivery's record</td></tr>
+        <tr><td data-label="What">Searches</td><td data-label="How long">180 days</td></tr>
+        <tr><td data-label="What">Promo videos watched</td><td data-label="How long">120 days</td></tr>
+        <tr><td data-label="What">Product views (counted for shops)</td><td data-label="How long">120 days</td></tr>
+        <tr><td data-label="What">Crash and error reports, and usage events</td><td data-label="How long">90 days (longer only while we're still fixing that problem)</td></tr>
+        <tr><td data-label="What">StockFlow records with no account</td><td data-label="How long">Only on your phone. Gone if you delete the app.</td></tr>
+      </tbody>
+    </table></div>
 
-    <h2>Your rights</h2>
-    <p>You can ask to see, correct, export or delete your personal information, or withdraw consent, by emailing us. You may also contact the data protection authority in your country, such as the Nigeria Data Protection Commission.</p>
+    <h2 id="security">11. Security</h2>
+    <p>Everything is sent over encrypted connections. Each shop's and delivery business's records can only be opened by that business and the people it invites. Money only moves through checks on our servers, never from the phone alone. You can lock StockFlow with a PIN.</p>
+    <p>If a data breach puts you at risk, we will tell you and the Nigeria Data Protection Commission as the law requires.</p>
 
-    <h2>Children</h2>
-    <p>StockFlow is a business tool and is not meant for children under 13. We do not knowingly collect their information.</p>
+    <h2 id="rights">12. Your rights and how to use them</h2>
+    <p>You can ask us to:</p>
+    <ul>
+      <li>show you the information we hold about you;</li>
+      <li>correct anything that's wrong;</li>
+      <li>give you a copy of it to take elsewhere;</li>
+      <li>delete it (except records the law makes us keep);</li>
+      <li>stop using it for a purpose, or withdraw a permission you gave.</li>
+    </ul>
+    <p><strong>How:</strong> in any app, go to <strong>Settings › Data &amp; privacy</strong>. You'll find "Delete my account" there, and links to this policy. Or email <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a> from the email on your account. We reply within 30 days.</p>
+    <p>Before deleting an account, empty the wallet. Money held for an open order must finish first.</p>
+    <p>If you're unhappy with our answer, you can complain to the <strong>Nigeria Data Protection Commission</strong>, or the data protection authority where you live.</p>
 
-    <h2>Changes</h2>
-    <p>If we change this policy, we will update the date at the top. For important changes we will also tell you in the app.</p>
+    <h2 id="website">13. This website</h2>
+    <p>This website does not use advertising or tracking cookies. If you join a beta, we keep your email and which app you're testing so we can send you the test version. Our host (Vercel) keeps standard visit logs, such as your IP address and browser, to run and secure the site.</p>
 
+    <h2 id="age">14. Age</h2>
+    <p>All three apps are for people <strong>18 or older</strong>. They handle payments and deliveries. We do not knowingly collect information from anyone younger. If you believe a child has an account, email us and we'll remove it.</p>
+
+    <h2 id="changes">15. Changes to this policy</h2>
+    <p>Every change is listed, in plain words, on the <a href="changes.html">What changed</a> page. For an important change, we tell you in the app <strong>at least 14 days before</strong> it takes effect. If we ever want to use your information in a new way, we will ask you first.</p>
+
+    <p class="muted">Contact: StockFlow · <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a></p>
     </article>
   </main>
-  <footer><span>Contact: <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a></span><span><a href="terms.html">Terms of Service</a> · © 2026 StockFlow</span></footer>
+  <footer><span>Contact: <a href="mailto:stockflowapp.help@gmail.com">stockflowapp.help@gmail.com</a></span><span><a href="terms.html">Terms</a> · <a href="changes.html">What changed</a> · © 2026 StockFlow</span></footer>
 </body>
 </html>
