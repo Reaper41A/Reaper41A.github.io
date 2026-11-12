@@ -295,7 +295,8 @@
   });
 
   $('[data-beta="signout"]').addEventListener('click', async function () {
-    await sb.auth.signOut();
+    // This browser only: a plain signOut() ends the session on every phone too, logging the apps out.
+    await sb.auth.signOut({ scope: "local" });
     await refresh();
   });
 

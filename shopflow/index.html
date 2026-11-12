@@ -8,17 +8,17 @@
   <meta name="description" content="Shopflow shows you what shops near you have in stock, at their real prices. Order for pickup or delivery and pay from your wallet. Join the Android beta.">
   <meta property="og:title" content="Shopflow · Shop the stores around you">
   <meta property="og:description" content="Live stock from shops near you. Order for pickup or delivery. Join the Android beta.">
-  <meta name="theme-color" content="#FFF6EA">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M30 42a20 20 0 0 1 40 0' fill='none' stroke='%230C1F17' stroke-width='8'/%3E%3Crect x='12' y='38' width='76' height='11' rx='5.5' fill='%230C1F17'/%3E%3Cpath d='M22 50H78L73 82Q72 88 66 88H34Q28 88 27 82Z' fill='%23FF7A1A'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#F6F5F2">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M30 42a20 20 0 0 1 40 0' fill='none' stroke='%231A1A1F' stroke-width='8'/%3E%3Crect x='12' y='38' width='76' height='11' rx='5.5' fill='%231A1A1F'/%3E%3Cpath d='M22 50H78L73 82Q72 88 66 88H34Q28 88 27 82Z' fill='%23FF5E14'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #FFF6EA; --card: #FFFFFF; --ink: #0C1F17; --sub: #3C4A43; --faint: #66736C; --line: #F0DFC8;
-      --mango: #FF7A1A; --mango-ink: #B34A00; --mango-soft: #FFE6D1; --teal: #0E9F94;
+      --bg: #F6F5F2; --card: #FFFFFF; --ink: #1A1A1F; --sub: #4A4952; --faint: #66646E; --line: #E4E1DB;
+      --mango: #FF5E14; --mango-ink: #C13D00; --mango-soft: #FBECE5; --teal: #0E9F94;
       --amber: #A86A00; --danger: #C9302C;
-      --shadow: 0 1px 2px rgba(12,31,23,.05), 0 14px 32px -14px rgba(12,31,23,.22);
+      --shadow: 0 1px 2px rgba(26,26,31,.05), 0 14px 32px -14px rgba(26,26,31,.22);
       --radius: 24px;
       /* Names beta.js uses for the What's new groups (New, Improved, Fixed). */
       --green: var(--teal); --drop: var(--mango-ink); --shop: var(--amber);
@@ -42,7 +42,7 @@
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 16px; font: inherit; font-weight: 700; font-size: 16px; text-decoration: none; border: 0; cursor: pointer; }
     .btn:disabled { opacity: .6; cursor: default; }
     /* Ink text on mango keeps the button readable (white on mango is too faint). */
-    .btn-primary { background: var(--mango); color: #0C1F17; box-shadow: 0 6px 14px -8px rgba(12,31,23,.4); }
+    .btn-primary { background: var(--mango); color: #FFFFFF; box-shadow: 0 6px 14px -8px rgba(26,26,31,.4); }
     .btn-ghost { background: var(--card); color: var(--ink); border: 1px solid var(--line); }
     .btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
 
@@ -117,9 +117,9 @@
         <path d="M30 42a20 20 0 0 1 40 0" fill="none" stroke="currentColor" stroke-width="8"/>
         <rect x="12" y="38" width="76" height="11" rx="5.5" fill="currentColor"/>
         <g clip-path="url(#sfBasket)">
-          <rect x="10" y="40" width="80" height="50" fill="#FF7A1A"/>
-          <path d="M10 40H90V60H84C70 50 58 56 50 66C42 76 30 82 16 70H10Z" fill="#0C1F17"/>
-          <path d="M16 70C30 82 42 76 50 66S70 50 84 60" stroke-linecap="square" fill="none" stroke="#FFF6EA" stroke-width="6"/>
+          <rect x="10" y="40" width="80" height="50" fill="#FF5E14"/>
+          <path d="M10 40H90V60H84C70 50 58 56 50 66C42 76 30 82 16 70H10Z" fill="#1A1A1F"/>
+          <path d="M16 70C30 82 42 76 50 66S70 50 84 60" stroke-linecap="square" fill="none" stroke="#F6F5F2" stroke-width="6"/>
         </g>
       </symbol>
       <symbol id="i-map" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21z"/><circle cx="12" cy="10" r="2.4"/></g></symbol>

@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>StockFlow · Your whole shop, in your pocket</title>
-  <meta name="description" content="StockFlow keeps your stock, sales and books in order, even with no data. Built for shops, wholesalers, restaurants and service businesses. Shopflow for shoppers and Dropflow for riders are in beta.">
+  <meta name="description" content="StockFlow keeps your stock, sales and books in order, even with no data. Built for shops, wholesalers, restaurants and service businesses. Shopflow for shoppers and Dropflow for riders. All three are in beta.">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#0B9D4F">
   <meta property="og:title" content="StockFlow · Your whole shop, in your pocket">
-  <meta property="og:description" content="Stock, sales and books that keep themselves right, even offline. Shopflow for shoppers and Dropflow for riders are in beta.">
+  <meta property="og:description" content="Stock, sales and books that keep themselves right, even offline. StockFlow, Shopflow and Dropflow are all in beta.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='24 12 52 76'%3E%3Cg fill='none' stroke-width='11'%3E%3Cpath d='M64 38V34Q64 22 52 22H48Q36 22 36 34V38Q36 50 48 50' stroke='%230B1F14'/%3E%3Cpath d='M52 50Q64 50 64 62V66Q64 78 52 78H48Q36 78 36 66V62' stroke='%230B9D4F'/%3E%3C/g%3E%3C/svg%3E">
   <link rel="preload" href="fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
   <style>
@@ -29,7 +29,7 @@
       /* Cartons */
       --kraft: #D9AA6E; --kraft-edge: #B4864C; --tape: #F0D4A4; --label: #FFF9EE;
       /* Sister apps */
-      --shop: #F08A00; --shop-soft: #FFF0DB; --drop: #2F6FEB; --drop-soft: #E3ECFF;
+      --shop: #FF5E14; --shop-soft: #FBECE5; --drop: #7B3FF2; --drop-soft: #ECE5FB;
       --amber: #F59E0B; --danger: #E5484D;
       --lift: 0 1px 2px rgba(13,31,22,.05), 0 14px 34px -14px rgba(13,31,22,.22);
       --r-lg: 22px; --r-md: 14px;
@@ -98,7 +98,7 @@
     .hero .wrap { display: grid; grid-template-columns: 1.08fr .92fr; gap: 40px; align-items: center; position: relative; }
     .badge { display: inline-flex; align-items: center; gap: 10px; padding: 5px 16px 5px 5px; border-radius: 999px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line); font-size: 14.5px; font-weight: 600; color: var(--sub); text-decoration: none; transition: box-shadow .2s, color .2s; }
     .badge:hover { color: var(--ink); box-shadow: inset 0 0 0 1px var(--shop); }
-    .badge b { padding: 3px 11px; border-radius: 999px; background: var(--shop-soft); color: #9A5600; font-size: 13px; font-weight: 700; }
+    .badge b { padding: 3px 11px; border-radius: 999px; background: var(--shop-soft); color: #C13D00; font-size: 13px; font-weight: 700; }
     .hero h1 { font-size: clamp(46px, 5.9vw, 80px); letter-spacing: -0.045em; line-height: .95; margin: 22px 0 24px; }
     .hero h1 span { display: block; }
     @media (min-width: 481px) { .hero h1 span { white-space: nowrap; } }
@@ -317,8 +317,8 @@
     .status.live { background: var(--accent-soft); color: var(--accent-ink); }
     .status.soon { color: var(--sub); box-shadow: inset 0 0 0 1px var(--faint); }
     .a-stock { --accent: var(--green); --accent-ink: var(--green-ink); --accent-soft: var(--green-soft); }
-    .a-shop { --accent: var(--shop); --accent-ink: #9A5600; --accent-soft: var(--shop-soft); }
-    .a-drop { --accent: var(--drop); --accent-ink: #1D4FBF; --accent-soft: var(--drop-soft); }
+    .a-shop { --accent: var(--shop); --accent-ink: #C13D00; --accent-soft: var(--shop-soft); }
+    .a-drop { --accent: var(--drop); --accent-ink: #6A2BE0; --accent-soft: var(--drop-soft); }
     @media (max-width: 920px) { .apps { grid-template-columns: 1fr; } }
 
     /* Flow journey */
@@ -510,7 +510,7 @@
     <section class="hero">
       <div class="wrap">
         <div>
-          <a class="badge" href="#ecosystem"><b>New</b> Shopflow and Dropflow are in beta. Try them</a>
+          <a class="badge" href="#ecosystem"><b>Beta</b> StockFlow, Shopflow and Dropflow are all in beta. Try them</a>
           <h1><span>Your whole shop,</span> <span>in your pocket.</span></h1>
           <p class="lead">StockFlow keeps your stock, sales and books right, even with no data. Built for shops, wholesalers, restaurants and service businesses that are done with notebooks.</p>
           <div class="cta-row">
@@ -716,12 +716,13 @@
           <article class="appcard a-stock">
             <div class="top">
               <span class="appicon"><svg viewBox="24 12 52 76" aria-hidden="true"><g fill="none" stroke-width="11"><path d="M64 38V34Q64 22 52 22H48Q36 22 36 34V38Q36 50 48 50" stroke="#fff"/><path d="M52 50Q64 50 64 62V66Q64 78 52 78H48Q36 78 36 66V62" stroke="rgba(255,255,255,.65)"/></g></svg></span>
-              <span class="status live">Available now</span>
+              <span class="status live">In beta</span>
             </div>
             <span class="who">For businesses</span>
             <h3>StockFlow</h3>
             <p>The app that runs your shop: stock, sales, books, staff and your online storefront.</p>
             <ul><li>Stock by carton, pack or piece</li><li>Sales book that adds itself up</li><li>Works offline, backed up online</li></ul>
+            <a class="beta-link" href="#beta">Join the StockFlow beta <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </article>
           <article class="appcard a-shop">
             <div class="top">
@@ -767,7 +768,7 @@
       <div class="wrap">
         <div class="narrow">
           <div class="head">
-            <h2>Try the newest StockFlow.</h2>
+            <h2>StockFlow is in beta.</h2>
             <p class="lead">Testers get new features first. Ask to join, and once you’re approved you can download the test app here. After that it updates itself.</p>
           </div>
           <div class="beta-card" aria-live="polite">
@@ -849,7 +850,7 @@
           <details><summary>What if I lose my phone?</summary><p>If you have an account, sign in on a new phone and your shop comes back: products, sales, customers and debts.</p></details>
           <details><summary>Can my staff use it without seeing everything?</summary><p>Yes. Each staff member gets their own PIN and you choose what they can see and do, for example selling without seeing your profit.</p></details>
           <details><summary>What kinds of businesses is it for?</summary><p>Shops and supermarkets, wholesalers, restaurants and food vendors, phone and electronics shops, fashion stores, salons and other services, people selling on WhatsApp or Instagram, and custom-made work.</p></details>
-          <details><summary>When are Shopflow and Dropflow launching?</summary><p>Both are in beta now: <a href="/shopflow/#beta">join Shopflow</a> or <a href="/dropflow/#beta">join Dropflow</a>. Each uses its own account, separate from StockFlow.</p></details>
+          <details><summary>When are the apps launching?</summary><p>All three are in beta now: <a href="#beta">join StockFlow</a>, <a href="/shopflow/#beta">join Shopflow</a> or <a href="/dropflow/#beta">join Dropflow</a>. Each uses its own account.</p></details>
           <details><summary>Is my data safe?</summary><p>Your records are sent over encrypted connections and only your business and the staff you invite can see them. Read our <a href="privacy.html">Privacy Policy</a> for the details.</p></details>
         </div>
       </div>

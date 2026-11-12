@@ -8,19 +8,19 @@
   <meta name="description" content="Dropflow is the app for riders and delivery companies on the StockFlow network. Take delivery jobs from nearby shops, get paid to your wallet. Join the Android beta.">
   <meta property="og:title" content="Dropflow · Deliver for the shops around you">
   <meta property="og:description" content="Delivery jobs from shops near you, paid to your wallet. Join the Android beta.">
-  <meta name="theme-color" content="#EEF4FF">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='8' y='12' width='48' height='42' rx='9' fill='%232563EB'/%3E%3Cpath d='M10 64H46L58 80H70.5M69 28L78.1 71.7M61 26H71' fill='none' stroke='%230B1530' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='24' cy='81' r='9.5' fill='none' stroke='%230B1530' stroke-width='7'/%3E%3Ccircle cx='80' cy='81' r='9.5' fill='none' stroke='%230B1530' stroke-width='7'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#F6F5F2">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='8' y='12' width='48' height='42' rx='9' fill='%237B3FF2'/%3E%3Cpath d='M10 64H46L58 80H70.5M69 28L78.1 71.7M61 26H71' fill='none' stroke='%231A1A1F' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='24' cy='81' r='9.5' fill='none' stroke='%231A1A1F' stroke-width='7'/%3E%3Ccircle cx='80' cy='81' r='9.5' fill='none' stroke='%231A1A1F' stroke-width='7'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Dropflow blue (#2563EB) on the same layout as the Shopflow page. The --mango names are kept so the
-         rules below match Shopflow's; here they hold Dropflow's blue. */
-      --bg: #EEF4FF; --card: #FFFFFF; --ink: #0B1530; --sub: #36415C; --faint: #5E6884; --line: #D6E2F7;
-      --mango: #2563EB; --mango-ink: #1D4FC4; --mango-soft: #DCE7FD; --teal: #0E8F86;
+      /* Dropflow violet (#7B3FF2) on the apps' neutral paper, same layout as the Shopflow page. The --mango names are
+         kept so the rules below match Shopflow's; here they hold Dropflow's violet. */
+      --bg: #F6F5F2; --card: #FFFFFF; --ink: #1A1A1F; --sub: #4A4952; --faint: #66646E; --line: #E4E1DB;
+      --mango: #7B3FF2; --mango-ink: #6A2BE0; --mango-soft: #ECE5FB; --teal: #0E8F86;
       --amber: #A86A00; --danger: #C9302C;
-      --shadow: 0 1px 2px rgba(11,21,48,.05), 0 14px 32px -14px rgba(11,21,48,.22);
+      --shadow: 0 1px 2px rgba(26,26,31,.05), 0 14px 32px -14px rgba(26,26,31,.22);
       --radius: 24px;
       /* Names beta.js uses for the What's new groups (New, Improved, Fixed). */
       --green: var(--teal); --drop: var(--mango-ink); --shop: var(--amber);
@@ -44,7 +44,7 @@
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 16px; font: inherit; font-weight: 700; font-size: 16px; text-decoration: none; border: 0; cursor: pointer; }
     .btn:disabled { opacity: .6; cursor: default; }
     /* White on Dropflow blue is 5.2:1, readable at this size. */
-    .btn-primary { background: var(--mango); color: #FFFFFF; box-shadow: 0 6px 14px -8px rgba(11,21,48,.4); }
+    .btn-primary { background: var(--mango); color: #FFFFFF; box-shadow: 0 6px 14px -8px rgba(26,26,31,.4); }
     .btn-ghost { background: var(--card); color: var(--ink); border: 1px solid var(--line); }
     .btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
 
@@ -118,9 +118,9 @@
       <symbol id="df-mark" viewBox="0 0 100 100">
         <clipPath id="dfBox"><rect x="8" y="12" width="48" height="42" rx="9"/></clipPath>
         <g clip-path="url(#dfBox)">
-          <rect x="2" y="8" width="60" height="50" fill="#2563EB"/>
+          <rect x="2" y="8" width="60" height="50" fill="#7B3FF2"/>
           <path d="M2 8H62V29H58C49 21 39 25 32 34C25 43 16 47 6 39H2Z" fill="currentColor"/>
-          <path d="M6 39C16 47 25 43 32 34S49 21 58 29" fill="none" stroke="#EEF4FF" stroke-width="5.5" stroke-linecap="square"/>
+          <path d="M6 39C16 47 25 43 32 34S49 21 58 29" fill="none" stroke="#F6F5F2" stroke-width="5.5" stroke-linecap="square"/>
         </g>
         <path d="M10 64H46L58 80H70.5M69 28L78.1 71.7M61 26H71" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
         <circle cx="24" cy="81" r="9.5" fill="none" stroke="currentColor" stroke-width="7"/>
