@@ -6,16 +6,20 @@
 
   var SUPABASE_URL = 'https://fpshdyotujchfdwasqxn.supabase.co';
   var SUPABASE_KEY = 'sb_publishable__hAxNx0fuuoCQOAmRkkR3A_7nmyksie';
-  // The same script runs the StockFlow beta (index.html) and the Shopflow beta (shopflow/).
-  // <section id="beta" data-app="shopflow"> switches it to Shopflow's testers, builds and notes.
+  // The same script runs the StockFlow beta (index.html), the Shopflow beta (shopflow/) and the
+  // Dropflow beta (dropflow/). <section id="beta" data-app="shopflow|dropflow"> switches it to that
+  // app's testers, builds and notes.
   var section = document.getElementById('beta');
-  var APP = section && section.getAttribute('data-app') === 'shopflow' ? 'shopflow' : 'stockflow';
-  var SHOPFLOW = APP === 'shopflow';
-  var RPC = SHOPFLOW
-    ? { status: 'shopflow_beta_status', request: 'shopflow_beta_request_access', news: 'shopflow_whats_new' }
-    : { status: 'beta_status', request: 'beta_request_access', news: 'whats_new' };
+  var asked = section && section.getAttribute('data-app');
+  var APP = asked === 'shopflow' || asked === 'dropflow' ? asked : 'stockflow';
+  var NAMES = { stockflow: 'StockFlow', shopflow: 'Shopflow', dropflow: 'Dropflow' };
+  // Shopflow and Dropflow accounts are their own: a sign-in is claimed for that app.
+  var OWN_ACCOUNT = APP !== 'stockflow';
+  var RPC = APP === 'stockflow'
+    ? { status: 'beta_status', request: 'beta_request_access', news: 'whats_new' }
+    : { status: APP + '_beta_status', request: APP + '_beta_request_access', news: APP + '_whats_new' };
   var RETURN_FLAG = APP + '.beta.return';
-  var OTHER_APP_TEXT = 'This email is used for StockFlow. Shopflow needs its own account: sign out and use a different email.';
+  var OTHER_APP_TEXT = 'This email is used for another app. ' + NAMES[APP] + ' needs its own account: sign out and use a different email.';
 
   var card = document.querySelector('#beta .beta-card');
   if (!card) return;
@@ -167,10 +171,10 @@
     who.hidden = false;
     $('[data-beta="who-email"]').textContent = 'Signed in as ' + (session.user.email || 'you');
 
-    // Shopflow accounts are separate from StockFlow ones: claim this sign-in for Shopflow,
-    // or say plainly that this email already belongs to StockFlow.
-    if (SHOPFLOW) {
-      var claim = await sb.rpc('claim_app_account', { p_app: 'shopflow' });
+    // Shopflow and Dropflow accounts are separate from the others: claim this sign-in for this app,
+    // or say plainly that this email already belongs to another one.
+    if (OWN_ACCOUNT) {
+      var claim = await sb.rpc('claim_app_account', { p_app: APP });
       if (!claim.error && claim.data === 'other_app') {
         show('none');
         $('[data-beta="request-form"]').hidden = true;
@@ -243,8 +247,8 @@
     button.disabled = true;
     markReturn();
     var otpOptions = { emailRedirectTo: returnUrl() };
-    // A new account made here belongs to Shopflow from the start.
-    if (SHOPFLOW) otpOptions.data = { signup_app: 'shopflow' };
+    // A new account made here belongs to this app from the start.
+    if (OWN_ACCOUNT) otpOptions.data = { signup_app: APP };
     var res = await sb.auth.signInWithOtp({ email: email, options: otpOptions });
     button.disabled = false;
     message(
@@ -264,8 +268,8 @@
     var res = await sb.rpc(RPC.request);
     button.disabled = false;
     if (res.error) {
-      var usedForStockflow = SHOPFLOW && /stockflow/i.test(res.error.message || '');
-      message($('[data-beta="status-msg"]'), usedForStockflow ? OTHER_APP_TEXT : 'We couldn’t send your request. Please try again.', true);
+      var usedElsewhere = OWN_ACCOUNT && /stockflow|another app/i.test(res.error.message || '');
+      message($('[data-beta="status-msg"]'), usedElsewhere ? OTHER_APP_TEXT : 'We couldn’t send your request. Please try again.', true);
       return;
     }
     await refresh();
