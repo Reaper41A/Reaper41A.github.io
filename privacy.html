@@ -128,11 +128,12 @@
       <tbody>
         <tr><td data-label="App">StockFlow</td><td data-label="When">Only when you tap to fill in an address</td><td data-label="Why">To fill in a shop or delivery address</td><td data-label="Who sees it">Only you, unless you save it to your public shop profile</td></tr>
         <tr><td data-label="App">Shopflow</td><td data-label="When">Only while the app is open</td><td data-label="Why">To show shops near you and fill in your delivery address</td><td data-label="Who sees it">Your address goes with your orders. Where your phone is otherwise stays on your phone.</td></tr>
-        <tr><td data-label="App">Dropflow</td><td data-label="When">While you are <strong>on duty</strong>, about once a minute</td><td data-label="Why">To offer jobs to the nearest riders</td><td data-label="Who sees it">Our system, your company's managers and dispatchers, and our team. Not shops or customers.</td></tr>
-        <tr><td data-label="App">Dropflow</td><td data-label="When">From <strong>taking a job</strong> until it's delivered. About every 15 seconds while carrying it.</td><td data-label="Why">So the shop and customer can see the rider coming, and to confirm the rider reached the door</td><td data-label="Who sees it">The shop and customer of that job only, plus the people above</td></tr>
+        <tr><td data-label="App">Dropflow</td><td data-label="When">While you are <strong>on duty</strong>, about once a minute, <strong>even with the app closed</strong> if you allow it</td><td data-label="Why">To offer jobs to the nearest riders</td><td data-label="Who sees it">Our system, your company's managers and dispatchers, and our team. Not shops or customers.</td></tr>
+        <tr><td data-label="App">Dropflow</td><td data-label="When">From <strong>taking a job</strong> until it's delivered. About every 15 seconds while carrying it, even with the app closed if you allow it.</td><td data-label="Why">So the shop and customer can see the rider coming, and to confirm the rider reached the door</td><td data-label="Who sees it">The shop and customer of that job only, plus the people above</td></tr>
       </tbody>
     </table></div>
-    <p>Dropflow only uses location while the app is open and you are on duty. Go off duty and it stops, and your last position is cleared. If this ever changes (for example, to keep working with the app in the background), we will tell you in the app and ask for your permission first.</p>
+    <p><strong>Dropflow with the app closed:</strong> when you go on duty, Dropflow explains this and asks you to allow location "all the time". If you allow it, location keeps going while you're on duty, even when the app is closed or the screen is off. On Android, a notification stays on screen the whole time to show this. <strong>Go off duty and it stops</strong>, and your last position is cleared. If you don't allow it, Dropflow only uses your location while it's open. You can change this at any time in your phone's settings.</p>
+    <p>When a rider taps "I've arrived", we check their phone is near the customer's map pin, and we record the time of each call or message they try. This decides who's at fault if the customer can't be reached.</p>
 
     <h2 id="who-sees">6. Who sees what on an order</h2>
     <div class="table-wrap"><table>
@@ -154,7 +155,7 @@
     <ul>
       <li><strong>Camera:</strong> StockFlow, to scan barcodes and riders' pickup codes and take photos. Shopflow, to scan the rider's code at your door and take photos. Dropflow, for the pickup and door photos and chat photos.</li>
       <li><strong>Photos:</strong> to attach photos and save chat images when you tap Save.</li>
-      <li><strong>Location:</strong> see <a href="#location">section 5</a>.</li>
+      <li><strong>Location:</strong> see <a href="#location">section 5</a>. Dropflow also asks for "Allow all the time", only for while you're on duty.</li>
       <li><strong>Microphone:</strong> to record voice notes and videos in chat.</li>
       <li><strong>Notifications:</strong> for orders, jobs, messages and reminders.</li>
       <li><strong>Face ID or fingerprint</strong> (StockFlow): a faster way to unlock than your PIN. This never leaves your phone.</li>

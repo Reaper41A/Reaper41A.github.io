@@ -142,12 +142,12 @@
     <h2 id="unreachable">8. When the customer can't be reached</h2>
     <p>This applies to partner deliveries, when the rider reaches your address and you aren't there or don't answer.</p>
     <ol class="step">
-      <li><strong>The rider arrives.</strong> The app checks the rider's phone is at your map pin before the rider can say "I've arrived". You get a notification.</li>
-      <li><strong>The rider tries to reach you at least twice</strong>, by calling or messaging through the app.</li>
+      <li><strong>The rider arrives.</strong> The app checks the rider's phone is near your map pin (within about 200 metres) before the rider can say "I've arrived". You get a notification: "Your rider is here".</li>
+      <li><strong>The rider tries to reach you at least twice</strong>, by calling or texting from the Dropflow app, at least a minute apart. Each try is recorded.</li>
       <li><strong>The rider waits 10 minutes</strong> from arriving. The app shows you a countdown.</li>
       <li><strong>After 10 minutes</strong>, one of two things happens:
         <ul>
-          <li><strong>If you turned on "Leave it at the door" at checkout:</strong> the rider leaves the order at your address and takes a photo. That counts as delivered, and your return window starts. You accept the risk of leaving it there.</li>
+          <li><strong>If you turned on "Leave it at the door"</strong> (at checkout, or on the tracking screen before the rider arrives): the rider leaves the order at your address and takes a photo. That counts as delivered, and your return window starts. You accept the risk of leaving it there.</li>
           <li><strong>If you didn't:</strong> the rider takes the order back to the shop.</li>
         </ul>
       </li>
@@ -157,14 +157,15 @@
       <thead><tr><th scope="col">Person</th><th scope="col">What happens</th></tr></thead>
       <tbody>
         <tr><td data-label="Person">Customer</td><td data-label="What happens">The full <strong>price of the goods</strong> goes back to your wallet. The <strong>delivery fee and service fee are not refunded</strong>, because the trip was made. To get the goods, place a new order.</td></tr>
-        <tr><td data-label="Person">Shop</td><td data-label="What happens">Gets the goods back, unopened. Isn't paid for them, because the customer is refunded.</td></tr>
-        <tr><td data-label="Person">Delivery business</td><td data-label="What happens">Is paid the delivery fee. That fee covers the trip back to the shop. There is no extra charge to anyone.</td></tr>
+        <tr><td data-label="Person">Shop</td><td data-label="What happens">Gets the goods back, unopened, and confirms it in StockFlow. Isn't paid for them, because the customer is refunded.</td></tr>
+        <tr><td data-label="Person">Delivery business</td><td data-label="What happens">Is paid the delivery fee once the shop confirms the goods are back and the customer's 48-hour report window has passed. That fee covers the trip back to the shop. There is no extra charge to anyone.</td></tr>
       </tbody>
     </table></div>
     <div class="box note">
       <p><strong>If the rider skipped a step</strong> (left before 10 minutes, didn't try to contact you twice, or wasn't at your pin), the failed delivery counts as the rider's fault. You get <strong>everything</strong> back, fees included, and the delivery business isn't paid for that job.</p>
-      <p><strong>Think the rider didn't really come?</strong> Report it from the order. We check the rider's location, arrival time and contact attempts.</p>
+      <p><strong>Think the rider didn't really come?</strong> Report it from the order's tracking screen <strong>within 48 hours</strong>. We check the rider's location, arrival time and contact attempts, and the fees stay on hold until we decide.</p>
     </div>
+    <p><strong>Cash or pay-later orders:</strong> nothing was paid in the app, so nothing is refunded or charged. The order goes back to the shop and the delivery business isn't paid for the trip.</p>
     <p>To avoid this, keep your phone with you and make sure your map pin and delivery note are right.</p>
 
     <h2 id="returns">9. Problems with an order: return claims</h2>
@@ -216,7 +217,7 @@
       <li>Have the order packed when you mark it ready. Hand it only to the rider whose pickup code you scanned.</li>
       <li>A paid app order shows as <strong>"Held until delivered"</strong>. It's not your money until it's released.</li>
       <li>You must answer return claims. If you don't answer in time, the claim goes to our team.</li>
-      <li>If an order comes back because the customer couldn't be reached, check it and put it back in stock. You're not paid for it.</li>
+      <li>If an order comes back because the customer couldn't be reached, StockFlow puts the items back in your stock count by itself. Check it's complete and tap "It's back" in Incoming orders. You're not paid for it.</li>
       <li>You're responsible for your staff, and for the customer details you save (see the <a href="privacy.html#stockflow">Privacy Policy</a>).</li>
     </ul>
 
@@ -228,7 +229,8 @@
       <li><strong>Riders in a company don't have a wallet.</strong> We pay the business. The business pays its riders.</li>
       <li><strong>Cash on delivery:</strong> if the job says "Collect ₦X from the customer", collect exactly that amount.</li>
       <li><strong>Every job:</strong> take the pickup photo and the door photo. Never open, swap or keep goods. Never ask for the customer's code before handing over.</li>
-      <li><strong>Customer not reachable:</strong> follow every step in <a href="#unreachable">section 8</a>: arrive at the pin, try twice, wait 10 minutes. Then leave it (only if the customer chose "Leave it at the door") or take it back to the shop the same day. If you skip a step, your business isn't paid for that job.</li>
+      <li><strong>Customer not reachable:</strong> follow every step in <a href="#unreachable">section 8</a>: arrive at the pin, try twice, wait 10 minutes. Then leave it (only if the customer chose "Leave it at the door", with a photo) or take it back to the shop the same day. Your business is paid once the shop confirms it's back. If you skip a step, it isn't paid for that job.</li>
+      <li><strong>Location while on duty:</strong> Dropflow shares your location while you're on duty, even with the app closed if you allow it (see the <a href="privacy.html#location">Privacy Policy</a>). Go off duty to stop it.</li>
       <li>Ride safely and follow traffic laws. You're responsible for your vehicle, licence and insurance.</li>
     </ul>
 
