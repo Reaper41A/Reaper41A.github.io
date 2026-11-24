@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Link WhatsApp · StockFlow</title>
+  <style>
+    :root { color-scheme: light dark; --ink: #25332B; --sub: #647068; --bg: #F5F7F3; --card: #fff; --green: #1F8F4E; }
+    @media (prefers-color-scheme: dark) { :root { --ink: #E7ECE7; --sub: #93A096; --bg: #111512; --card: #1A201C; } }
+    body { margin: 0; font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--ink); }
+    main { max-width: 460px; margin: 0 auto; padding: 40px 20px; }
+    .card { background: var(--card); border-radius: 22px; padding: 24px; box-shadow: 0 6px 24px rgba(0,0,0,.08); text-align: center; }
+    h1 { font-size: 22px; margin: 12px 0 6px; }
+    p { color: var(--sub); margin: 8px 0; }
+    button { font: inherit; font-weight: 800; border: 0; border-radius: 999px; min-height: 52px; padding: 0 24px; width: 100%; margin-top: 18px; background: var(--green); color: #fff; cursor: pointer; }
+    button[disabled] { opacity: .5; }
+    .status { min-height: 24px; margin-top: 14px; font-weight: 700; }
+    .err { color: #B3261E; }
+    a.back { display: inline-block; margin-top: 14px; color: var(--green); font-weight: 800; }
+  </style>
+</head>
+<body>
+<main>
+  <div class="card">
+    <svg width="56" height="56" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#1F8F4E"/><path fill="#fff" d="M17.2 14.4c-.3-.1-1.6-.8-1.8-.9-.3-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1-1.6-.8-2.6-1.4-3.7-3.2-.3-.5.3-.5.8-1.6.1-.2 0-.3 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2.2-.5 3.5 1 2.2 2.9 4 5.4 4.8 1.2.4 2.4.2 3.1-.6.3-.3.4-.8.4-1.2 0-.2-.2-.3-.5-.4z"/></svg>
+    <h1>Link your WhatsApp to StockFlow</h1>
+    <p>Sign in with Facebook and pick your WhatsApp Business account and number. Then you'll go back to StockFlow.</p>
+    <button id="go" disabled>Loading…</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+    <a class="back" id="back" href="#" hidden>Back to StockFlow</a>
+  </div>
+</main>
+<script>
+  // Meta's Embedded Signup for a StockFlow shop's own WhatsApp number. The app opens this page with
+  // app_id, config_id, v (Graph version), coex (1: keep the WhatsApp Business app on the number) and
+  // return (the app's link). Meta gives back a one-time code and the account and number ids; this page
+  // passes them to the app, which finishes linking on StockFlow's server. Nothing is stored here.
+  const q = new URLSearchParams(location.search);
+  const appId = q.get('app_id') || '';
+  const configId = q.get('config_id') || '';
+  const version = q.get('v') || 'v25.0';
+  const coex = q.get('coex') === '1';
+  const ret = q.get('return') || 'stockflow://whatsapp-connected';
+  const go = document.getElementById('go');
+  const statusEl = document.getElementById('status');
+  const back = document.getElementById('back');
+  const session = { waba_id: '', phone_number_id: '' };
+
+  function say(text, bad) { statusEl.textContent = text; statusEl.className = 'status' + (bad ? ' err' : ''); }
+  function finish(params) {
+    if (!/^stockflow:\/\//.test(ret)) return say('This link is not from StockFlow.', true);
+    const url = ret + (ret.includes('?') ? '&' : '?') + new URLSearchParams(params).toString();
+    back.href = url; back.hidden = false;
+    location.href = url;
+  }
+
+  if (!appId || !configId) {
+    say('Open this from StockFlow: More › WhatsApp Business.', true);
+  }
+
+  // Embedded Signup reports the account and number it linked (and cancellations) as a message event.
+  window.addEventListener('message', (event) => {
+    if (!String(event.origin).endsWith('facebook.com')) return;
+    try {
+      const data = JSON.parse(event.data);
+      if (data.type !== 'WA_EMBEDDED_SIGNUP') return;
+      if (data.event === 'CANCEL') { say('Sign-up stopped. You can try again.', true); return; }
+      const d = data.data || {};
+      if (d.waba_id) session.waba_id = d.waba_id;
+      if (d.phone_number_id) session.phone_number_id = d.phone_number_id;
+    } catch (_) { /* other Facebook messages */ }
+  });
+
+  window.fbAsyncInit = function () {
+    FB.init({ appId, autoLogAppEvents: true, xfbml: false, version });
+    go.disabled = !appId || !configId;
+    go.textContent = 'Continue with Facebook';
+  };
+
+  go.addEventListener('click', () => {
+    say('');
+    const extras = coex
+      ? { setup: {}, featureType: 'whatsapp_business_app_onboarding', sessionInfoVersion: '3' }
+      : { setup: {}, sessionInfoVersion: '3' };
+    FB.login((response) => {
+      const code = response && response.authResponse && response.authResponse.code;
+      if (!code) { say('Sign-up didn’t finish. You can try again.', true); return; }
+      say('Linked. Going back to StockFlow…');
+      // The session event can land just after the login callback.
+      setTimeout(() => finish({ code, waba_id: session.waba_id, phone_number_id: session.phone_number_id, coex: coex ? '1' : '0' }), 600);
+    }, { config_id: configId, response_type: 'code', override_default_response_type: true, extras });
+  });
+</script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+</body>
+</html>
